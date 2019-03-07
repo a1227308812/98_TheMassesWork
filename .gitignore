@@ -63,3 +63,43 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+
+*.o  
+*.lo  
+*.la  
+*.al   
+.libs  
+*.so   
+*.so.[0-9]*  
+*.a   
+*.pyc 
+*.pyo  
+__pycache__   
+*.rej  
+*~ #*#  
+.#*  
+.*.swp .DS_Store   
+[Tt]humbs.db  
+uploadfile   
+.settings   
+.classpath   
+.project uploads  
+.actionScriptProperties 
+.flexProperties 
+classes 
+logs 
+uploadfile 
+*.bak 
+bin 
+properties 
+*.ear  
+target  
+.idea 
+build  
+local.properties  
+.git  
+.svn  
+*.svn   
+*.iml   
+.gradle
