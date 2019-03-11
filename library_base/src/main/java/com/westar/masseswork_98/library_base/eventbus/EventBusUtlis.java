@@ -29,27 +29,27 @@ public class EventBusUtlis {
     /**
      * 发送普通事件
      *
-     * @param event
+     * @param baseEvent
      */
-    public static void sendEvent(Event event) {
-        EventBus.getDefault().post(event);
+    public static void sendEvent(BaseEvent baseEvent) {
+        EventBus.getDefault().post(baseEvent);
     }
 
     /**
      * 发送粘性事件
      *
-     * @param event
+     * @param baseEvent
      */
-    public static void sendStickyEvent(Event event) {
-        EventBus.getDefault().postSticky(event);
+    public static void sendStickyEvent(BaseEvent baseEvent) {
+        EventBus.getDefault().postSticky(baseEvent);
     }
 
     /**
      * 移除粘性事件
      *
-     * @param event
+     * @param baseEvent
      */
-    public static void removeStickyEvent(Event event) {
-        EventBus.getDefault().removeStickyEvent(event);
+    public static void removeStickyEvent(BaseEvent baseEvent) {
+        EventBus.getDefault().removeStickyEvent(baseEvent);
     }
 }

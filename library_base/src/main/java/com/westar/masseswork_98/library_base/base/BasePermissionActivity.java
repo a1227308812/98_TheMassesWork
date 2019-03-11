@@ -1,7 +1,5 @@
 package com.westar.masseswork_98.library_base.base;
 
-import android.support.annotation.NonNull;
-
 import com.blankj.utilcode.util.PermissionUtils;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
@@ -26,35 +24,37 @@ public class BasePermissionActivity extends BaseRxActivity {
      * @param callBack 回调
      */
     protected void requestPermissions(final String[] prms, final boolean isShow, final boolean allShow, final IPermissionsCallBack callBack) {
-        addSubscribe(new RxPermissions(this).requestEachCombined(prms).subscribe(new Consumer<Permission>() {
-            @Override
-            public void accept(Permission permission) throws Exception {
-                // 用户已经同意该权限
-                if (permission.granted) {
-                    callBack.permissionSuccess(permission.name);
-                }
-                // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时。还会提示请求权限的对话框
-                else if (permission.shouldShowRequestPermissionRationale) {
-                    if (isShow) {
-                        showPermissionsDialog(prms, isShow, false, allShow, callBack);
-                    } else {
-                        if (callBack != null) {
-                            callBack.permissionErro(permission.name);
+        addSubscribe(new RxPermissions(this)
+                .requestEachCombined(prms)
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(Permission permission) throws Exception {
+                        // 用户已经同意该权限
+                        if (permission.granted) {
+                            callBack.permissionSuccess(permission.name);
+                        }
+                        // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时。还会提示请求权限的对话框
+                        else if (permission.shouldShowRequestPermissionRationale) {
+                            if (isShow) {
+                                showPermissionsDialog(prms, isShow, false, allShow, callBack);
+                            } else {
+                                if (callBack != null) {
+                                    callBack.permissionErro(permission.name);
+                                }
+                            }
+                        }
+                        // 用户拒绝了该权限，而且选中『不再询问』
+                        else {
+                            if (isShow) {
+                                showPermissionsDialog(prms, isShow, true, allShow, callBack);
+                            } else {
+                                if (callBack != null) {
+                                    callBack.permissionErro(permission.name);
+                                }
+                            }
                         }
                     }
-                }
-                // 用户拒绝了该权限，而且选中『不再询问』
-                else {
-                    if (isShow) {
-                        showPermissionsDialog(prms, isShow, true, allShow, callBack);
-                    } else {
-                        if (callBack != null) {
-                            callBack.permissionErro(permission.name);
-                        }
-                    }
-                }
-            }
-        }));
+                }));
     }
 
     /**

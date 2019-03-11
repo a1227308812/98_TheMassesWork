@@ -7,8 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 
-import com.westar.masseswork_98.library_base.R;
-import com.westar.masseswork_98.library_base.eventbus.Event;
+import com.westar.masseswork_98.library_base.eventbus.BaseEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -75,25 +74,25 @@ public abstract class BaseActivity extends BasePermissionActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventBusCome(Event event) {
-        if (event != null) {
-            receiveEvent(event);
+    public void onEventBusCome(BaseEvent baseEvent) {
+        if (baseEvent != null) {
+            receiveEvent(baseEvent);
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    public void onStickyEventBusCome(Event event) {
-        if (event != null) {
-            receiveStickyEvent(event);
+    public void onStickyEventBusCome(BaseEvent baseEvent) {
+        if (baseEvent != null) {
+            receiveStickyEvent(baseEvent);
         }
     }
 
     /**
      * 接收到分发到事件
      *
-     * @param event 事件
+     * @param baseEvent 事件
      */
-    protected void receiveEvent(Event event) {
+    protected void receiveEvent(BaseEvent baseEvent) {
 
     }
 
@@ -102,9 +101,9 @@ public abstract class BaseActivity extends BasePermissionActivity {
      * 粘性事件的发布:
      * EventBus.getDefault().postSticky("xxx");
      *
-     * @param event 粘性事件
+     * @param baseEvent 粘性事件
      */
-    protected void receiveStickyEvent(Event event) {
+    protected void receiveStickyEvent(BaseEvent baseEvent) {
 
     }
 
