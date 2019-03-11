@@ -11,6 +11,17 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        //解决
+        // Annotation processors must be explicitly declared now.
+        // The following dependencies on the compile classpath are found to contain annotation processor.
+        // Please add them to the annotationProcessor configuration.
+        // - butterknife-compiler-8.4.0.jar
+        //问题
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true }
+        }
+
     }
 
     buildTypes {
@@ -43,6 +54,11 @@ dependencies {
     api rootProject.ext.dependencies.constraint_layout
     //方法数超过65535解决方法64K MultiDex分包方法
     api rootProject.ext.dependencies.multidex
+    //工具库
+    api rootProject.ext.dependencies.utilcode
+    //黄油刀
+    api rootProject.ext.dependencies.butterknife
+    api rootProject.ext.dependencies.butterknife_compiler
 
     //网络请求相关
     api rootProject.ext.dependencies.retrofit2
@@ -54,8 +70,10 @@ dependencies {
     //rxjava内存泄漏管理
     api rootProject.ext.dependencies.rxlifecycle_components
     api rootProject.ext.dependencies.rxlifecycle_navi
+    //权限管理
+    api rootProject.ext.dependencies.rxpermissions
 
-    //图片
+    //图片加载
     api rootProject.ext.dependencies.glide
     api rootProject.ext.dependencies.glide_okhttp3
     //图片选择器
@@ -75,9 +93,6 @@ dependencies {
     api rootProject.ext.dependencies.baseRecyclerViewAdapterHelper
     //仿ios进度条 已抽取到lib中
     api rootProject.ext.dependencies.kprogresshud
-    //6.0权限管理
-    api rootProject.ext.dependencies.permissionsdispatcher
-    api rootProject.ext.dependencies.permissionsdispatcher_processor
     //alertview
     api rootProject.ext.dependencies.alertview
     //leakcanary内存泄露
@@ -85,4 +100,6 @@ dependencies {
     api rootProject.ext.dependencies.leakcanary_android_no_op
     //沉浸式状态栏
     api rootProject.ext.dependencies.barlibrary
+    //腾讯出的一款UI框架
+    api rootProject.ext.dependencies.qmui
 }

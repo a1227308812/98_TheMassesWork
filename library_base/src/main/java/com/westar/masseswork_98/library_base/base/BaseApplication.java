@@ -1,4 +1,4 @@
-package com.westar.masseswork_98.library_base;
+package com.westar.masseswork_98.library_base.base;
 
 import android.app.Application;
 import android.content.Context;
@@ -8,7 +8,7 @@ import com.westar.masseswork_98.library_base.utils.LLog;
 
 /**
  * Created by ZWP on 2019/3/1.
- * 描述：
+ * 描述：application 超类
  */
 public class BaseApplication extends Application {
     private static BaseApplication sInstance;

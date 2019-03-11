@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LibBaseTheme" parent="QMUI.Compat.NoActionBar">
+        <!-- 配置Android提供的theme -->
+        <!--<item name="android:textAppearanceListItemSmall">@style/QDTextAppearanceListItemSmall</item>-->
+        <!--<item name="android:textAppearanceListItem">@style/QDtextAppearanceListItem</item>-->
+        <item name="android:listPreferredItemHeight">?attr/qmui_list_item_height_higher</item>
+        <item name="android:listPreferredItemHeightSmall">?attr/qmui_list_item_height</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--这个在value-21v中重写,如果sdk大于19的话请在value-21v 中做修改 同时这也是作者的一个bug,在给他的github中可查证-->
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="qmui_backgroundColor">@color/qmui_config_color_background</item>
+        <!--<item name="android:actionBarSize">@dimen/qmui_dialog_action_button_radius</item>-->
+        <!--<item name="actionBarSize">@dimen/activity_horizontal_margin</item>-->
+
+
+        <item name="qmui_config_color_blue">@color/qmui_config_color_blue</item><!--这是一个BUG覆盖了colorAccent的效果-->
+
+        <item name="qmui_config_color_red">@color/colorPrimaryDark</item>
+        <item name="qmui_config_color_background">@color/qmui_config_color_background</item>
+
+        <!-- 配置app自己的theme -->
+        <item name="qmui_alpha_pressed">?attr/qmui_config_color_blue</item><!--下拉刷新 控件默认颜色-->
+        <item name="qmui_common_list_item_chevron">@drawable/qmui_list_item_bg_with_border_bottom</item><!--向右按钮-->
+        <!--<item name="qmui_dialog_action_text_negative_color">@color/qmui_dialog_action_text_negative_color</item>&lt;!&ndash;颜色cancle&ndash;&gt;-->
+        <!--<item name="qmui_dialog_action_text_color">@color/qmui_config_color_black</item>&lt;!&ndash;颜色confirm&ndash;&gt;-->
+        <!--<item name="qmui_dialog_title_text_color">@color/qmui_config_color_black</item>&lt;!&ndash;颜色Title&ndash;&gt;-->
+        <item name="qmui_config_color_gray_4">@color/qmui_config_color_gray_4</item><!--颜色message-->
+
+    </style>
+</resources>
