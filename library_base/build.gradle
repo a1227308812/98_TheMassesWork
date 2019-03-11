@@ -34,16 +34,21 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-//    implementation 'com.android.support:appcompat-v7:28.0.0'
-//    testImplementation 'junit:junit:4.12'
-//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //    implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    //    testImplementation 'junit:junit:4.12'
+
+    //    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+
+    //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //def
     api rootProject.ext.dependencies.junit
     api rootProject.ext.dependencies.runner
     api rootProject.ext.dependencies.espresso_core
+
     //Android support
     api rootProject.ext.dependencies.appcompat_v7
     api rootProject.ext.dependencies.support_annotations
@@ -52,10 +57,13 @@ dependencies {
     api rootProject.ext.dependencies.cardview_v7
     api rootProject.ext.dependencies.recyclerview_v7
     api rootProject.ext.dependencies.constraint_layout
+
     //方法数超过65535解决方法64K MultiDex分包方法
     api rootProject.ext.dependencies.multidex
+
     //工具库
     api rootProject.ext.dependencies.utilcode
+
     //黄油刀
     api rootProject.ext.dependencies.butterknife
     api rootProject.ext.dependencies.butterknife_compiler
@@ -63,43 +71,58 @@ dependencies {
     //网络请求相关
     api rootProject.ext.dependencies.retrofit2
     api rootProject.ext.dependencies.converter_gson
+    api rootProject.ext.dependencies.converter_scalars
     api rootProject.ext.dependencies.adapter_rxjava2
     api rootProject.ext.dependencies.rxjava2_rxandroid
     api rootProject.ext.dependencies.rxjava2
     api rootProject.ext.dependencies.logging_interceptor
+
     //rxjava内存泄漏管理
     api rootProject.ext.dependencies.rxlifecycle_components
     api rootProject.ext.dependencies.rxlifecycle_navi
+
     //权限管理
     api rootProject.ext.dependencies.rxpermissions
 
     //图片加载
     api rootProject.ext.dependencies.glide
     api rootProject.ext.dependencies.glide_okhttp3
+
     //图片选择器
     api rootProject.ext.dependencies.PictureSelector
+
     //图片缩放
     api rootProject.ext.dependencies.photoview
+
     //时间,地址,条件选择器
     api rootProject.ext.dependencies.pickerView
+
     //SmartRefreshLayout
     api rootProject.ext.dependencies.smartRefreshLayout
     api rootProject.ext.dependencies.SmartRefreshHeader
+
     //banner
     api rootProject.ext.dependencies.banner
+
     //eventbus
     api rootProject.ext.dependencies.eventbus
+
     //baseRecyclerViewAdapterHelper
     api rootProject.ext.dependencies.baseRecyclerViewAdapterHelper
+
     //仿ios进度条 已抽取到lib中
     api rootProject.ext.dependencies.kprogresshud
+
     //alertview
     api rootProject.ext.dependencies.alertview
+
     //leakcanary内存泄露
     api rootProject.ext.dependencies.leakcanary_android
     api rootProject.ext.dependencies.leakcanary_android_no_op
+
     //沉浸式状态栏
     api rootProject.ext.dependencies.barlibrary
+
     //腾讯出的一款UI框架
     api rootProject.ext.dependencies.qmui
 }
