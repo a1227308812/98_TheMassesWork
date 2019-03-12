@@ -1,6 +1,9 @@
-package com.westar.masseswork_98.library_base.http;
+package com.westar.masseswork_98;
 
 import android.util.Log;
+
+import com.westar.masseswork_98.library_base.http.BaseApi;
+import com.westar.masseswork_98.library_base.http.BaseAppClient;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,39 +17,47 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 /**
  * Created by ZWP on 2019/3/11.
  * 描述：
- * 1、创建Retrofit
- * 2、设置Retrofit基础参数和功能支持
- * 3、关联rxjava2
  */
-public class BaseAppClient {
+public class AppClient {
     //默认超时时间 1分钟
     private static long DEFAULT_TIMEOUT = 1;
     private Retrofit mRetrofit;
-    private BaseApi getBaseApi;
-    private String mBaseUrl = "";
+    public Api api;
+    public String mBaseUrl = "http://192.168.1.182:8888";
 
 
     //静态初始化器，由JVM来保证线程安全
     private static class RequestManagerHodler {
-        private static BaseAppClient instance = new BaseAppClient();
+        private static AppClient instance = new AppClient();
     }
 
-    public static BaseAppClient getInstance() {
-        return RequestManagerHodler.instance;
+    public static AppClient getInstance() {
+        return AppClient.RequestManagerHodler.instance;
     }
 
     //私有化构造方法
-    private BaseAppClient() {
+    private AppClient() {
         mRetrofit = createRetrofit();
-        getBaseApi = createRequestApi(BaseApi.class);
+        api = createRequestApi(Api.class);
     }
 
 
+    /**
+     * 关联api和Retrofit
+     *
+     * @param apiClass
+     * @param <T>
+     * @return
+     */
     protected <T> T createRequestApi(Class<T> apiClass) {
         return mRetrofit.create(apiClass);
     }
 
-
+    /**
+     * 创建Retrofit
+     *
+     * @return
+     */
     private Retrofit createRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(mBaseUrl)
@@ -81,6 +92,5 @@ public class BaseAppClient {
                 writeTimeout(DEFAULT_TIMEOUT, TimeUnit.MINUTES);
         return builder.build();
     }
-
 
 }
