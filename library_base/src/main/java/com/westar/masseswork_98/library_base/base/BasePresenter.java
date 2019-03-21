@@ -19,7 +19,6 @@ public abstract class BasePresenter<V extends BaseView> {
     /**
      * 解除绑定view，一般在onDestroy中调用
      */
-
     public void detachView() {
         this.mView = null;
     }

@@ -14,10 +14,9 @@ ext {
 
     /**
      * isModule false;  表示整个app运行, true: 表示单独运行某一个module
-     * LoginModule;  false:作为Lib组件存在，true:作为application存在(其他
-     * module同理)
+     * LoginModule;  false:作为Lib组件存在，true:作为application存在(其他module同理)
      */
-    isModule = false
+    isModule = true
 //    LoginModule = false
 //    TestModule = false
 //    BaseLib = false
@@ -62,7 +61,7 @@ ext {
                     "rxlifecycle_navi"             : 'com.trello.rxlifecycle2:rxlifecycle-navi:2.1.0',
                     //日志拦截器
                     "logging_interceptor"          : 'com.squareup.okhttp3:logging-interceptor:3.4.1',
-                    //暂时没用上
+                    //rxView
                     "rxbinding2"                   : 'com.jakewharton.rxbinding2:rxbinding:2.1.0',
                     //日志
                     "logger"                       : 'com.orhanobut:logger:2.1.1',
@@ -114,8 +113,10 @@ ext {
                     //水平tablayout
                     "FlycoTabLayout_Lib"           : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
                     //leakcanary内存泄露
-                    "leakcanary_android"           : "com.squareup.leakcanary:leakcanary-android:1.5.1",
-                    "leakcanary_android_no_op"     : "com.squareup.leakcanary:leakcanary-android-no-op:1.5.1",
+                    "leakcanary_android"           : "com.squareup.leakcanary:leakcanary-android:1.6.3",
+                    "leakcanary_android_no_op"     : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3",
+                    //if you use support library fragments
+                    "leakcanary_support_fragment" :'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3',
                     //沉浸式状态栏
                     "barlibrary"                   : "com.gyf.barlibrary:barlibrary:2.3.0",
                     //腾讯出的一款UI框架  功能参考https://qmuiteam.com/android/documents/

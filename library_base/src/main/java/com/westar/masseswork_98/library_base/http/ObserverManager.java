@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * Created by ZWP on 2019/3/11.
- * 描述：Observer 封装
+ * 描述：Observer 封装  主要用于网络数据的请求
  *
  * @param <T>
  */

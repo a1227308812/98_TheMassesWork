@@ -5,8 +5,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.view.View;
 
 
+import com.blankj.utilcode.util.PermissionUtils;
+import com.qmuiteam.qmui.widget.QMUILoadingView;
+import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
+import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
+import com.westar.masseswork_98.library_base.R;
 import com.westar.masseswork_98.library_base.eventbus.BaseEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -30,10 +37,17 @@ public abstract class BaseActivity extends BasePermissionActivity {
         ButterKnife.bind(this);
         mContext = this;
         initPresenter();
+        initView();
         initData();
     }
 
-
+    /**
+     * 初始化布局
+     */
+    protected abstract void initView();
+    /**
+     * 初始化数据
+     */
     protected abstract void initData();
 
     /**
@@ -49,6 +63,28 @@ public abstract class BaseActivity extends BasePermissionActivity {
         }
         return false;
     }
+
+    QMUILoadingView loadingView;
+
+    /**
+     * 显示页面初始化loading弹框
+     */
+    protected void showLoadingDialog() {
+        loadingView = new QMUILoadingView(this);
+//        loadingView.setVisibility(View.VISIBLE);
+        loadingView.setColor(ContextCompat.getColor(this, R.color.qmui_config_color_red));
+        loadingView.start();
+    }
+
+    /**
+     * 关闭loading加载框
+     */
+    protected void hideLoadingDialog() {
+        loadingView.stop();
+//        loadingView.setVisibility(View.GONE);
+    }
+
+    ;
 
     @Override
     public void onStart() {

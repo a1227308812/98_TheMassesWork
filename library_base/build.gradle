@@ -15,13 +15,16 @@ android {
         // Annotation processors must be explicitly declared now.
         // The following dependencies on the compile classpath are found to contain annotation processor.
         // Please add them to the annotationProcessor configuration.
-        // - butterknife-compiler-8.4.0.jar
-        //问题
+        // - butterknife-compiler-8.4.0.jar 问题
+        //
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath = true }
         }
 
+
+        // 设置支持multidex
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -76,6 +79,8 @@ dependencies {
     api rootProject.ext.dependencies.rxjava2_rxandroid
     api rootProject.ext.dependencies.rxjava2
     api rootProject.ext.dependencies.logging_interceptor
+    //rxView
+    api rootProject.ext.dependencies.rxbinding2
 
     //rxjava内存泄漏管理
     api rootProject.ext.dependencies.rxlifecycle_components
@@ -117,8 +122,10 @@ dependencies {
     api rootProject.ext.dependencies.alertview
 
     //leakcanary内存泄露
-    api rootProject.ext.dependencies.leakcanary_android
-    api rootProject.ext.dependencies.leakcanary_android_no_op
+    debugImplementation rootProject.ext.dependencies.leakcanary_android
+    releaseImplementation  rootProject.ext.dependencies.leakcanary_android_no_op
+    //if you use support library fragments:
+    debugImplementation rootProject.ext.dependencies.leakcanary_support_fragment
 
     //沉浸式状态栏
     api rootProject.ext.dependencies.barlibrary

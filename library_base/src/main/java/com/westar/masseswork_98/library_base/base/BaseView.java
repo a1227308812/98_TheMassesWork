@@ -22,7 +22,7 @@ public interface BaseView {
     void hideLoading();
 
     /**
-     * 上下文
+     * 上下文  如果实现类是activity，则不用再手动实现，原生方法已完成实现了
      *
      * @return
      */

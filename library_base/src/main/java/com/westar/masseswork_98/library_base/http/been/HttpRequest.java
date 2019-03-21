@@ -7,5 +7,14 @@ import java.io.Serializable;
  * 描述：请求参数基类
  */
 public class HttpRequest<T> implements Serializable {
-    T request;
+    T data;
+
+    public T getData() {
+        return data;
+    }
+
+    public HttpRequest<T> setData(T data) {
+        this.data = data;
+        return this;
+    }
 }

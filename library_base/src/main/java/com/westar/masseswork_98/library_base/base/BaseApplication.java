@@ -2,6 +2,7 @@ package com.westar.masseswork_98.library_base.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.westar.masseswork_98.library_base.utils.LLog;
 
@@ -26,6 +27,12 @@ public class BaseApplication extends Application {
         context = this.getApplicationContext();
         //只有debug模式才会打印日志
         LLog.init(context);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
 }

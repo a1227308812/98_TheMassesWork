@@ -6,7 +6,6 @@
         <!--<item name="android:textAppearanceListItemSmall">@style/QDTextAppearanceListItemSmall</item>-->
         <!--<item name="android:textAppearanceListItem">@style/QDtextAppearanceListItem</item>-->
         <item name="android:listPreferredItemHeight">?attr/qmui_list_item_height_higher</item>
-        <item name="android:listPreferredItemHeightSmall">?attr/qmui_list_item_height</item>
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

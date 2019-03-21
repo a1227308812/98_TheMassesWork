@@ -134,4 +134,7 @@ public class BasePermissionActivity extends BaseRxActivity {
                 .show();
     }
 
+
+
+
 }

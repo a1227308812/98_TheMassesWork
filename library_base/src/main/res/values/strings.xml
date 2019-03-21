@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Library_Base</string>
+    <!--权限相关设置-->
     <string name="request_permissions_dialog_open_setting">去设置开启权限</string>
     <string name="request_permissions_dialog_open">确定</string>
     <string name="request_permissions_dialog_cancel">取消</string>
     <string name="request_permissions_dialog_open_setting_str">权限申请失败去到设置中开启</string>
     <string name="request_permissions_dialog_open_again_str">权限申请失败请手动开启</string>
+
+    <string name="loading_dialog_msg">加载中</string>
 </resources>

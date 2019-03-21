@@ -13,11 +13,11 @@ import retrofit2.http.POST;
  */
 public interface BaseApi {
 
-//    /**
-//     * 登录
-//     * @return
-//     */
-//    @POST("user/login")
-//    Observable<HttpResult> login(@Body HttpRequest httpRequest);
+    /**
+     * 登录
+     * @return
+     */
+    @POST("user/login")
+    Observable<HttpResult> login(@Body HttpRequest httpRequest);
 
 }
