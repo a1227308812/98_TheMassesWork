@@ -19,10 +19,13 @@ android {
         //
         javaCompileOptions {
             annotationProcessorOptions {
-                includeCompileClasspath = true }
+                includeCompileClasspath = true
+                //Arouter路由配置
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
         }
 
-
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -40,7 +43,13 @@ dependencies {
     //    testImplementation 'junit:junit:4.12'
     //    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    //
+    //ARouter路由
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler
+    //基础库
     implementation project(':library_base')
+    if (!rootProject.ext.isModule.toBoolean()) {
+        //更新module
+        implementation project(':module_update')
+    }
+
 }

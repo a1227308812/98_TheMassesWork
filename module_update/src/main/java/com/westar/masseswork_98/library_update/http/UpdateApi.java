@@ -14,7 +14,7 @@ import retrofit2.http.POST;
  * Created by ZWP on 2019/3/11.
  * 描述：接口地址
  */
-public interface Api extends BaseApi{
+public interface UpdateApi extends BaseApi{
 
     /**
      * app类型（apkType）

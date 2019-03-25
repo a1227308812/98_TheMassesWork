@@ -19,9 +19,11 @@ android {
         //
         javaCompileOptions {
             annotationProcessorOptions {
-                includeCompileClasspath = true }
+                includeCompileClasspath = true
+                //Arouter路由配置
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
         }
-
 
         // 设置支持multidex
         multiDexEnabled true
@@ -66,6 +68,13 @@ dependencies {
 
     //工具库
     api rootProject.ext.dependencies.utilcode
+    //ARouter路由
+    api (rootProject.ext.dependencies.arouter_api) {
+        //导入arouter-api时可能出现V4包版本不一致，如下异常，所以将其屏蔽
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler
+    annotationProcessor rootProject.ext.dependencies.arouter_register
 
     //黄油刀
     api rootProject.ext.dependencies.butterknife
@@ -123,7 +132,7 @@ dependencies {
 
     //leakcanary内存泄露
     debugImplementation rootProject.ext.dependencies.leakcanary_android
-    releaseImplementation  rootProject.ext.dependencies.leakcanary_android_no_op
+    releaseImplementation rootProject.ext.dependencies.leakcanary_android_no_op
     //if you use support library fragments:
     debugImplementation rootProject.ext.dependencies.leakcanary_support_fragment
 
@@ -132,4 +141,6 @@ dependencies {
 
     //腾讯出的一款UI框架
     api rootProject.ext.dependencies.qmui
+    api rootProject.ext.dependencies.Luban
+    api rootProject.ext.dependencies.SuperTextView
 }

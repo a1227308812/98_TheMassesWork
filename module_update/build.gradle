@@ -12,13 +12,12 @@ android {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         if (rootProject.ext.isModule.toBoolean()) {
-            applicationId "com.westar.masseswork_98.library_update"
+            applicationId "com.westar.masseswork_98.module_update"
         }
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
 
         //解决
         // Annotation processors must be explicitly declared now.
@@ -28,8 +27,13 @@ android {
         //
         javaCompileOptions {
             annotationProcessorOptions {
-                includeCompileClasspath = true }
+                includeCompileClasspath = true
+                //Arouter路由配置
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
         }
+
+        multiDexEnabled true
 
     }
 
@@ -58,15 +62,19 @@ android {
 
     }
 
-    dependencies {
-        implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
 //    implementation 'com.android.support:appcompat-v7:28.0.0'
 //    testImplementation 'junit:junit:4.12'
 //    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-        //集成基础库
-        implementation project(':library_base')
-    }
+    //集成基础库
+    implementation project(':library_base')
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

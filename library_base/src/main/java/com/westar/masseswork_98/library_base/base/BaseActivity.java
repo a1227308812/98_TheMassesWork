@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.qmuiteam.qmui.widget.QMUILoadingView;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
@@ -33,9 +34,11 @@ public abstract class BaseActivity extends BasePermissionActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutID());
-        ButterKnife.bind(this);
         mContext = this;
+        setContentView(getLayoutID());
+//        ButterKnife.bind(this);
+        //ARouter inject注入
+        ARouter.getInstance().inject(this);
         initPresenter();
         initView();
         initData();

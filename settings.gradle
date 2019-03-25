@@ -1,1 +1,1 @@
-include ':app', ':library_base', ':module_update'
+include ':app', ':library_base', ':module_update', ':module_login'
