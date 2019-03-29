@@ -1,10 +1,10 @@
 package com.westar.module_login.mvp.presenter;
 
-import com.westar.masseswork_98.library_base.base.BasePresenter;
-import com.westar.masseswork_98.library_base.http.ObserverManager;
-import com.westar.masseswork_98.library_base.http.been.HttpRequest;
-import com.westar.masseswork_98.library_base.http.been.HttpResult;
-import com.westar.masseswork_98.library_base.rxjava.RxScheduler;
+import com.westar.library_base.base.BasePresenter;
+import com.westar.library_base.http.ObserverManager;
+import com.westar.library_base.http.been.HttpRequest;
+import com.westar.library_base.http.been.HttpResult;
+import com.westar.library_base.rxjava.RxScheduler;
 import com.westar.module_login.been.User;
 import com.westar.module_login.mvp.contract.LoginContract;
 import com.westar.module_login.mvp.modle.LoginModle;
@@ -21,7 +21,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
     }
 
     /**
-     * 请求更新
+     * 登录
      *
      * @param httpRequest
      */
@@ -42,7 +42,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                      */
                     @Override
                     protected void onOther(HttpResult<User> httpResult) {
-
+                        mView.hideLoading();
+                        mView.onSuccess(httpResult);
                     }
 
                     /**
@@ -52,7 +53,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                      */
                     @Override
                     protected void onSuccess(User data) {
-
+                        mView.hideLoading();
+                        mView.onSuccess(data);
                     }
 
                     /**
@@ -62,7 +64,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                      */
                     @Override
                     protected void onFailure(Throwable e) {
-
+                        mView.hideLoading();
+                        mView.onError(e);
                     }
 
                     /**
@@ -70,7 +73,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                      */
                     @Override
                     protected void onFinish() {
-
+                        mView.hideLoading();
                     }
                 });
     }

@@ -3,7 +3,7 @@
     package="com.westar.masseswork_98.library_update">
 
     <application>
-        <activity android:name=".ui.UpdateActivity"></activity>
+        <activity android:name="com.westar.library_update.ui.UpdateActivity"></activity>
     </application>
 
 </manifest>

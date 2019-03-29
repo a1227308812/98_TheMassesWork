@@ -12,7 +12,7 @@ android {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         if (rootProject.ext.isModule.toBoolean()) {
-            applicationId "com.westar.masseswork_98.module_update"
+            applicationId "com.westar.module_update"
         }
         versionCode 1
         versionName "1.0"

@@ -1,6 +1,6 @@
 package com.westar.module_login.http;
 
-import com.westar.masseswork_98.library_base.http.AppClientContract;
+import com.westar.library_base.http.AppClientContract;
 
 /**
  * Created by ZWP on 2019/3/25 17:04.

@@ -1,0 +1,82 @@
+//if (rootProject.ext.isModule.toBoolean()) {
+//    apply plugin: 'com.android.application'
+//} else {
+//    apply plugin: 'com.android.library'
+//}
+
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+//        if (rootProject.ext.isModule.toBoolean()) {
+//            applicationId "com.westar.library_fingerprint"
+//        }
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //解决
+        // Annotation processors must be explicitly declared now.
+        // The following dependencies on the compile classpath are found to contain annotation processor.
+        // Please add them to the annotationProcessor configuration.
+        // - butterknife-compiler-8.4.0.jar 问题
+        //
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+                //Arouter路由配置
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        multiDexEnabled true
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    /**
+     * 这段代码用于区分各个组件模块在isModule的两种状态下的manifest和自己组建的application文件的引用
+     */
+    sourceSets {
+//        main {
+//            if (rootProject.ext.isModule.toBoolean()) {
+//                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+//            } else {
+//                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+//                //release模式下排除debug文件夹中的所有Java文件
+//                java {
+//                    exclude 'debug/**'
+//                }
+//            }
+//        }
+
+    }
+
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+//    implementation 'com.android.support:appcompat-v7:28.0.0'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //集成基础库
+    implementation project(':library_base')
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler
+}

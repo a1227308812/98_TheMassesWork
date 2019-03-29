@@ -1,10 +1,19 @@
 package com.westar.module_login.ui;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.os.Build;
+import android.support.v7.widget.AppCompatButton;
+import android.widget.TextView;
 
-import com.westar.masseswork_98.library_base.base.BaseActivity;
+import com.blankj.utilcode.util.ToastUtils;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.westar.library_base.base.BaseActivity;
+import com.westar.library_fingerprint.BiometricPromptManager;
 import com.westar.module_login.R;
+
+import java.util.concurrent.TimeUnit;
+
+import butterknife.BindView;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by ZWP on 2019/3/25 16:50.
@@ -12,9 +21,70 @@ import com.westar.module_login.R;
  */
 public class FingerprintVerificationActivity extends BaseActivity {
 
+    @BindView(R.id.button)
+    AppCompatButton appCompatButton;
+    @BindView(R.id.show_info)
+    TextView showInfo;
+
+    private BiometricPromptManager mManager;
+
     @Override
     protected void initView() {
+        mManager = BiometricPromptManager.from(this);
 
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("SDK version is " + Build.VERSION.SDK_INT);
+        stringBuilder.append("\n");
+        stringBuilder.append("isHardwareDetected : " + mManager.isHardwareDetected());
+        stringBuilder.append("\n");
+        stringBuilder.append("hasEnrolledFingerprints : " + mManager.hasEnrolledFingerprints());
+        stringBuilder.append("\n");
+        stringBuilder.append("isKeyguardSecure : " + mManager.isKeyguardSecure());
+        stringBuilder.append("\n");
+        showInfo.setText(stringBuilder);
+
+        //点击开启指纹验证
+        addSubscribe(RxView.clicks(appCompatButton)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        skipActivity(LoginActivity.class, null);
+                        finish();
+                        //开启指纹验证
+//                        if (mManager.isBiometricPromptEnable()) {
+//                            mManager.authenticate(new BiometricPromptManager.OnBiometricIdentifyCallback() {
+//                                @Override
+//                                public void onUsePassword() {
+//                                    ToastUtils.showShort("onUsePassword");
+//                                }
+//
+//                                @Override
+//                                public void onSucceeded() {
+//                                    ToastUtils.showShort("onSucceeded");
+//                                    skipActivity(LoginActivity.class, null);
+//                                    finish();
+//                                }
+//
+//                                @Override
+//                                public void onFailed() {
+//                                    ToastUtils.showShort("onFailed");
+//                                }
+//
+//                                @Override
+//                                public void onError(int code, String reason) {
+//                                    ToastUtils.showShort("onError");
+//                                }
+//
+//                                @Override
+//                                public void onCancel() {
+//                                    ToastUtils.showShort("onCancel");
+//                                }
+//                            });
+//                        }
+                    }
+                })
+        );
     }
 
     @Override
@@ -26,4 +96,5 @@ public class FingerprintVerificationActivity extends BaseActivity {
     protected int getLayoutID() {
         return R.layout.activity_fingerprint_verification;
     }
+
 }

@@ -1,9 +1,9 @@
 //package com.westar.masseswork_98.mvp.contract;
 //
 //
-//import com.westar.masseswork_98.library_base.base.BaseView;
-//import com.westar.masseswork_98.library_base.http.been.HttpRequest;
-//import com.westar.masseswork_98.library_base.http.been.HttpResult;
+//import BaseView;
+//import HttpRequest;
+//import HttpResult;
 //
 //import io.reactivex.Observable;
 //

@@ -1,7 +1,7 @@
 package com.westar.module_login.http;
 
-import com.westar.masseswork_98.library_base.http.BaseApi;
-import com.westar.masseswork_98.library_base.http.been.HttpResult;
+import com.westar.library_base.http.BaseApi;
+import com.westar.library_base.http.been.HttpResult;
 import com.westar.module_login.been.User;
 
 import io.reactivex.Observable;

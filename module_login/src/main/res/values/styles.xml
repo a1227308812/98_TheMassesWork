@@ -1,11 +1,45 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="LoginTheme" parent="LibBaseTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!-- 代表 hint 的颜色 -->
+        <item name="android:textColorHint">#ff6f7272</item>
+        <!-- 代表 下划线没有获取焦点的颜色 的颜色 -->
+        <item name="colorControlNormal">#ffd8d8d8</item>
+        <!-- 代表 代表了获取焦点或者点击的时候 下划线 的颜色 -->
+        <item name="colorControlActivated">#ff3586fe</item>
+        <item name="colorControlHighlight">#ff3586fe</item>
     </style>
 
+    <!--启动页全屏-->
+    <style name="SplashStyle" parent="LibBaseTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/bg_launch</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+
+
+    <!--登录用户名相关设置-->
+    <!--hint相关设置-->
+    <style name="EditText_hintTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#009dff</item>
+    </style>
+
+    <!-- 设置错误提示文字样式 -->
+    <style name="ErrorAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+
+    <!-- 设置超出长度提示文字样式 -->
+    <style name="OverAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 </resources>

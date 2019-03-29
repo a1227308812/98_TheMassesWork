@@ -5,12 +5,12 @@ import android.support.annotation.Nullable;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.westar.masseswork_98.been.TestBeen1;
-import com.westar.masseswork_98.been.TestBeen2;
-import com.westar.masseswork_98.been.TestBeen3;
-import com.westar.masseswork_98.library_base.base.BaseActivity;
+import com.westar.been.TestBeen2;
+import com.westar.been.TestBeen3;
+import com.westar.library_base.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.functions.Consumer;
 
-
+@Route(path = "/app/MainActivity")
 public class MainActivity extends BaseActivity {
 
     TextView textView;
@@ -82,6 +82,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_main;
+        return R.layout.activity_toolbar;
     }
 }

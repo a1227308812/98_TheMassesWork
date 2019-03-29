@@ -1,9 +1,9 @@
 package com.westar.module_login.mvp.contract;
 
 
-import com.westar.masseswork_98.library_base.base.BaseView;
-import com.westar.masseswork_98.library_base.http.been.HttpRequest;
-import com.westar.masseswork_98.library_base.http.been.HttpResult;
+import com.westar.library_base.base.BaseView;
+import com.westar.library_base.http.been.HttpRequest;
+import com.westar.library_base.http.been.HttpResult;
 import com.westar.module_login.been.User;
 
 import io.reactivex.Observable;

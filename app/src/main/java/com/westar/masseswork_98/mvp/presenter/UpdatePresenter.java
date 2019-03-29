@@ -1,11 +1,11 @@
 //package com.westar.masseswork_98.mvp.presenter;
 //
-//import com.westar.masseswork_98.library_base.base.BasePresenter;
-//import com.westar.masseswork_98.library_base.http.ObserverManager;
-//import com.westar.masseswork_98.library_base.http.been.HttpRequest;
-//import com.westar.masseswork_98.library_base.http.been.HttpResult;
-//import com.westar.masseswork_98.library_base.rxjava.RxScheduler;
-//import com.westar.masseswork_98.library_base.utils.LLog;
+//import BasePresenter;
+//import ObserverManager;
+//import HttpRequest;
+//import HttpResult;
+//import RxScheduler;
+//import LLog;
 //import com.westar.masseswork_98.mvp.contract.UpdateContract;
 //import com.westar.masseswork_98.mvp.modle.UpdateModle;
 //

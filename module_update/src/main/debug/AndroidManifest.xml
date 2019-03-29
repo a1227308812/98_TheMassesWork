@@ -4,7 +4,7 @@
     package="com.westar.masseswork_98.library_update">
 
     <application
-        android:name="com.westar.masseswork_98.library_base.base.BaseApplication"
+        android:name="com.westar.library_base.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/LibBaseTheme"
         tools:replace="Android:icon, android:theme"> <!-- 忽略导入的module的主题和icon -->
-        <activity android:name=".ui.UpdateActivity">
+        <activity android:name="com.westar.library_update.ui.UpdateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
