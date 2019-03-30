@@ -13,15 +13,14 @@ ext {
     ]
 
     /**
-     * isModule false;  表示整个app运行, true: 表示单独运行某一个module
+     * isModule false：表示整个app运行, true: 表示单独运行某一个module
      * LoginModule;  false:作为Lib组件存在，true:作为application存在(其他module同理)
      */
     isModule = true
 //    LoginModule = false
-//    TestModule = false
-//    BaseLib = false
-//    HttpLib = false
+//    UpdateModule = false
 
+    //第三方配置
     dependencies = ["appcompat_v7"                 : "com.android.support:appcompat-v7:${android["androidSupportSdkVersion"]}",
                     "constraint_layout"            : 'com.android.support.constraint:constraint-layout:1.1.3',
                     "runner"                       : 'com.android.support.test:runner:1.0.2',
@@ -41,7 +40,7 @@ ext {
                     //路由
                     "arouter_api"                  : 'com.alibaba:arouter-api:1.4.1',
                     "arouter_compiler"             : 'com.alibaba:arouter-compiler:1.2.2',
-                    "arouter_register"           : 'com.alibaba:arouter-register:1.0.2',
+                    "arouter_register"             : 'com.alibaba:arouter-register:1.0.2',
 
                     //黄油刀
                     "butterknife_compiler"         : 'com.jakewharton:butterknife-compiler:8.4.0',
@@ -114,14 +113,16 @@ ext {
                     "leakcanary_android"           : 'com.squareup.leakcanary:leakcanary-android:1.6.3',
                     "leakcanary_android_no_op"     : 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3',
                     //if you use support library fragments
-                    "leakcanary_support_fragment" :'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3',
+                    "leakcanary_support_fragment"  : 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3',
                     //沉浸式状态栏
                     "barlibrary"                   : 'com.gyf.barlibrary:barlibrary:2.3.0',
                     //腾讯出的一款UI框架  功能参考https://qmuiteam.com/android/documents/
                     "qmui"                         : 'com.qmuiteam:qmui:1.2.0',
                     //图片压缩
                     "Luban"                        : 'top.zibin:Luban:1.1.8',
-                    "SuperTextView"                : 'com.github.chenBingX:SuperTextView:3.1.6.2'
+                    "SuperTextView"                : 'com.github.chenBingX:SuperTextView:3.1.6.2',
+                    "zxing"                        : 'cn.yipianfengye.android:zxing-library:2.2',
+                    "FileDownloader"               : 'com.liulishuo.filedownloader:library:1.7.5'
 
     ]
 }

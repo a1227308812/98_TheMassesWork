@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.westar.masseswork_98">
 
-
-
     <application
         android:name="com.westar.library_base.base.BaseApplication"
         android:allowBackup="true"
@@ -16,11 +14,11 @@
         android:theme="@style/AppTheme"
         tools:replace="Android:icon, android:theme"> <!-- 忽略导入的module的主题和icon -->
 
-        <!--region 适配全面屏-->
+
+        <!-- region 适配全面屏 -->
         <meta-data
             android:name="android.max_aspect"
             android:value="2.4" />
-
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -29,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PictureSelectActivity"></activity>
     </application>
 
 </manifest>

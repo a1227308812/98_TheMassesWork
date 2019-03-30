@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
 
     //    implementation 'com.android.support:appcompat-v7:28.0.0'
 
@@ -49,6 +49,9 @@ dependencies {
     //    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 
     //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //腾讯tbs
+    api files('libs/tbs_sdk_thirdapp_v4.3.0.1020_43633_sharewithdownload_withoutGame_obfs_20190111_105200.jar')
 
     //def
     api rootProject.ext.dependencies.junit
@@ -69,11 +72,13 @@ dependencies {
 
     //工具库
     api rootProject.ext.dependencies.utilcode
+
     //ARouter路由
-    api (rootProject.ext.dependencies.arouter_api) {
+    api(rootProject.ext.dependencies.arouter_api) {
         //导入arouter-api时可能出现V4包版本不一致，如下异常，所以将其屏蔽
         exclude group: 'com.android.support'
     }
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
     annotationProcessor rootProject.ext.dependencies.arouter_register
 
@@ -89,6 +94,7 @@ dependencies {
     api rootProject.ext.dependencies.rxjava2_rxandroid
     api rootProject.ext.dependencies.rxjava2
     api rootProject.ext.dependencies.logging_interceptor
+
     //rxView
     api rootProject.ext.dependencies.rxbinding2
 
@@ -134,14 +140,16 @@ dependencies {
     //leakcanary内存泄露
     debugImplementation rootProject.ext.dependencies.leakcanary_android
     releaseImplementation rootProject.ext.dependencies.leakcanary_android_no_op
+
     //if you use support library fragments:
     debugImplementation rootProject.ext.dependencies.leakcanary_support_fragment
 
-    //沉浸式状态栏
-    api rootProject.ext.dependencies.barlibrary
-
-    //腾讯出的一款UI框架
     api rootProject.ext.dependencies.qmui
     api rootProject.ext.dependencies.Luban
     api rootProject.ext.dependencies.SuperTextView
+    api rootProject.ext.dependencies.zxing
+    api rootProject.ext.dependencies.PictureSelector
+
+    //简单易用 高并发 可选择性支持: 独立/非独立进程 自动断点续传
+    api rootProject.ext.dependencies.FileDownloader
 }

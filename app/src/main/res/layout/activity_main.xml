@@ -30,4 +30,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnTestPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试附件预览" />
+
+        <Button
+            android:id="@+id/btnTestImagePreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试图片预览" />
+
+        <Button
+            android:id="@+id/btn_zxing_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="二维码扫描" />
+        <Button
+            android:id="@+id/btn_select_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="图片选择" />
+
+    </LinearLayout>
+
+    <com.westar.library_base.view.SplashView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.constraint.ConstraintLayout>
