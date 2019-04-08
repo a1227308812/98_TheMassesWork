@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.library_fingerprint.SPUtils;
 import com.westar.module_login.R;
 
@@ -25,9 +27,9 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/3/25 16:47.
  * 描述：欢迎界面
  */
+@Route(path = ArouterPath.MODULE_LOGIN_WELCOME_ACTIVITY)
 public class WelcomeActivity extends BaseActivity {
 
-    @BindView(R.id.vp_welcome)
     ViewPager vPWelcome;
 
     List<View> viewList;
@@ -39,6 +41,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        vPWelcome = findViewById(R.id.vp_welcome);
 
         viewList = new ArrayList<>();
         welcomeView1 = LayoutInflater.from(mContext).inflate(R.layout.item_welcome, null);

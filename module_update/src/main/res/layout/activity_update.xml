@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.westar.masseswork_98.library_update.com.westar.library_update.ui.UpdateActivity">
+    tools:context="com.westar.library_update.ui.UpdateActivity">
 
     <TextView
         android:id="@+id/textView"

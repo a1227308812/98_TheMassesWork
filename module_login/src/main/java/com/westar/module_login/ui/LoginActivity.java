@@ -7,11 +7,13 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.widget.Button;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.module_login.R;
 import com.westar.module_login.been.User;
 import com.westar.module_login.mvp.presenter.LoginPresenter;
@@ -29,20 +31,15 @@ import io.realm.RealmQuery;
  * Created by ZWP on 2019/3/28 17:04.
  * 描述：登录页面
  */
+@Route(path = ArouterPath.MODULE_LOGIN_LOGIN_ACTIVITY)
 public class LoginActivity extends BaseActivity {
 
 
-    @BindView(R.id.et_account)
     TextInputEditText etAccount;
-    @BindView(R.id.textInputLayout_account)
     TextInputLayout textInputLayoutAccount;
-    @BindView(R.id.et_password)
     TextInputEditText etPassword;
-    @BindView(R.id.textInputLayout_password)
     TextInputLayout textInputLayoutPassword;
-    @BindView(R.id.btn_login)
     Button btnLogin;
-    @BindView(R.id.tv_register)
     AppCompatTextView tvRegister;
 
     LoginPresenter presenter;
@@ -59,6 +56,14 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        etAccount = findViewById(R.id.et_account);
+        textInputLayoutAccount = findViewById(R.id.textInputLayout_account);
+        etPassword = findViewById(R.id.et_password);
+        textInputLayoutPassword = findViewById(R.id.textInputLayout_password);
+        btnLogin = findViewById(R.id.btn_login);
+        tvRegister = findViewById(R.id.tv_register);
+
+
         //登录
         addSubscribe(RxView.clicks(btnLogin)
                 .throttleFirst(1, TimeUnit.SECONDS)

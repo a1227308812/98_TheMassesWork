@@ -1,1 +1,2 @@
-include ':app', ':library_base', ':module_update', ':module_login', ':library_fingerprint'
+include ':app', ':library_base', ':module_update', ':module_login', ':library_fingerprint', ':module_woyaobanshi', ':module_woyaoyuyue',
+        ':module_woyaochaxun', ':module_woyaotousu', ':module_woyaozixun', ':module_me'

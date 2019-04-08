@@ -19,6 +19,7 @@ import com.westar.been.TestBeen2;
 import com.westar.been.TestBeen3;
 import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.callback.IPermissionsCallBack;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.preview.helper.FilePreviewHelper;
 import com.westar.library_base.preview.helper.ImagePreviewHelper;
 import com.westar.masseswork_98.test.PictureSelectActivity;
@@ -31,8 +32,11 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.functions.Consumer;
-
-@Route(path = "/app/MainActivity")
+/**
+ * Created by ZWP on 2019/4/8 16:42.
+ * 描述：主页
+ */
+@Route(path = ArouterPath.APP_MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity {
 
     TextView textView;
@@ -49,8 +53,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        //保持屏幕唤醒
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         button = findViewById(R.id.button);
         textView = findViewById(R.id.textView);
@@ -77,7 +79,7 @@ public class MainActivity extends BaseActivity {
                         TestBeen3 testBeen3 = new TestBeen3("Jack", "22", "男");
 
                         // 2. 跳转并携带参数
-                        ARouter.getInstance().build("/module_update/UpdateActivity")
+                        ARouter.getInstance().build(ArouterPath.MODULE_UPDATE_UPDATE_ACTIVITY)
                                 .withLong("ll", 666L)
                                 .withString("ss", "888")
                                 .withInt("aa", 777)

@@ -4,9 +4,10 @@ import android.os.Build;
 import android.support.v7.widget.AppCompatButton;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ToastUtils;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.library_fingerprint.BiometricPromptManager;
 import com.westar.module_login.R;
 
@@ -19,17 +20,19 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/3/25 16:50.
  * 描述：指纹验证界面
  */
+@Route(path = ArouterPath.MODULE_LOGIN_FINGERPRINT_VERIFICATION_ACTIVITY)
 public class FingerprintVerificationActivity extends BaseActivity {
 
-    @BindView(R.id.button)
     AppCompatButton appCompatButton;
-    @BindView(R.id.show_info)
     TextView showInfo;
 
     private BiometricPromptManager mManager;
 
     @Override
     protected void initView() {
+        appCompatButton = findViewById(R.id.button);
+        showInfo = findViewById(R.id.show_info);
+
         mManager = BiometricPromptManager.from(this);
 
         StringBuilder stringBuilder = new StringBuilder();
