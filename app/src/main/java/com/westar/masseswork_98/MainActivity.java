@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.callback.IPermissionsCallBack;
 import com.westar.library_base.preview.helper.FilePreviewHelper;
 import com.westar.library_base.preview.helper.ImagePreviewHelper;
+import com.westar.masseswork_98.test.PictureSelectActivity;
+import com.westar.masseswork_98.test.TestViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +49,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        //保持屏幕唤醒
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         button = findViewById(R.id.button);
         textView = findViewById(R.id.textView);
         btnTestPreview = findViewById(R.id.btnTestPreview);
@@ -117,6 +123,12 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 skipActivity(PictureSelectActivity.class, null);
+            }
+        });
+        findViewById(R.id.btn_testview).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                skipActivity(TestViewActivity.class, null);
             }
         });
 

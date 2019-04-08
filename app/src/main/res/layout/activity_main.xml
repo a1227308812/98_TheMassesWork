@@ -58,6 +58,12 @@
             android:layout_height="wrap_content"
             android:text="图片选择" />
 
+        <Button
+            android:id="@+id/btn_testview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="控件测试界面" />
+
     </LinearLayout>
 
     <com.westar.library_base.view.SplashView

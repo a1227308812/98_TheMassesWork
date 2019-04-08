@@ -65,6 +65,7 @@ dependencies {
     api rootProject.ext.dependencies.support_v4
     api rootProject.ext.dependencies.cardview_v7
     api rootProject.ext.dependencies.recyclerview_v7
+    api rootProject.ext.dependencies.palette_v7
     api rootProject.ext.dependencies.constraint_layout
 
     //方法数超过65535解决方法64K MultiDex分包方法
@@ -143,7 +144,6 @@ dependencies {
 
     //if you use support library fragments:
     debugImplementation rootProject.ext.dependencies.leakcanary_support_fragment
-
     api rootProject.ext.dependencies.qmui
     api rootProject.ext.dependencies.Luban
     api rootProject.ext.dependencies.SuperTextView
