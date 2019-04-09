@@ -82,6 +82,7 @@
     <dimen name="dp_140">140.0dp</dimen>
     <dimen name="dp_155">155.0dp</dimen>
     <dimen name="dp_150">150.0dp</dimen>
+    <dimen name="dp_160">160.0dp</dimen>
     <dimen name="dp_170">170.0dp</dimen>
     <dimen name="dp_176">176.0dp</dimen>
     <dimen name="dp_180">180.0dp</dimen>

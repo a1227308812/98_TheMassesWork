@@ -1,7 +1,6 @@
 package com.westar.module_login.ui;
 
 
-import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatTextView;
@@ -12,6 +11,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
+import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.module_login.R;
@@ -21,11 +22,8 @@ import com.westar.module_login.mvp.presenter.LoginPresenter;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 import io.realm.Realm;
-import io.realm.RealmQuery;
 
 /**
  * Created by ZWP on 2019/3/28 17:04.
@@ -66,7 +64,7 @@ public class LoginActivity extends BaseActivity {
 
         //登录
         addSubscribe(RxView.clicks(btnLogin)
-                .throttleFirst(1, TimeUnit.SECONDS)
+                .throttleFirst(Config.windowDuration, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
@@ -79,8 +77,17 @@ public class LoginActivity extends BaseActivity {
                         User user = realm.where(User.class).equalTo("userName", etAccount.getText().toString()).findFirst();
                         if (user != null && etPassword.getText().toString().equals(user.getPassword())) {
 //                            //验证通过 登录成功
-//                            ARouter.getInstance().build("/app/MainActivity").withObject("user", user).navigation();
-                            ToastUtils.showShort("登录成功！");
+
+                            new QMUITipDialog.Builder(mContext)
+                                    .setTipWord("登录成功!")
+                                    .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
+                                    .create(false)
+                                    .show();
+
+                            ARouter.getInstance()
+                                    .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
+                                    .withSerializable("user", user)
+                                    .navigation();
                         } else {
                             ToastUtils.showShort("登录失败！");
                         }
@@ -91,7 +98,7 @@ public class LoginActivity extends BaseActivity {
 
         //注册
         addSubscribe(RxView.clicks(tvRegister)
-                .throttleFirst(1, TimeUnit.SECONDS)
+                .throttleFirst(Config.windowDuration, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {

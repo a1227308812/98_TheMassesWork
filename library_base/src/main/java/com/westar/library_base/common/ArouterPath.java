@@ -7,6 +7,8 @@ package com.westar.library_base.common;
 public interface ArouterPath {
     /*app主工程模块*/
     String APP_MAIN_ACTIVITY = "/app/MainActivity";
+    //首页
+    String APP_HOMEGROUP_ACTIVITY = "/app/HomeGroupActivity";
 
 
     /*更新模块*/

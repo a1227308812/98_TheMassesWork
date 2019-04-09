@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
@@ -12,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUILoadingView;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.westar.library_base.eventbus.BaseEvent;
 import com.westar.masseswork_98.library_base.R;
 
@@ -71,24 +73,16 @@ public abstract class BaseActivity extends BasePermissionActivity {
         return false;
     }
 
-    QMUILoadingView loadingView;
-
     /**
      * 显示页面初始化loading弹框
      */
     protected void showLoadingDialog() {
-        loadingView = new QMUILoadingView(this);
-//        loadingView.setVisibility(View.VISIBLE);
-        loadingView.setColor(ContextCompat.getColor(this, R.color.qmui_config_color_red));
-        loadingView.start();
     }
 
     /**
      * 关闭loading加载框
      */
     protected void hideLoadingDialog() {
-        loadingView.stop();
-//        loadingView.setVisibility(View.GONE);
     }
 
     ;
@@ -223,5 +217,21 @@ public abstract class BaseActivity extends BasePermissionActivity {
         intent.putExtras(bundle);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    public int getIntentInt(@NonNull String key) {
+        return getIntent().getIntExtra(key, 0);
+    }
+
+    public String getIntentString(@NonNull String key) {
+        return getIntent().getStringExtra(key) == null ? "" : getIntent().getStringExtra(key);
+    }
+
+    public boolean getIntentBoolean(@NonNull String key) {
+        return getIntent().getBooleanExtra(key, false);
+    }
+
+    public <T> T getIntentSerializable(@NonNull String key) {
+        return getIntent().getSerializableExtra(key) == null ? null : (T) getIntent().getSerializableExtra(key);
     }
 }

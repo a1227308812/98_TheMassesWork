@@ -16,7 +16,7 @@ ext {
      * isModule false：表示整个app运行, true: 表示单独运行某一个module
      * LoginModule;  false:作为Lib组件存在，true:作为application存在(其他module同理)
      */
-    isModule = false
+    isModule = true
 //    LoginModule = false
 //    UpdateModule = false
 

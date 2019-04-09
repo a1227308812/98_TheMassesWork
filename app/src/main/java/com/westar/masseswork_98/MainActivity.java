@@ -15,6 +15,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.westar.Config;
 import com.westar.been.TestBeen2;
 import com.westar.been.TestBeen3;
 import com.westar.library_base.base.BaseActivity;
@@ -32,6 +33,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.functions.Consumer;
+
 /**
  * Created by ZWP on 2019/4/8 16:42.
  * 描述：主页
@@ -58,7 +60,7 @@ public class MainActivity extends BaseActivity {
         textView = findViewById(R.id.textView);
         btnTestPreview = findViewById(R.id.btnTestPreview);
         addSubscribe(RxView.clicks(button)
-                .throttleFirst(1, TimeUnit.SECONDS)
+                .throttleFirst(Config.windowDuration, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {

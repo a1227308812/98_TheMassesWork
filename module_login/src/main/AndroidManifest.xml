@@ -12,10 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/LoginTheme"
         tools:replace="Android:icon, android:theme"> <!-- 忽略导入的module的主题和icon -->
-        <activity android:name=".ui.LoginActivity">
-
-        </activity>
-        <activity android:name=".ui.WelcomeActivity"
+        <activity android:name=".ui.LoginActivity"></activity>
+        <activity
+            android:name=".ui.WelcomeActivity"
             android:theme="@style/SplashStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.FingerprintVerificationActivity"></activity>
+        <activity android:name=".ui.FingerprintVerificationActivity" />
+        <activity android:name=".ui.LoginTypeSelectActivity"></activity>
     </application>
 
 </manifest>

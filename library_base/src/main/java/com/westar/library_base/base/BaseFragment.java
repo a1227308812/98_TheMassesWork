@@ -33,10 +33,11 @@ public abstract class BaseFragment extends BasePermissionFragment {
     protected boolean isLoad = false;
     public boolean isVisible;
     public boolean isPrepared;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(getLayoutID(), null);
+        mView = inflater.inflate(getLayoutID(), container, false);
         isInit = true;
         return mView;
     }
@@ -54,6 +55,7 @@ public abstract class BaseFragment extends BasePermissionFragment {
         isVisible = isVisibleToUser;
         baseLazyLoad();
     }
+
     /**
      * 懒加载条件判断
      */
@@ -72,12 +74,14 @@ public abstract class BaseFragment extends BasePermissionFragment {
 
     /**
      * 出现懒加载
+     *
      * @param isLoad
      */
     protected abstract void lazyLoadShow(boolean isLoad);
 
     /**
      * 隐藏懒加载
+     *
      * @param isLoad
      */
     protected abstract void lazyLoadHide(boolean isLoad);
@@ -86,7 +90,6 @@ public abstract class BaseFragment extends BasePermissionFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
 
 
     protected abstract int getLayoutID();//布局ID
@@ -120,6 +123,7 @@ public abstract class BaseFragment extends BasePermissionFragment {
     protected boolean isRegisterEventBus() {
         return false;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -175,6 +179,7 @@ public abstract class BaseFragment extends BasePermissionFragment {
         mUnBinder.unbind();
         super.onDestroyView();
     }
+
     protected void initPresenter() {
 
     }

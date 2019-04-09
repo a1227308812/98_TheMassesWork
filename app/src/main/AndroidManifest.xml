@@ -20,7 +20,7 @@
             android:name="android.max_aspect"
             android:value="2.4" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.westar.module_login.ui.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".test.PictureSelectActivity" />
-        <activity android:name=".test.TestViewActivity"></activity>
+        <activity android:name=".test.TestViewActivity" />
+        <activity android:name=".ui.HomeGroupActivity"></activity>
     </application>
 
 </manifest>
