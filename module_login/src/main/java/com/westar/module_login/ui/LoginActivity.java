@@ -2,12 +2,14 @@ package com.westar.module_login.ui;
 
 
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.AppCompatTextView;
-import android.widget.Button;
+import android.support.v7.widget.AppCompatButton;
+import android.view.View;
+import android.widget.CheckedTextView;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -34,13 +36,13 @@ public class LoginActivity extends BaseActivity {
 
 
     TextInputEditText etAccount;
-    TextInputLayout textInputLayoutAccount;
-    TextInputEditText etPassword;
-    TextInputLayout textInputLayoutPassword;
-    Button btnLogin;
-    AppCompatTextView tvRegister;
+    TextInputEditText etYzm;
+    AppCompatButton btnLogin;
+    CheckedTextView cbZcxy;
 
     LoginPresenter presenter;
+
+    ImageView ivLogo;
 
     @Override
     protected void initPresenter() {
@@ -53,18 +55,31 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    protected void findId() {
+        ivLogo = findViewById(R.id.iv_top);
         etAccount = findViewById(R.id.et_account);
-        textInputLayoutAccount = findViewById(R.id.textInputLayout_account);
-        etPassword = findViewById(R.id.et_password);
-        textInputLayoutPassword = findViewById(R.id.textInputLayout_password);
+        etYzm = findViewById(R.id.et_yzm);
         btnLogin = findViewById(R.id.btn_login);
-        tvRegister = findViewById(R.id.tv_register);
+        cbZcxy = findViewById(R.id.cb_zcxy);
+    }
+
+    @Override
+    protected void initView() {
+
+        cbZcxy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cbZcxy.setChecked(!cbZcxy.isChecked());
+            }
+        });
+
+//        mSpanTouchFixTextView1.setMovementMethodDefault();
+//        mSpanTouchFixTextView1.setText(generateSp(getResources().getString(R.string.span_touch_fix_1)));
 
 
         //登录
         addSubscribe(RxView.clicks(btnLogin)
-                .throttleFirst(Config.windowDuration, TimeUnit.SECONDS)
+                .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
@@ -75,7 +90,7 @@ public class LoginActivity extends BaseActivity {
                         realm.beginTransaction();//开启事务
 
                         User user = realm.where(User.class).equalTo("userName", etAccount.getText().toString()).findFirst();
-                        if (user != null && etPassword.getText().toString().equals(user.getPassword())) {
+                        if (user != null && etYzm.getText().toString().equals(user.getPassword())) {
 //                            //验证通过 登录成功
 
                             new QMUITipDialog.Builder(mContext)
@@ -97,8 +112,8 @@ public class LoginActivity extends BaseActivity {
                 }));
 
         //注册
-        addSubscribe(RxView.clicks(tvRegister)
-                .throttleFirst(Config.windowDuration, TimeUnit.SECONDS)
+        addSubscribe(RxView.clicks(ivLogo)
+                .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
@@ -114,7 +129,7 @@ public class LoginActivity extends BaseActivity {
                                 //创建一个数据库对象
                                 User user = realm.createObject(User.class, UUID.randomUUID().toString());
                                 user.setUserName(etAccount.getText().toString())
-                                        .setPassword(etPassword.getText().toString())
+                                        .setPassword(etYzm.getText().toString())
                                         .setAge("22")
                                         .setGender("男")
                                         .setFraction("88")
@@ -138,14 +153,17 @@ public class LoginActivity extends BaseActivity {
 
     public boolean checkLoginInfo() {
         if (StringUtils.isEmpty(etAccount.getText())) {
-            ToastUtils.showShort("账号不能为空！");
+            ToastUtils.showShort(R.string.phone_num_is_empty);
             return false;
         }
-        if (StringUtils.isEmpty(etPassword.getText())) {
-            ToastUtils.showShort("密码不能为空！");
+        if (RegexUtils.isMobileSimple(etAccount.getText())) {
+            ToastUtils.showShort(R.string.match_phone);
             return false;
         }
-
+        if (StringUtils.isEmpty(etYzm.getText())) {
+            ToastUtils.showShort(R.string.match_yzm);
+            return false;
+        }
         return true;
     }
 

@@ -21,6 +21,11 @@ public class SelectDepActivity extends ToolbarActivity {
     }
 
     @Override
+    protected void findId() {
+
+    }
+
+    @Override
     protected void initView() {
 
     }

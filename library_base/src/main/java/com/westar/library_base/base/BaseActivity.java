@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -42,12 +45,41 @@ public abstract class BaseActivity extends BasePermissionActivity {
         //ARouter inject注入
         ARouter.getInstance().inject(this);
         initPresenter();
+        findId();
         initView();
         initData();
     }
 
+    /**
+     * 全局动态设置根布局的背景色
+     *
+     * @param layoutResID
+     */
+    @Override
+    public void setContentView(int layoutResID) {
+        View rootView = LayoutInflater.from(this).inflate(layoutResID, null);
+        rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
+        super.setContentView(rootView);
+    }
+
+    /**
+     * 全局动态设置根布局的背景色
+     *
+     * @param contentView
+     */
+    @Override
+    public void setContentView(View contentView) {
+        contentView.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
+        super.setContentView(contentView);
+    }
+
     //布局ID
     protected abstract int getLayoutID();
+
+    /**
+     * 初始化控件id
+     */
+    protected abstract void findId();
 
     /**
      * 初始化布局

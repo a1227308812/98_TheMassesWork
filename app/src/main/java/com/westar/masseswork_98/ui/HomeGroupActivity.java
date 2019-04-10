@@ -51,6 +51,11 @@ public class HomeGroupActivity extends BaseActivity {
     }
 
     @Override
+    protected void findId() {
+
+    }
+
+    @Override
     protected void initView() {
         officeHallFragment = new OfficeHallFragment();
         newsInformationFragment = new NewsInformationFragment();

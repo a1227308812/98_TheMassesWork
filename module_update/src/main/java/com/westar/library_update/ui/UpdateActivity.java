@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.functions.Consumer;
+
 /**
  * Created by ZWP on 2019/4/8 11:50.
  * 描述：更新模块
@@ -56,15 +57,26 @@ public class UpdateActivity extends BaseMvpActivity<UpdatePresenter> implements 
     TestBeen3 tb3;
 
     @Override
-    protected void initView() {
-        textView = findViewById(R.id.textView);
+    protected int getLayoutID() {
+        return R.layout.activity_update;
+    }
 
-        LLog.e("ccc","ss = " + getIntent().getStringExtra("ss")
-                + "\nhhhh = " + getIntent().getLongExtra("ll",0)
-                + "\naa = " + getIntent().getIntExtra("aa",0)
-                + "\nbb = " + getIntent().getBooleanExtra("bb",false)
-                + "\ncc = " + getIntent().getDoubleExtra("cc",0)
-                + "\ndd = " + getIntent().getFloatExtra("dd",0)
+    @Override
+    protected void findId() {
+        textView = findViewById(R.id.textView);
+    }
+
+
+    @Override
+    protected void initView() {
+
+
+        LLog.e("ccc", "ss = " + getIntent().getStringExtra("ss")
+                + "\nhhhh = " + getIntent().getLongExtra("ll", 0)
+                + "\naa = " + getIntent().getIntExtra("aa", 0)
+                + "\nbb = " + getIntent().getBooleanExtra("bb", false)
+                + "\ncc = " + getIntent().getDoubleExtra("cc", 0)
+                + "\ndd = " + getIntent().getFloatExtra("dd", 0)
                 + "\nee = " + getIntent().getStringArrayListExtra("ee").toString()
                 + "\ntestbeen1 = " + getIntent().getSerializableExtra("tb1")
                 + "\ntestbeen2 = " + getIntent().getSerializableExtra("tb2")
@@ -73,12 +85,12 @@ public class UpdateActivity extends BaseMvpActivity<UpdatePresenter> implements 
 
 
         textView.setText("ss = " + ss
-                + "\nhhhh = " + hhhh
-                + "\naa = " + aa
-                + "\nbb = " + bb
-                + "\ncc = " + cc
-                + "\ndd = " + dd
-                + "\nee = " + ee
+                        + "\nhhhh = " + hhhh
+                        + "\naa = " + aa
+                        + "\nbb = " + bb
+                        + "\ncc = " + cc
+                        + "\ndd = " + dd
+                        + "\nee = " + ee
 //                + "\nTestBeen1 = " + testBeen1.toString()
 //                + "\ntestbeen2 = " + testBeen1.toString()
         );
@@ -86,8 +98,7 @@ public class UpdateActivity extends BaseMvpActivity<UpdatePresenter> implements 
 
     @Override
     protected void initData() {
-        addSubscribe(RxView.
-                clicks(textView)
+        addSubscribe(RxView.clicks(textView)
                 .throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
@@ -95,11 +106,6 @@ public class UpdateActivity extends BaseMvpActivity<UpdatePresenter> implements 
                         updatePresenter.update(new HttpRequest<String>().setData("sp"));
                     }
                 }));
-    }
-
-    @Override
-    protected int getLayoutID() {
-        return R.layout.activity_update;
     }
 
     @Override

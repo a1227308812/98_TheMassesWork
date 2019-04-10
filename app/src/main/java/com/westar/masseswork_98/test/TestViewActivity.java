@@ -31,6 +31,11 @@ public class TestViewActivity extends BaseActivity {
     }
 
     @Override
+    protected void findId() {
+
+    }
+
+    @Override
     protected void initView() {
 
         button2.setOnClickListener(new View.OnClickListener() {

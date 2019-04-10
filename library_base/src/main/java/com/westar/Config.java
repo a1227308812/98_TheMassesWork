@@ -5,5 +5,6 @@ package com.westar;
  * 描述：一些公用配置参数
  */
 public interface Config {
-    int windowDuration = 1;
+    //多次点击间隔时间
+    int WINDOWDURATION = 1;
 }

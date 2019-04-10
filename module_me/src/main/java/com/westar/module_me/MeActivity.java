@@ -18,6 +18,11 @@ public class MeActivity extends ToolbarActivity {
     }
 
     @Override
+    protected void findId() {
+
+    }
+
+    @Override
     protected void initView() {
 
     }

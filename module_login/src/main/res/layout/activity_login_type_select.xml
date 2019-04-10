@@ -10,22 +10,95 @@
         android:id="@+id/iv_top"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_180"
-        android:background="@color/blue"
+        android:background="@mipmap/png_dl_db"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="@dimen/dp_100"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_140"
+        app:cardCornerRadius="@dimen/dp_8"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_top">
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.coorchice.library.SuperTextView
+            android:id="@+id/stv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_65"
+            android:text="XXX市政务服务指尖智办系统"
+            android:textColor="#303545"
+            android:textSize="@dimen/text_16" />
+
+        <com.coorchice.library.SuperTextView
+            android:id="@+id/stv_weixin"
+            android:layout_width="@dimen/dp_300"
+            android:layout_height="@dimen/dp_45"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_105"
+            android:gravity="center"
+            android:text="微信登录"
+            android:textColor="#52af50"
+            android:textSize="@dimen/text_16"
+            app:stv_corner="@dimen/dp_24"
+            app:stv_stroke_color="#52af50"
+            app:stv_stroke_width="@dimen/dp_2" />
+
+        <com.coorchice.library.SuperTextView
+            android:id="@+id/stv_zhifubao"
+            android:layout_width="@dimen/dp_300"
+            android:layout_height="@dimen/dp_45"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_170"
+            android:gravity="center"
+            android:text="支付宝登录"
+            android:textColor="#5698f0"
+            android:textSize="@dimen/text_16"
+            app:stv_corner="@dimen/dp_24"
+            app:stv_stroke_color="#5698f0"
+            app:stv_stroke_width="@dimen/dp_2" />
+
+        <com.coorchice.library.SuperTextView
+            android:id="@+id/stv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dp_100"
+            android:layout_marginTop="@dimen/dp_250"
+            android:gravity="center"
+            android:text="使用短信动态密码登陆"
+            android:textColor="#4a6dd5"
+            android:textSize="@dimen/text_14" />
+
 
     </android.support.v7.widget.CardView>
+
+
+    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+        android:id="@+id/qiv_logo"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        android:layout_marginTop="@dimen/dp_100"
+        app:srcCompat="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:qmui_border_color="@color/white"
+        app:qmui_border_width="@dimen/dp_3"
+        app:qmui_corner_radius="@dimen/dp_10" />
+
+
 </android.support.constraint.ConstraintLayout>

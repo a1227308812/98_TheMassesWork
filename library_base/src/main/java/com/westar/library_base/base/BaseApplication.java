@@ -11,7 +11,9 @@ import com.liulishuo.filedownloader.FileDownloader;
 import com.tencent.smtt.sdk.QbSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.westar.library_base.utils.AppUtil;
+import com.westar.library_base.utils.Density;
 import com.westar.library_base.utils.LLog;
+import com.westar.library_base.utils.ScreenAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -58,6 +60,10 @@ public class BaseApplication extends Application {
         FileDownloader.setup(getApplicationContext());
 
         ZXingLibrary.initDisplayOpinion(this);
+
+        //头条适配方案
+        ScreenAdapter.setup(this);
+        ScreenAdapter.register(this,375f,ScreenAdapter.MATCH_BASE_WIDTH,ScreenAdapter.MATCH_UNIT_DP);
     }
 
     /**

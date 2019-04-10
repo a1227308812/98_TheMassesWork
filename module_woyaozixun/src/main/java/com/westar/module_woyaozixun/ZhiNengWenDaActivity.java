@@ -19,6 +19,11 @@ public class ZhiNengWenDaActivity extends ToolbarActivity {
     }
 
     @Override
+    protected void findId() {
+
+    }
+
+    @Override
     protected void initView() {
 
     }

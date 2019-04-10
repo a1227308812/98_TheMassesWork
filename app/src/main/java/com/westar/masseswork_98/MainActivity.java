@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -52,6 +51,11 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
+    @Override
+    protected void findId() {
+
+    }
+
 
     @Override
     protected void initView() {
@@ -60,7 +64,7 @@ public class MainActivity extends BaseActivity {
         textView = findViewById(R.id.textView);
         btnTestPreview = findViewById(R.id.btnTestPreview);
         addSubscribe(RxView.clicks(button)
-                .throttleFirst(Config.windowDuration, TimeUnit.SECONDS)
+                .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {

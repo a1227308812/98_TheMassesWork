@@ -40,9 +40,17 @@ public class WelcomeActivity extends BaseActivity {
     SuperTextView superTextView;
 
     @Override
-    protected void initView() {
-        vPWelcome = findViewById(R.id.vp_welcome);
+    protected int getLayoutID() {
+        return R.layout.activity_welcome;
+    }
 
+    @Override
+    protected void findId() {
+        vPWelcome = findViewById(R.id.vp_welcome);
+    }
+
+    @Override
+    protected void initView() {
         viewList = new ArrayList<>();
         welcomeView1 = LayoutInflater.from(mContext).inflate(R.layout.item_welcome, null);
         welcomeView1.setBackgroundResource(R.drawable.welcome_1);
@@ -62,11 +70,11 @@ public class WelcomeActivity extends BaseActivity {
                     @Override
                     public void accept(Object o) throws Exception {
                         //todo 判断是否设置了指纹登录，如果设置了指纹登录，那么跳转指纹登录界面，否则跳转登录界面
-                        boolean hasFingerprint = SPUtils.getBoolean(mContext, SPUtils.KEY_BIOMETRIC_SWITCH_ENABLE, true);
+                        boolean hasFingerprint = SPUtils.getBoolean(mContext, SPUtils.KEY_BIOMETRIC_SWITCH_ENABLE, false);
                         if (hasFingerprint) {
                             skipActivity(FingerprintVerificationActivity.class, null);
                         } else {
-                            skipActivity(LoginActivity.class, null);
+                            skipActivity(LoginTypeSelectActivity.class, null);
                         }
                         finish();
                     }
@@ -121,9 +129,6 @@ public class WelcomeActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected int getLayoutID() {
-        return R.layout.activity_welcome;
-    }
+
 
 }

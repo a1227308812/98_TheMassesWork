@@ -21,6 +21,11 @@ public class ItemListActivity extends ToolbarActivity {
     }
 
     @Override
+    protected void findId() {
+
+    }
+
+    @Override
     protected void initView() {
 
     }

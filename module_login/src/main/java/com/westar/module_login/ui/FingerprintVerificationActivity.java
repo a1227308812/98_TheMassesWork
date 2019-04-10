@@ -100,4 +100,9 @@ public class FingerprintVerificationActivity extends BaseActivity {
         return R.layout.activity_fingerprint_verification;
     }
 
+    @Override
+    protected void findId() {
+
+    }
+
 }
