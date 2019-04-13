@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.westar.module_woyaochaxun">
+
+    <activity android:name=".BanJianChaXunActivity"></activity>
+    <activity android:name=".BanJianChaXunDetailsActivity" />
+    <activity android:name=".BanJianHistoryListActivity"/>
+</manifest>

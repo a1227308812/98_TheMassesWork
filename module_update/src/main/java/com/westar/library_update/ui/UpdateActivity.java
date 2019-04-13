@@ -9,6 +9,7 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.been.TestBeen1;
 import com.westar.been.TestBeen2;
 import com.westar.been.TestBeen3;
+import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.base.BaseMvpActivity;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.http.been.HttpRequest;
@@ -29,7 +30,7 @@ import io.reactivex.functions.Consumer;
  * 描述：更新模块
  */
 @Route(path = ArouterPath.MODULE_UPDATE_UPDATE_ACTIVITY)
-public class UpdateActivity extends BaseMvpActivity<UpdatePresenter> implements UpdateContract.View {
+public class UpdateActivity extends BaseActivity implements UpdateContract.View {
 
     UpdatePresenter updatePresenter;
     TextView textView;

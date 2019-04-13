@@ -14,6 +14,8 @@
 
     <color name="root_bg">#f7f8fa</color>
 
+    <color name="shadow_color">#44EDDFDF</color>
+
     <array name="splash_circle_colors">
         <item>@color/blue</item>
         <item>@color/green</item>

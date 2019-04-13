@@ -152,4 +152,5 @@ dependencies {
 
     //简单易用 高并发 可选择性支持: 独立/非独立进程 自动断点续传
     api rootProject.ext.dependencies.FileDownloader
+    api rootProject.ext.dependencies.FlexBox
 }

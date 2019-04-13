@@ -6,7 +6,9 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_fingerprint.BiometricPromptManager;
 import com.westar.module_login.R;
@@ -105,4 +107,38 @@ public class FingerprintVerificationActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onOther(Object data) {
+
+    }
+
+    @Override
+    public void onSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public LifecycleTransformer bindViewToLifecycle() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
 }

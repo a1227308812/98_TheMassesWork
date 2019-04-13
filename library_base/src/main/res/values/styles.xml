@@ -10,7 +10,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!--这个在value-21v中重写,如果sdk大于19的话请在value-21v 中做修改 同时这也是作者的一个bug,在给他的github中可查证-->
-        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="qmui_backgroundColor">@color/qmui_config_color_background</item>
         <!--<item name="android:actionBarSize">@dimen/qmui_dialog_action_button_radius</item>-->
         <!--<item name="actionBarSize">@dimen/activity_horizontal_margin</item>-->
@@ -18,7 +18,7 @@
 
         <item name="qmui_config_color_blue">@color/qmui_config_color_blue</item><!--这是一个BUG覆盖了colorAccent的效果-->
 
-        <item name="qmui_config_color_red">@color/colorPrimaryDark</item>
+        <item name="qmui_config_color_red">@color/colorAccent</item>
         <item name="qmui_config_color_background">@color/qmui_config_color_background</item>
 
         <!-- 配置app自己的theme -->

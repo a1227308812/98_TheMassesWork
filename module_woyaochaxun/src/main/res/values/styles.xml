@@ -1,4 +1,5 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,6 +7,29 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!--改变TextInputLayout 里面的EditText默认下划线和点击时下划线的颜色-->
+    <style name="TextAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">@color/white</item><!--默认显示下划线的颜色-->
+        <item name="colorControlActivated">@color/white</item><!--点击后下划线的颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_1</item>
+        <item name="android:background">@color/color_divider</item>
+    </style>
+
+    <style name="FormTextStyle">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/color_text_input</item>
+    </style>
+    <style name="FormRightGreyTextStyle">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/color_text_title</item>
     </style>
 
 </resources>

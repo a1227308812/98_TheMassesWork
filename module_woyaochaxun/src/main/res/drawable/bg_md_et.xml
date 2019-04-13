@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!--解决提示与输入框文字距离过近问题-->
+
+    <item>
+        <shape>
+            <solid android:color="@color/white"/>
+        </shape>
+    </item>
+
+    <item
+        android:top="@dimen/dp_8"
+        android:bottom="@dimen/dp_8"
+        android:left="@dimen/dp_8"
+        android:right="@dimen/dp_8"
+        >
+        <!--原来的需求区域-->
+        <shape>
+            <!-- 填充色 -->
+            <solid android:color="@android:color/white"/>
+            <!-- 边框 -->
+            <stroke
+                android:width="2dp"
+                android:color="@android:color/white" />
+            <!-- 圆角 -->
+            <corners android:radius="2dp"/>
+        </shape>
+    </item>
+</layer-list>

@@ -3,6 +3,7 @@ package com.westar.masseswork_98.fragment;
 import android.content.Context;
 
 import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BaseMvpFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.masseswork_98.R;
@@ -11,31 +12,8 @@ import com.westar.masseswork_98.R;
  * Created by ZWP on 2019/4/8 20:28.
  * 描述：便民服务
  */
-public class ConvenientServiceFragment extends BaseMvpFragment {
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
-    }
+public class ConvenientServiceFragment extends BaseFragment {
 
-    @Override
-    protected void lazyLoadShow(boolean isLoad) {
-
-    }
-
-    @Override
-    protected void lazyLoadHide(boolean isLoad) {
-
-    }
-
-    @Override
-    protected int getLayoutID() {
-        return R.layout.fragment_convenien_service;
-    }
-
-    @Override
-    protected void initData() {
-
-    }
 
     @Override
     public void showLoading() {
@@ -70,5 +48,30 @@ public class ConvenientServiceFragment extends BaseMvpFragment {
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
         return null;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    protected void lazyLoadShow(boolean isLoad) {
+
+    }
+
+    @Override
+    protected void lazyLoadHide(boolean isLoad) {
+
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_convenien_service;
+    }
+
+    @Override
+    protected void initData() {
+
     }
 }

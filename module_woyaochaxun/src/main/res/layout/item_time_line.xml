@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_time_circle"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bg_circle_blue"
+        app:layout_constraintEnd_toEndOf="@+id/tv_timeline_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_timeline_top"
+        app:layout_constraintTop_toBottomOf="@+id/tv_timeline_top" />
+
+    <TextView
+        android:id="@+id/tv_timeline_top"
+        android:layout_width="@dimen/dp_55"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="2018.01.02 11:24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_timeline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="受理"
+        app:layout_constraintEnd_toEndOf="@+id/tv_time_circle"
+        app:layout_constraintStart_toStartOf="@+id/tv_time_circle"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time_circle" />
+
+    <TextView
+        android:id="@+id/tv_time_line"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_2"
+        android:text=""
+        android:background="@color/color_timeline_grey"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_time_circle"
+        app:layout_constraintStart_toEndOf="@+id/tv_time_circle"
+        app:layout_constraintTop_toTopOf="@+id/tv_time_circle" />
+</android.support.constraint.ConstraintLayout>

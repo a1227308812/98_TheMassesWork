@@ -12,12 +12,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.westar.Config;
 import com.westar.been.TestBeen2;
 import com.westar.been.TestBeen3;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.callback.IPermissionsCallBack;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.preview.helper.FilePreviewHelper;
@@ -182,5 +184,40 @@ public class MainActivity extends BaseActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onOther(Object data) {
+
+    }
+
+    @Override
+    public void onSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public LifecycleTransformer bindViewToLifecycle() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 }

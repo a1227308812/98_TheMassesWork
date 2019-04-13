@@ -2,10 +2,13 @@ package com.westar.module_login.ui;
 
 
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -13,10 +16,14 @@ import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.view.shadowView.ShadowHelper;
+import com.westar.library_base.view.shadowView.ShadowProperty;
 import com.westar.module_login.R;
 import com.westar.module_login.been.User;
 import com.westar.module_login.mvp.presenter.LoginPresenter;
@@ -43,10 +50,23 @@ public class LoginActivity extends BaseActivity {
     LoginPresenter presenter;
 
     ImageView ivLogo;
+    TextView tvQuickLogin;
+    LinearLayout contentLayout;
+
+    @Override
+    protected void initStatusBar() {
+        //状态栏透明 字体和图标白色
+        QMUIStatusBarHelper.setStatusBarDarkMode(this);
+    }
 
     @Override
     protected void initPresenter() {
         presenter = new LoginPresenter();
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 
     @Override
@@ -61,10 +81,28 @@ public class LoginActivity extends BaseActivity {
         etYzm = findViewById(R.id.et_yzm);
         btnLogin = findViewById(R.id.btn_login);
         cbZcxy = findViewById(R.id.cb_zcxy);
+        tvQuickLogin = findViewById(R.id.tv_quick_login);
+        contentLayout = findViewById(R.id.cardView);
     }
 
     @Override
     protected void initView() {
+
+        //设置指定控件的阴影
+        ShadowHelper.bindView(contentLayout, new ShadowProperty()
+                .setShadowRadius(4)
+                .setShadowColor(ContextCompat.getColor(mContext, R.color.shadow_color))
+                .setRoundwWidth(10));
+
+        tvQuickLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort("游客登录");
+                ARouter.getInstance()
+                        .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
+                        .navigation();
+            }
+        });
 
         cbZcxy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,16 +131,14 @@ public class LoginActivity extends BaseActivity {
                         if (user != null && etYzm.getText().toString().equals(user.getPassword())) {
 //                            //验证通过 登录成功
 
-                            new QMUITipDialog.Builder(mContext)
-                                    .setTipWord("登录成功!")
-                                    .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
-                                    .create(false)
-                                    .show();
+//                            new QMUITipDialog.Builder(mContext)
+//                                    .setTipWord("登录成功!")
+//                                    .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
+//                                    .create(false)
+//                                    .show();
 
-                            ARouter.getInstance()
-                                    .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
-                                    .withSerializable("user", user)
-                                    .navigation();
+                            skipActivity(ConfirmPersonalInformationActivity.class, null);
+
                         } else {
                             ToastUtils.showShort("登录失败！");
                         }
@@ -166,5 +202,33 @@ public class LoginActivity extends BaseActivity {
         }
         return true;
     }
+    @Override
+    public void showLoading() {
 
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onOther(Object data) {
+
+    }
+
+    @Override
+    public void onSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public LifecycleTransformer bindViewToLifecycle() {
+        return null;
+    }
 }

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/LoginTheme"
         tools:replace="Android:icon, android:theme"> <!-- 忽略导入的module的主题和icon -->
-        <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".ui.LoginActivity" />
         <activity
             android:name=".ui.WelcomeActivity"
             android:theme="@style/SplashStyle">
@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.FingerprintVerificationActivity" />
-        <activity android:name=".ui.LoginTypeSelectActivity"></activity>
+        <activity android:name=".ui.LoginTypeSelectActivity" />
+        <activity android:name=".ui.ConfirmPersonalInformationActivity"></activity>
     </application>
 
 </manifest>

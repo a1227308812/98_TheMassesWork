@@ -10,7 +10,9 @@ import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.util.QMUIResHelper;
 import com.qmuiteam.qmui.widget.QMUIPagerAdapter;
 import com.qmuiteam.qmui.widget.QMUITabSegment;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.adapter.MenuFragmentAdapter;
@@ -114,4 +116,38 @@ public class HomeGroupActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onOther(Object data) {
+
+    }
+
+    @Override
+    public void onSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public LifecycleTransformer bindViewToLifecycle() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
 }

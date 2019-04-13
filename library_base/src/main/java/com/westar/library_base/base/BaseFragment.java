@@ -22,7 +22,7 @@ import butterknife.Unbinder;
  * Created by ZWP on 2019/3/11.
  * 描述：Fragment 超类
  */
-public abstract class BaseFragment extends BasePermissionFragment {
+public abstract class BaseFragment extends BaseMvpFragment {
 
     private View mView;
     private Activity mActivity;
@@ -105,7 +105,6 @@ public abstract class BaseFragment extends BasePermissionFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mUnBinder = ButterKnife.bind(this, view);
         mInflater = onGetLayoutInflater(savedInstanceState);
-        initPresenter();
         initData();
         /**初始化的时候去加载数据**/
         isPrepared = true;
@@ -175,17 +174,9 @@ public abstract class BaseFragment extends BasePermissionFragment {
     @Override
     public void onDestroyView() {
         isPrepared = false;
-        removePresenter();
         mUnBinder.unbind();
         super.onDestroyView();
     }
 
-    protected void initPresenter() {
-
-    }
-
-    protected void removePresenter() {
-
-    }
 
 }

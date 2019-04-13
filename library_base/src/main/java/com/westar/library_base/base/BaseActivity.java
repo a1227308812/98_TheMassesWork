@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
  * Created by ZWP on 2019/3/8.
  * 描述：activity 超类
  */
-public abstract class BaseActivity extends BasePermissionActivity {
+public abstract class BaseActivity extends BaseMvpActivity {
 
     protected Context mContext;
 
@@ -41,13 +41,22 @@ public abstract class BaseActivity extends BasePermissionActivity {
         setContentView(getLayoutID());
         QMUIStatusBarHelper.translucent(this);
 
+
         ButterKnife.bind(this);
         //ARouter inject注入
         ARouter.getInstance().inject(this);
+
+
+        initStatusBar();
         initPresenter();
         findId();
         initView();
         initData();
+    }
+
+    protected void initStatusBar(){
+        //状态栏透明 字体和图标黑色
+        QMUIStatusBarHelper.setStatusBarLightMode(this);
     }
 
     /**
@@ -191,17 +200,6 @@ public abstract class BaseActivity extends BasePermissionActivity {
         return false;
     }
 
-    /**
-     * 初始化presenter
-     */
-    protected void initPresenter() {
-    }
-
-    /**
-     * 移除presenter
-     */
-    protected void removePresenter() {
-    }
 
     /**
      * 复写返回键

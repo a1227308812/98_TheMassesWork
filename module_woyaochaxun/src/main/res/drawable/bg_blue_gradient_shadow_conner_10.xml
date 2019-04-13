@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--带阴影的布局-->
+    <item>
+        <shape>
+            <gradient
+                android:startColor="@color/color_btn_shadow"
+                android:endColor="@color/color_btn_shadow_none"
+                android:angle="90"
+                />
+            <corners android:radius="@dimen/dp_10"/>
+        </shape>
+    </item>
+    <item
+        android:bottom="@dimen/dp_5"
+        >
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <gradient
+                android:startColor="@color/color_blue"
+                android:endColor="@color/color_light_blue"
+                android:angle="45"
+                />
+            <corners android:radius="@dimen/dp_10"/>
+        </shape>
+
+    </item>
+</layer-list>

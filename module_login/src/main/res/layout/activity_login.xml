@@ -16,7 +16,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.CardView
+    <TextView
+        android:id="@+id/tv_quick_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_35"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="游客登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -25,211 +37,204 @@
         android:layout_marginRight="@dimen/dp_15"
         android:layout_marginStart="@dimen/dp_15"
         android:layout_marginTop="@dimen/dp_140"
-        app:cardCornerRadius="@dimen/dp_8"
-        app:cardElevation="0dp"
-        app:cardPreventCornerOverlap="true"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/dp_20"
-            android:paddingRight="@dimen/dp_20">
+            android:layout_marginTop="@dimen/dp_70">
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_account"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/icon_dl_sj" />
+
+            <View
+                android:id="@+id/divider_vertical_account"
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="@dimen/dp_15"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:background="#e6e6e6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/iv_account"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--android.support.design:hintAnimationEnabled | 是否显示hint的动画,默认true-->
+            <!--android.support.design:hintEnabled | 是否使用hint属性,默认true-->
+            <!--android.support.design:hintTextAppearance | 设置hint的文字样式(指运行动画效果之后的样式)-->
+            <!--android.support.design:counterEnabled | 是否显示计数器-->
+            <!--android.support.design:counterMaxLength | 设置计数器的最大值-->
+            <!--android.support.design:counterOverflowTextAppearance | 输入字符大于我们限定个数字符时的样式-->
+            <!--app:theme 设置浮动标签的颜色主题-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayout_account"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_70">
+                android:layout_marginLeft="@dimen/dp_8"
+                android:layout_weight="1"
+                app:counterEnabled="false"
+                app:counterMaxLength="11"
+                app:counterOverflowTextAppearance="@style/ErrorAppearance"
+                app:counterTextAppearance="@style/OverAppearance"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/EditText_hintTextAppearance"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/divider_vertical_account"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/iv_account"
-                    android:layout_width="@dimen/dp_20"
-                    android:layout_height="@dimen/dp_20"
-                    android:layout_gravity="center_vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/icon_dl_sj" />
-
-                <View
-                    android:id="@+id/divider_vertical_account"
-                    android:layout_width="@dimen/dp_1"
-                    android:layout_height="@dimen/dp_15"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dp_14"
-                    android:background="#e6e6e6"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/iv_account"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <!--android.support.design:hintAnimationEnabled | 是否显示hint的动画,默认true-->
-                <!--android.support.design:hintEnabled | 是否使用hint属性,默认true-->
-                <!--android.support.design:hintTextAppearance | 设置hint的文字样式(指运行动画效果之后的样式)-->
-                <!--android.support.design:counterEnabled | 是否显示计数器-->
-                <!--android.support.design:counterMaxLength | 设置计数器的最大值-->
-                <!--android.support.design:counterOverflowTextAppearance | 输入字符大于我们限定个数字符时的样式-->
-                <!--app:theme 设置浮动标签的颜色主题-->
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/textInputLayout_account"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_8"
-                    android:layout_weight="1"
-                    app:counterEnabled="false"
-                    app:counterMaxLength="11"
-                    app:counterOverflowTextAppearance="@style/ErrorAppearance"
-                    app:counterTextAppearance="@style/OverAppearance"
-                    app:hintAnimationEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/EditText_hintTextAppearance"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/divider_vertical_account"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_account"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_30"
-                        android:background="@null"
-                        android:hint="请输入用户名"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textColor="#303545"
-                        android:textColorHint="#dadfe5"
-                        android:textSize="@dimen/text_16" />
-                </android.support.design.widget.TextInputLayout>
-
-                <View
-                    android:id="@+id/divider_horizontal_account"
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_account"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:layout_gravity="center_vertical"
-                    android:background="#e6e6e6"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textInputLayout_account" />
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@null"
+                    android:hint="请输入用户名"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textColor="#303545"
+                    android:textColorHint="#dadfe5"
+                    android:textSize="@dimen/text_16" />
+            </android.support.design.widget.TextInputLayout>
 
-
-            </android.support.constraint.ConstraintLayout>
-
-
-            <android.support.constraint.ConstraintLayout
+            <View
+                android:id="@+id/divider_horizontal_account"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_gravity="center_vertical"
+                android:background="#e6e6e6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_account" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_password"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/icon_dl_dx" />
+
+            <View
+                android:id="@+id/divider_vertical_psw"
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="@dimen/dp_15"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:background="#e6e6e6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/iv_password"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!--android.support.design:passwordToggleEnabled | 是否显示密码开关图片,需要EditText设置inputType-->
+            <!--android.support.design:passwordToggleTint | 设置密码开关图片颜色-->
+            <!--android.support.design:passwordToggleTintMode | 设置密码开关图片(混合颜色模式),与passwordToggleTint同时使用-->
+            <!--android.support.design:errorEnabled |是否显示错误信息-->
+            <!--android.support.design:errorTextAppearance| 错误信息的字体样式-->
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayout_password"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_30">
+                android:layout_marginLeft="@dimen/dp_8"
+                app:counterEnabled="false"
+                app:counterMaxLength="12"
+                app:counterOverflowTextAppearance="@style/ErrorAppearance"
+                app:counterTextAppearance="@style/OverAppearance"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/EditText_hintTextAppearance"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/divider_vertical_psw"
+                app:layout_constraintRight_toLeftOf="@id/btn_yzm"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/iv_password"
-                    android:layout_width="@dimen/dp_20"
-                    android:layout_height="@dimen/dp_20"
-                    android:layout_gravity="center_vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/icon_dl_dx" />
-
-                <View
-                    android:id="@+id/divider_vertical_psw"
-                    android:layout_width="@dimen/dp_1"
-                    android:layout_height="@dimen/dp_15"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dp_14"
-                    android:background="#e6e6e6"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/iv_password"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <!--android.support.design:passwordToggleEnabled | 是否显示密码开关图片,需要EditText设置inputType-->
-                <!--android.support.design:passwordToggleTint | 设置密码开关图片颜色-->
-                <!--android.support.design:passwordToggleTintMode | 设置密码开关图片(混合颜色模式),与passwordToggleTint同时使用-->
-                <!--android.support.design:errorEnabled |是否显示错误信息-->
-                <!--android.support.design:errorTextAppearance| 错误信息的字体样式-->
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/textInputLayout_password"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_8"
-                    app:counterEnabled="false"
-                    app:counterMaxLength="12"
-                    app:counterOverflowTextAppearance="@style/ErrorAppearance"
-                    app:counterTextAppearance="@style/OverAppearance"
-                    app:hintAnimationEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/EditText_hintTextAppearance"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/divider_vertical_psw"
-                    app:layout_constraintRight_toLeftOf="@id/btn_yzm"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/et_yzm"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_30"
-                        android:background="@null"
-                        android:hint="请输入验证码"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPassword"
-                        android:textColor="#303545"
-                        android:textColorHint="#dadfe5"
-                        android:textSize="@dimen/text_16" />
-                </android.support.design.widget.TextInputLayout>
-
-                <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                    android:id="@+id/btn_yzm"
-                    android:layout_width="@dimen/dp_110"
-                    android:layout_height="@dimen/dp_25"
-                    android:text="获取验证码"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_14"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/textInputLayout_password"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:qmui_backgroundColor="#b6c2d2" />
-
-                <View
-                    android:id="@+id/divider_horizontal"
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_yzm"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:layout_gravity="center_vertical"
-                    android:background="#e6e6e6"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textInputLayout_password" />
-
-
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.v7.widget.AppCompatCheckedTextView
-                android:id="@+id/cb_zcxy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_85"
-                android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
-                android:gravity="center_vertical"
-                android:text="我同意某某政务中心的《注册协议》" />
-
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@null"
+                    android:hint="请输入验证码"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textColor="#303545"
+                    android:textColorHint="#dadfe5"
+                    android:textSize="@dimen/text_16" />
+            </android.support.design.widget.TextInputLayout>
 
             <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                android:id="@+id/btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_40"
-                android:layout_marginBottom="@dimen/dp_50"
-                android:layout_marginTop="@dimen/dp_80"
-                android:text="登录"
+                android:id="@+id/btn_yzm"
+                android:layout_width="@dimen/dp_110"
+                android:layout_height="@dimen/dp_25"
+                android:gravity="center"
+                android:text="获取验证码"
                 android:textColor="@color/white"
-                app:qmui_backgroundColor="@color/blue" />
+                android:textSize="@dimen/text_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/textInputLayout_password"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:qmui_backgroundColor="@drawable/selector_yzm" />
 
-        </LinearLayout>
+            <View
+                android:id="@+id/divider_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_gravity="center_vertical"
+                android:background="#e6e6e6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_password" />
 
 
-    </android.support.v7.widget.CardView>
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.AppCompatCheckedTextView
+            android:id="@+id/cb_zcxy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_85"
+            android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="center_vertical"
+            android:text="我同意某某政务中心的《注册协议》" />
+
+
+        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginBottom="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_80"
+            android:text="登录"
+            android:textColor="@color/white"
+            app:qmui_backgroundColor="@drawable/selector_login" />
+
+
+    </LinearLayout>
 
 
     <com.qmuiteam.qmui.widget.QMUIRadiusImageView

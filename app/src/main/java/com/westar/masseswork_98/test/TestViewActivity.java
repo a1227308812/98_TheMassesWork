@@ -5,7 +5,9 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.base.BasePresenter;
 import com.westar.masseswork_98.R;
 
 import butterknife.BindView;
@@ -49,5 +51,40 @@ public class TestViewActivity extends BaseActivity {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onOther(Object data) {
+
+    }
+
+    @Override
+    public void onSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public LifecycleTransformer bindViewToLifecycle() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 }

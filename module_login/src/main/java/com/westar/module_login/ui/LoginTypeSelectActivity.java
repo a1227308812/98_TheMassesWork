@@ -1,16 +1,23 @@
 package com.westar.module_login.ui;
 
 
+import android.support.v4.content.ContextCompat;
+import android.widget.LinearLayout;
+
 import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.view.shadowView.ShadowHelper;
+import com.westar.library_base.view.shadowView.ShadowProperty;
+import com.westar.library_base.base.BasePresenter;
 import com.westar.module_login.R;
 
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -23,6 +30,7 @@ public class LoginTypeSelectActivity extends BaseActivity {
     SuperTextView stvWeixin;
     SuperTextView stvZhifubao;
     SuperTextView stvMsg;
+    LinearLayout contentLayout;
 
     @Override
     protected int getLayoutID() {
@@ -30,8 +38,18 @@ public class LoginTypeSelectActivity extends BaseActivity {
     }
 
     @Override
+    protected void initStatusBar() {
+        //状态栏透明 字体和图标白色
+        QMUIStatusBarHelper.setStatusBarDarkMode(this);
+    }
+
+    @Override
     protected void initView() {
-        findId();
+        //设置指定控件的阴影
+        ShadowHelper.bindView(contentLayout, new ShadowProperty()
+                .setShadowRadius(4)
+                .setShadowColor(ContextCompat.getColor(mContext, R.color.shadow_color))
+                .setRoundwWidth(10));
 
         RxView.clicks(stvWeixin).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
@@ -53,10 +71,12 @@ public class LoginTypeSelectActivity extends BaseActivity {
         });
     }
 
+    @Override
     public void findId() {
         stvWeixin = findViewById(R.id.stv_weixin);
         stvZhifubao = findViewById(R.id.stv_zhifubao);
         stvMsg = findViewById(R.id.stv_msg);
+        contentLayout = findViewById(R.id.cardView);
     }
 
     @Override
@@ -64,4 +84,38 @@ public class LoginTypeSelectActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onOther(Object data) {
+
+    }
+
+    @Override
+    public void onSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public LifecycleTransformer bindViewToLifecycle() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
 }

@@ -3,6 +3,7 @@ package com.westar.masseswork_98.fragment;
 import android.content.Context;
 
 import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BaseMvpFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.masseswork_98.R;
@@ -11,31 +12,7 @@ import com.westar.masseswork_98.R;
  * Created by ZWP on 2019/4/8 20:14.
  * 描述：
  */
-public class OfficeHallFragment extends BaseMvpFragment {
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
-    }
-
-    @Override
-    protected void lazyLoadShow(boolean isLoad) {
-
-    }
-
-    @Override
-    protected void lazyLoadHide(boolean isLoad) {
-
-    }
-
-    @Override
-    protected int getLayoutID() {
-        return R.layout.fragment_office_hall;
-    }
-
-    @Override
-    protected void initData() {
-
-    }
+public class OfficeHallFragment extends BaseFragment {
 
     @Override
     public void showLoading() {
@@ -70,5 +47,30 @@ public class OfficeHallFragment extends BaseMvpFragment {
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
         return null;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    protected void lazyLoadShow(boolean isLoad) {
+
+    }
+
+    @Override
+    protected void lazyLoadHide(boolean isLoad) {
+
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_office_hall;
+    }
+
+    @Override
+    protected void initData() {
+
     }
 }

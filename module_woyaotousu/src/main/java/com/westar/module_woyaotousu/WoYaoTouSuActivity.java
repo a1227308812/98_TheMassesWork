@@ -2,6 +2,8 @@ package com.westar.module_woyaotousu;
 
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
 
@@ -36,5 +38,40 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
     @Override
     public String setBarTitle() {
         return "我要投诉";
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onOther(Object data) {
+
+    }
+
+    @Override
+    public void onSuccess(Object data) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public LifecycleTransformer bindViewToLifecycle() {
+        return null;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 }

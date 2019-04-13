@@ -125,7 +125,9 @@ ext {
             "Luban"                        : 'top.zibin:Luban:1.1.8',
             "SuperTextView"                : 'com.github.chenBingX:SuperTextView:3.1.6.2',
             "zxing"                        : 'cn.yipianfengye.android:zxing-library:2.2',
-            "FileDownloader"               : 'com.liulishuo.filedownloader:library:1.7.5'
+            "FileDownloader"               : 'com.liulishuo.filedownloader:library:1.7.5',
+            //流式布局
+            "FlexBox"                      : 'com.google.android:flexbox:1.0.0'
 
     ]
 }
