@@ -15,6 +15,12 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application>
+        <!--<meta-data-->
+            <!--android:name="design_width_in_dp"-->
+            <!--android:value="375"/>-->
+        <!--<meta-data-->
+            <!--android:name="design_height_in_dp"-->
+            <!--android:value="667"/>-->
         <activity android:name="com.westar.library_base.preview.ui.TbsPreviewActivity"></activity>
     </application>
 

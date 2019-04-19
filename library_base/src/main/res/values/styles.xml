@@ -16,18 +16,21 @@
         <!--<item name="actionBarSize">@dimen/activity_horizontal_margin</item>-->
 
 
-        <item name="qmui_config_color_blue">@color/qmui_config_color_blue</item><!--这是一个BUG覆盖了colorAccent的效果-->
+        <item name="qmui_config_color_blue">@color/qmui_config_color_blue
+        </item><!--这是一个BUG覆盖了colorAccent的效果-->
 
         <item name="qmui_config_color_red">@color/colorAccent</item>
         <item name="qmui_config_color_background">@color/qmui_config_color_background</item>
 
         <!-- 配置app自己的theme -->
         <item name="qmui_alpha_pressed">?attr/qmui_config_color_blue</item><!--下拉刷新 控件默认颜色-->
-        <item name="qmui_common_list_item_chevron">@drawable/qmui_list_item_bg_with_border_bottom</item><!--向右按钮-->
+        <item name="qmui_common_list_item_chevron">@drawable/qmui_list_item_bg_with_border_bottom
+        </item><!--向右按钮-->
         <!--<item name="qmui_dialog_action_text_negative_color">@color/qmui_dialog_action_text_negative_color</item>&lt;!&ndash;颜色cancle&ndash;&gt;-->
         <!--<item name="qmui_dialog_action_text_color">@color/qmui_config_color_black</item>&lt;!&ndash;颜色confirm&ndash;&gt;-->
         <!--<item name="qmui_dialog_title_text_color">@color/qmui_config_color_black</item>&lt;!&ndash;颜色Title&ndash;&gt;-->
         <item name="qmui_config_color_gray_4">@color/qmui_config_color_gray_4</item><!--颜色message-->
 
     </style>
+
 </resources>

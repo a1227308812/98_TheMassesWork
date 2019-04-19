@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.LoginTypeSelectActivity">
 
+
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/iv_top"
         android:layout_width="0dp"
@@ -15,57 +16,76 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <LinearLayout
-        android:id="@+id/cardView"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_quick_login"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp_15"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginRight="@dimen/dp_15"
-        android:layout_marginStart="@dimen/dp_15"
-        android:layout_marginTop="@dimen/dp_140"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_35"
+        android:text="游客登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="@dimen/dp_355"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:paddingLeft="@dimen/dp_28"
+        android:paddingRight="@dimen/dp_28"
+        android:minHeight="@dimen/dp_380"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="@id/qiv_logo">
 
         <com.coorchice.library.SuperTextView
             android:id="@+id/stv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp_65"
+            android:layout_marginTop="@dimen/dp_60"
             android:text="XXX市政务服务指尖智办系统"
             android:textColor="#303545"
-            android:textSize="@dimen/text_16" />
+            android:textSize="@dimen/text_16"
+            app:layout_constraintEnd_toEndOf="@id/contentLayout"
+            app:layout_constraintStart_toStartOf="@id/contentLayout"
+            app:layout_constraintTop_toTopOf="@id/contentLayout" />
 
         <com.coorchice.library.SuperTextView
             android:id="@+id/stv_weixin"
-            android:layout_width="@dimen/dp_300"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/dp_45"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_40"
             android:gravity="center"
             android:text="微信登录"
             android:textColor="#52af50"
-            android:textSize="@dimen/text_16"
-            app:stv_corner="@dimen/dp_24"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintEnd_toEndOf="@id/contentLayout"
+            app:layout_constraintStart_toStartOf="@id/contentLayout"
+            app:layout_constraintTop_toBottomOf="@id/stv_title"
+            app:stv_corner="@dimen/dp_100"
             app:stv_stroke_color="#52af50"
             app:stv_stroke_width="@dimen/dp_2" />
 
         <com.coorchice.library.SuperTextView
             android:id="@+id/stv_zhifubao"
-            android:layout_width="@dimen/dp_300"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/dp_45"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_20"
             android:gravity="center"
             android:text="支付宝登录"
             android:textColor="#5698f0"
-            android:textSize="@dimen/text_16"
-            app:stv_corner="@dimen/dp_24"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintEnd_toEndOf="@id/contentLayout"
+            app:layout_constraintStart_toStartOf="@id/contentLayout"
+            app:layout_constraintTop_toBottomOf="@id/stv_weixin"
+            app:stv_corner="@dimen/dp_100"
             app:stv_stroke_color="#5698f0"
             app:stv_stroke_width="@dimen/dp_2" />
 
@@ -74,25 +94,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/dp_100"
             android:layout_marginTop="@dimen/dp_36"
             android:gravity="center"
             android:text="使用短信动态密码登陆"
             android:textColor="#4a6dd5"
-            android:textSize="@dimen/text_14" />
+            android:textSize="@dimen/text_14"
+            app:layout_constraintEnd_toEndOf="@id/contentLayout"
+            app:layout_constraintStart_toStartOf="@id/contentLayout"
+            app:layout_constraintTop_toBottomOf="@id/stv_zhifubao" />
 
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 
     <com.qmuiteam.qmui.widget.QMUIRadiusImageView
         android:id="@+id/qiv_logo"
         android:layout_width="@dimen/dp_80"
         android:layout_height="@dimen/dp_80"
-        android:layout_marginTop="@dimen/dp_100"
+        app:layout_constraintBottom_toBottomOf="@id/iv_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:qmui_border_color="@color/white"
         app:qmui_border_width="@dimen/dp_3"
         app:qmui_corner_radius="@dimen/dp_10"

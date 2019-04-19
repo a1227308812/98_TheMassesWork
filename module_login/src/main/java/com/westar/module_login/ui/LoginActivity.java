@@ -1,6 +1,7 @@
 package com.westar.module_login.ui;
 
 
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
@@ -8,15 +9,14 @@ import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
@@ -50,7 +50,7 @@ public class LoginActivity extends BaseActivity {
     LoginPresenter presenter;
 
     ImageView ivLogo;
-    TextView tvQuickLogin;
+
     LinearLayout contentLayout;
 
     @Override
@@ -81,8 +81,8 @@ public class LoginActivity extends BaseActivity {
         etYzm = findViewById(R.id.et_yzm);
         btnLogin = findViewById(R.id.btn_login);
         cbZcxy = findViewById(R.id.cb_zcxy);
-        tvQuickLogin = findViewById(R.id.tv_quick_login);
-        contentLayout = findViewById(R.id.cardView);
+
+        contentLayout = findViewById(R.id.contentLayout);
     }
 
     @Override
@@ -90,19 +90,9 @@ public class LoginActivity extends BaseActivity {
 
         //设置指定控件的阴影
         ShadowHelper.bindView(contentLayout, new ShadowProperty()
-                .setShadowRadius(4)
+                .setShadowRadius(5)
                 .setShadowColor(ContextCompat.getColor(mContext, R.color.shadow_color))
                 .setRoundwWidth(10));
-
-        tvQuickLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtils.showShort("游客登录");
-                ARouter.getInstance()
-                        .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
-                        .navigation();
-            }
-        });
 
         cbZcxy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,9 +100,6 @@ public class LoginActivity extends BaseActivity {
                 cbZcxy.setChecked(!cbZcxy.isChecked());
             }
         });
-
-//        mSpanTouchFixTextView1.setMovementMethodDefault();
-//        mSpanTouchFixTextView1.setText(generateSp(getResources().getString(R.string.span_touch_fix_1)));
 
 
         //登录
@@ -130,11 +117,10 @@ public class LoginActivity extends BaseActivity {
                         User user = realm.where(User.class).equalTo("userName", etAccount.getText().toString()).findFirst();
                         if (user != null && etYzm.getText().toString().equals(user.getPassword())) {
 //                            //验证通过 登录成功
-
 //                            new QMUITipDialog.Builder(mContext)
 //                                    .setTipWord("登录成功!")
 //                                    .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
-//                                    .create(false)
+//                                    .create()
 //                                    .show();
 
                             skipActivity(ConfirmPersonalInformationActivity.class, null);
@@ -202,6 +188,7 @@ public class LoginActivity extends BaseActivity {
         }
         return true;
     }
+
     @Override
     public void showLoading() {
 
@@ -229,6 +216,6 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
+        return this.bindToLifecycle();
     }
 }

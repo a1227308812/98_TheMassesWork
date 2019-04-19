@@ -7,9 +7,11 @@ import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.AppUtils;
+import com.coorchice.library.ImageEngine;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.tencent.smtt.sdk.QbSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+import com.westar.library_base.supertext.GlideEngine;
 import com.westar.library_base.utils.AppUtil;
 import com.westar.library_base.utils.Density;
 import com.westar.library_base.utils.LLog;
@@ -58,12 +60,15 @@ public class BaseApplication extends Application {
         QbSdk.initX5Environment(getApplicationContext(), cb);
         //初始化下载组件
         FileDownloader.setup(getApplicationContext());
-
+        //二维码扫描
         ZXingLibrary.initDisplayOpinion(this);
 
         //头条适配方案
         ScreenAdapter.setup(this);
-        ScreenAdapter.register(this,375f,ScreenAdapter.MATCH_BASE_WIDTH,ScreenAdapter.MATCH_UNIT_DP);
+        ScreenAdapter.register(this, 400f, ScreenAdapter.MATCH_BASE_WIDTH, ScreenAdapter.MATCH_UNIT_DP);
+
+        // 安装图片引擎
+        ImageEngine.install(new GlideEngine(this));
     }
 
     /**

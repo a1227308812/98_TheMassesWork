@@ -54,7 +54,7 @@ public abstract class BaseActivity extends BaseMvpActivity {
         initData();
     }
 
-    protected void initStatusBar(){
+    protected void initStatusBar() {
         //状态栏透明 字体和图标黑色
         QMUIStatusBarHelper.setStatusBarLightMode(this);
     }
@@ -249,18 +249,43 @@ public abstract class BaseActivity extends BaseMvpActivity {
         finish();
     }
 
+    /**
+     * 快速获取intent中的int参数
+     *
+     * @param key
+     * @return
+     */
     public int getIntentInt(@NonNull String key) {
         return getIntent().getIntExtra(key, 0);
     }
 
+    /**
+     * 快速获取intent中的String参数
+     *
+     * @param key
+     * @return
+     */
     public String getIntentString(@NonNull String key) {
         return getIntent().getStringExtra(key) == null ? "" : getIntent().getStringExtra(key);
     }
 
+    /**
+     * 快速获取intent中的boolean参数
+     *
+     * @param key
+     * @return
+     */
     public boolean getIntentBoolean(@NonNull String key) {
         return getIntent().getBooleanExtra(key, false);
     }
 
+    /**
+     * 快速获取intent中的Serializable参数
+     *
+     * @param key
+     * @param <T>
+     * @return
+     */
     public <T> T getIntentSerializable(@NonNull String key) {
         return getIntent().getSerializableExtra(key) == null ? null : (T) getIntent().getSerializableExtra(key);
     }

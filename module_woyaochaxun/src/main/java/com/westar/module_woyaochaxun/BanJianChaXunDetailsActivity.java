@@ -42,7 +42,7 @@ public class BanJianChaXunDetailsActivity extends ToolbarActivity {
     @Override
     protected void initView() {
         if (type.equals("1")){
-           rightImgBtn = topbar.addRightImageButton(R.drawable.icon_top_ls,-1);
+           rightImgBtn = topBarLayout.addRightImageButton(R.drawable.icon_top_ls,-1);
         }
 
         setListener();

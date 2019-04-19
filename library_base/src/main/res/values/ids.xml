@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="smartrefresh_layout" type="id"/>
+    <item name="recyc_list" type="id"/>
+
+    <item name="search_view" type="id"/>
+    <item name="toolbar_layout" type="id"/>
+
+
+    <!--item分割线-->
+    <item name="last_line" type="id"/>
+
+
+</resources>

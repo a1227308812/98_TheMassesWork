@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.IDCardConfirmActivity">
+
+
+    <TextView
+        android:id="@+id/title_info"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_60"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="*江  5*****************3"
+        android:textColor="#303545"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/id_card_positive"
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="@dimen/dp_100"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/png_sfz_zm"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_info" />
+
+    <ImageView
+        android:id="@+id/id_card_wrong_side"
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="@dimen/dp_100"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/png_sfz_bm"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_card_positive" />
+
+    <ImageView
+        android:id="@+id/positive_delete"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="@id/id_card_positive"
+        app:layout_constraintEnd_toStartOf="@id/id_card_positive"
+        app:layout_constraintTop_toTopOf="@id/id_card_positive"
+        app:srcCompat="@mipmap/icon_other_del" />
+
+    <ImageView
+        android:id="@+id/positive_preview"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginStart="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="@id/id_card_positive"
+        app:layout_constraintStart_toEndOf="@id/id_card_positive"
+        app:layout_constraintTop_toTopOf="@id/id_card_positive"
+        app:srcCompat="@mipmap/icon_other_fd" />
+
+    <ImageView
+        android:id="@+id/wrong_delete"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="@id/id_card_wrong_side"
+        app:layout_constraintEnd_toStartOf="@id/id_card_wrong_side"
+        app:layout_constraintTop_toTopOf="@id/id_card_wrong_side"
+        app:srcCompat="@mipmap/icon_other_del" />
+
+    <ImageView
+        android:id="@+id/wrong_preview"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginStart="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="@id/id_card_wrong_side"
+        app:layout_constraintStart_toEndOf="@id/id_card_wrong_side"
+        app:layout_constraintTop_toTopOf="@id/id_card_wrong_side"
+        app:srcCompat="@mipmap/icon_other_fd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_36"
+        android:text="点击身份证上传正反面"
+        android:textColor="#828899"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_card_wrong_side" />
+
+
+    <CheckedTextView
+        android:id="@+id/idconfirm_protocol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_160"
+        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="center_vertical"
+        android:text="阅读并同意《实名认证协议》"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_card_wrong_side" />
+
+    <com.coorchice.library.SuperTextView
+        android:id="@+id/upload"
+        android:layout_width="@dimen/dp_345"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_30"
+        android:gravity="center"
+        android:text="立即上传"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idconfirm_protocol"
+        app:stv_corner="@dimen/dp_10"
+        app:stv_shaderEnable="true"
+        app:stv_shaderEndColor="#5698f0"
+        app:stv_shaderMode="leftToRight"
+        app:stv_shaderStartColor="#4a6dd5"
+
+        />
+
+</android.support.constraint.ConstraintLayout>

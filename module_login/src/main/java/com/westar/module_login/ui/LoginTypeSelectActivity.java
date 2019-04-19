@@ -1,9 +1,12 @@
 package com.westar.module_login.ui;
 
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -11,6 +14,7 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.view.shadowView.ShadowHelper;
 import com.westar.library_base.view.shadowView.ShadowProperty;
 import com.westar.library_base.base.BasePresenter;
@@ -30,7 +34,9 @@ public class LoginTypeSelectActivity extends BaseActivity {
     SuperTextView stvWeixin;
     SuperTextView stvZhifubao;
     SuperTextView stvMsg;
-    LinearLayout contentLayout;
+    ConstraintLayout contentLayout;
+
+    TextView tvQuickLogin;
 
     @Override
     protected int getLayoutID() {
@@ -47,9 +53,21 @@ public class LoginTypeSelectActivity extends BaseActivity {
     protected void initView() {
         //设置指定控件的阴影
         ShadowHelper.bindView(contentLayout, new ShadowProperty()
-                .setShadowRadius(4)
+                .setShadowRadius(5)
                 .setShadowColor(ContextCompat.getColor(mContext, R.color.shadow_color))
                 .setRoundwWidth(10));
+
+        tvQuickLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort("游客登录");
+//                ARouter.getInstance()
+//                        .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
+//                        .navigation();
+
+                skipActivity(TestActivity.class, null);
+            }
+        });
 
         RxView.clicks(stvWeixin).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
@@ -76,7 +94,8 @@ public class LoginTypeSelectActivity extends BaseActivity {
         stvWeixin = findViewById(R.id.stv_weixin);
         stvZhifubao = findViewById(R.id.stv_zhifubao);
         stvMsg = findViewById(R.id.stv_msg);
-        contentLayout = findViewById(R.id.cardView);
+        contentLayout = findViewById(R.id.contentLayout);
+        tvQuickLogin = findViewById(R.id.tv_quick_login);
     }
 
     @Override

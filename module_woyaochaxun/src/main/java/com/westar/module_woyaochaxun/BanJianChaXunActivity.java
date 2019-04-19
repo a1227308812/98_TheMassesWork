@@ -12,8 +12,6 @@ import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
 
-import butterknife.BindView;
-
 /**
  * Created by ZWP on 2019/4/8 13:10.
  * 描述：办件查询界面
@@ -43,14 +41,14 @@ public class BanJianChaXunActivity extends ToolbarActivity {
     @Override
     protected void initView() {
 
-        topbar.addLeftImageButton(R.drawable.icon_other_fh, -1).setOnClickListener(new View.OnClickListener() {
+        topBarLayout.addLeftImageButton(R.drawable.icon_other_fh, -1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        topbar.addRightImageButton(R.drawable.icon_top_sys, -1);
-        topbar.setTitle("办件查询").setTextColor(Color.parseColor("#333333"));
+        topBarLayout.addRightImageButton(R.drawable.icon_top_sys, -1);
+        topBarLayout.setTitle("办件查询").setTextColor(Color.parseColor("#333333"));
     }
 
     @Override
