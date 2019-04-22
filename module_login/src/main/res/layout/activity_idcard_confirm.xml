@@ -128,7 +128,6 @@
         app:stv_shaderEndColor="#5698f0"
         app:stv_shaderMode="leftToRight"
         app:stv_shaderStartColor="#4a6dd5"
-
         />
 
 </android.support.constraint.ConstraintLayout>

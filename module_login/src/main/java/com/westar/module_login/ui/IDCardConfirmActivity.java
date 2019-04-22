@@ -103,8 +103,10 @@ public class IDCardConfirmActivity extends ToolbarActivity {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        idCardPositive.setBackgroundResource(R.mipmap.png_sfz_zm);
-                        positiveList.clear();
+                        if (positiveList != null && positiveList.size() > 0) {
+                            idCardPositive.setImageResource(R.mipmap.png_sfz_zm);
+                            positiveList.clear();
+                        }
                     }
                 }));
         addSubscribe(RxView.clicks(positivePreview)
@@ -123,8 +125,10 @@ public class IDCardConfirmActivity extends ToolbarActivity {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        idCardWrongSide.setBackgroundResource(R.mipmap.png_sfz_bm);
-                        wrongList.clear();
+                        if (wrongList != null && wrongList.size() > 0) {
+                            idCardWrongSide.setImageResource(R.mipmap.png_sfz_bm);
+                            wrongList.clear();
+                        }
                     }
                 }));
         addSubscribe(RxView.clicks(wrongPreview)
@@ -245,8 +249,6 @@ public class IDCardConfirmActivity extends ToolbarActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-
-
             if (requestCode == SELECT_ID_CARD_POSITIVE) {
                 positiveList = PictureSelector.obtainMultipleResult(data);
                 // 图片、视频、音频选择结果回调
