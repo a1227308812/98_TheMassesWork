@@ -61,11 +61,9 @@ public class LoginTypeSelectActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ToastUtils.showShort("游客登录");
-//                ARouter.getInstance()
-//                        .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
-//                        .navigation();
-
-                skipActivity(TestActivity.class, null);
+                ARouter.getInstance()
+                        .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
+                        .navigation();
             }
         });
 
@@ -130,7 +128,7 @@ public class LoginTypeSelectActivity extends BaseActivity {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
+        return this.bindToLifecycle();
     }
 
     @Override

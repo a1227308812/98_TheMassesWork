@@ -45,17 +45,17 @@ android {
      * 这段代码用于区分各个组件模块在isModule的两种状态下的manifest和自己组建的application文件的引用
      */
     sourceSets {
-//        main {
-//            if (rootProject.ext.isModule.toBoolean()) {
-//                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-//            } else {
-//                manifest.srcFile 'src/main/release/AndroidManifest.xml'
-//                //release模式下排除debug文件夹中的所有Java文件
-//                java {
-//                    exclude 'debug/**'
-//                }
-//            }
-//        }
+        main {
+            if (rootProject.ext.isModule.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                //release模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
 
     }
 

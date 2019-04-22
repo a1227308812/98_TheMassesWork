@@ -11,7 +11,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/HomeTheme"
         tools:replace="Android:icon, android:theme"> <!-- 忽略导入的module的主题和icon -->
 
 
@@ -20,25 +20,29 @@
             android:name="android.max_aspect"
             android:value="2.4" />
 
+        <!--测试activity-->
+        <activity android:name=".test.TestViewActivity" />
+        <activity android:name=".MainActivity" />
+
         <activity android:name="com.westar.module_login.ui.WelcomeActivity">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity android:name=".test.PictureSelectActivity" />
-        <activity android:name=".test.TestViewActivity" />
-        <activity android:name=".ui.HomeGroupActivity" />
-        <activity android:name=".ui.activity.ChoiceAddressActivity"></activity>
-        <activity android:name=".ui.activity.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".test.PictureSelectActivity" />
+
+        <activity android:name=".ui.HomeGroupActivity" />
+        <activity android:name=".ui.activity.ChoiceAddressActivity" />
+        <activity android:name=".ui.activity.SearchActivity">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
     </application>
 

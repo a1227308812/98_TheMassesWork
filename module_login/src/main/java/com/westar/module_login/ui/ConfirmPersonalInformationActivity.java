@@ -63,7 +63,6 @@ public class ConfirmPersonalInformationActivity extends ToolbarActivity {
             @Override
             public void accept(Object o) throws Exception {
                 // TODO: 2019/4/16 暂不实名认证，跳转主页
-                ToastUtils.showShort("跳转主页");
                 ARouter.getInstance()
                         .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
                         .navigation();

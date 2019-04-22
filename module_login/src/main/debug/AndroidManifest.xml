@@ -28,7 +28,6 @@
         <activity android:name=".ui.LoginTypeSelectActivity" />
         <activity android:name=".ui.ConfirmPersonalInformationActivity" />
         <activity android:name=".ui.IDCardConfirmActivity" />
-        <activity android:name=".ui.TestActivity"></activity>
     </application>
 
 </manifest>

@@ -159,7 +159,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
+        return this.bindToLifecycle();
     }
 
     @Override

@@ -59,6 +59,9 @@ public class HomeGroupActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        initTabs();
+
         officeHallFragment = new OfficeHallFragment();
         newsInformationFragment = new NewsInformationFragment();
         convenientServiceFragment = new ConvenientServiceFragment();
@@ -73,7 +76,7 @@ public class HomeGroupActivity extends BaseActivity {
         vp.setOffscreenPageLimit(fragmentList.size());
         vp.setCurrentItem(0);
         qmuiTab.setupWithViewPager(vp);
-        initTabs();
+
     }
 
     private void initTabs() {
@@ -143,7 +146,7 @@ public class HomeGroupActivity extends BaseActivity {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
+        return this.bindToLifecycle();
     }
 
     @Override

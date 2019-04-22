@@ -9,6 +9,7 @@ import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -21,6 +22,7 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.module_login.R;
 
@@ -38,24 +40,15 @@ import io.reactivex.functions.Consumer;
  */
 public class IDCardConfirmActivity extends ToolbarActivity {
 
-    @BindView(R.id.title_info)
     TextView titleInfo;
-    @BindView(R.id.id_card_positive)
     ImageView idCardPositive;
-    @BindView(R.id.id_card_wrong_side)
     ImageView idCardWrongSide;
-    @BindView(R.id.idconfirm_protocol)
     CheckedTextView idconfirmProtocol;
-    @BindView(R.id.upload)
     SuperTextView upload;
 
-    @BindView(R.id.positive_delete)
     ImageView positiveDelete;
-    @BindView(R.id.positive_preview)
     ImageView positivePreview;
-    @BindView(R.id.wrong_delete)
     ImageView wrongDelete;
-    @BindView(R.id.wrong_preview)
     ImageView wrongPreview;
 
 
@@ -196,6 +189,9 @@ public class IDCardConfirmActivity extends ToolbarActivity {
                         @Override
                         public void run() {
                             tipDialog.dismiss();
+                            ToastUtils.showShort("检测通过！");
+                            //跳转主页
+                            ARouter.getInstance().build(ArouterPath.APP_HOMEGROUP_ACTIVITY).navigation();
                         }
                     }, 1500);
                 } else {
