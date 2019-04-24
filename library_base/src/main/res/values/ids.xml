@@ -11,5 +11,8 @@
     <!--item分割线-->
     <item name="last_line" type="id"/>
 
+    <item name="top_left_address" type="id"/>
+    <item name="top_right_menu" type="id"/>
+
 
 </resources>

@@ -24,7 +24,7 @@ import butterknife.Unbinder;
  */
 public abstract class BaseFragment extends BaseMvpFragment {
 
-    private View mView;
+    protected View rootView;
     private Activity mActivity;
     public Context mContext;
     private Unbinder mUnBinder;
@@ -37,9 +37,9 @@ public abstract class BaseFragment extends BaseMvpFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(getLayoutID(), container, false);
+        rootView = inflater.inflate(getLayoutID(), container, false);
         isInit = true;
-        return mView;
+        return rootView;
     }
 
     /**
@@ -103,14 +103,19 @@ public abstract class BaseFragment extends BaseMvpFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         mUnBinder = ButterKnife.bind(this, view);
         mInflater = onGetLayoutInflater(savedInstanceState);
+        initView();
         initData();
         /**初始化的时候去加载数据**/
         isPrepared = true;
         baseLazyLoad();
 
     }
+
+    protected abstract void initView();
 
     protected abstract void initData();
 

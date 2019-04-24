@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.HomeGroupActivity">
 
@@ -13,10 +14,18 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/color_divider" />
+
     <com.qmuiteam.qmui.widget.QMUITabSegment
         android:id="@+id/qmui_tab"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50">
+        android:layout_height="@dimen/dp_50"
+        android:background="#fafafa"
+        app:qmui_tab_icon_position="top"
+        app:qmui_tab_mode="fixed">
 
     </com.qmuiteam.qmui.widget.QMUITabSegment>
 </LinearLayout>

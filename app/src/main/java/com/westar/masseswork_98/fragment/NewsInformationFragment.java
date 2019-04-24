@@ -26,7 +26,7 @@ public class NewsInformationFragment extends BaseFragment {
 
     @Override
     public Context getBaseContext() {
-        return null;
+        return mContext;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class NewsInformationFragment extends BaseFragment {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
+        return this.bindToLifecycle();
     }
 
     @Override
@@ -67,6 +67,11 @@ public class NewsInformationFragment extends BaseFragment {
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_news_information;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     @Override

@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * Created by ZWP on 2019/3/11.
- * 描述：Observer 封装  主要用于网络数据的请求
+ * 描述：Observer 封装  主要用于网络数据的请求  观察者
  *
  * @param <T>
  */
@@ -20,7 +20,7 @@ public abstract class ObserverManager<T> implements Observer<HttpResult<T>> {
     //0:请求成功
     //-1:请求失败
     //2:登录失效
-    private static final int SUCCEED_CODE = 0;
+    public static final int SUCCEED_CODE = 0;
 
     private Context mContent;
 
@@ -35,7 +35,7 @@ public abstract class ObserverManager<T> implements Observer<HttpResult<T>> {
 
     @Override
     public void onNext(HttpResult<T> httpResult) {
-
+        onFinish();
         if (null != httpResult) {
             switch (httpResult.getCode()) {
                 case SUCCEED_CODE:
@@ -50,6 +50,7 @@ public abstract class ObserverManager<T> implements Observer<HttpResult<T>> {
 
     @Override
     public void onError(Throwable t) {
+        //网络请求自定义异常类
         RetrofitException.ResponeThrowable responeThrowable = RetrofitException.retrofitException(t);
         switch (responeThrowable.code) {
             case RetrofitException.ERROR.UNKNOWN:
@@ -65,8 +66,12 @@ public abstract class ObserverManager<T> implements Observer<HttpResult<T>> {
                 ToastUtils.showShort(responeThrowable.message);
                 break;
         }
+        onFinish();
     }
 
+    /**
+     * 请求流结束
+     */
     @Override
     public void onComplete() {
         onFinish();
@@ -94,7 +99,7 @@ public abstract class ObserverManager<T> implements Observer<HttpResult<T>> {
     protected abstract void onFailure(Throwable e);
 
     /**
-     * 请求流结束
+     * 本次请求结束
      */
     protected abstract void onFinish();
 }

@@ -94,11 +94,12 @@ public class TopBarLayout extends LinearLayout {
         mTopBar.getCommonFieldFormTypedArray(context, array);
         LayoutParams lp = new LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                QMUIDisplayHelper.dp2px(context, 40));
-//                QMUIResHelper.getAttrDimen(context, R.attr.qmui_topbar_height));
+//                QMUIDisplayHelper.dp2px(context, 40));
+                QMUIResHelper.getAttrDimen(context, R.attr.qmui_topbar_height));
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-            int statueBarHight = QMUIDisplayHelper.dp2px(context, 20);
+//            int statueBarHight = QMUIDisplayHelper.dp2px(context, 20);
+            int statueBarHight = QMUIStatusBarHelper.getStatusbarHeight(context);
             //状态栏背景填充view
             View statueView = new View(context);
             LayoutParams statueLp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, statueBarHight);

@@ -27,7 +27,7 @@ public class ConvenientServiceFragment extends BaseFragment {
 
     @Override
     public Context getBaseContext() {
-        return null;
+        return mContext;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ConvenientServiceFragment extends BaseFragment {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
+        return this.bindToLifecycle();
     }
 
     @Override
@@ -68,6 +68,11 @@ public class ConvenientServiceFragment extends BaseFragment {
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_convenien_service;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     @Override

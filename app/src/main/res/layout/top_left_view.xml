@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_22"
+        app:srcCompat="@drawable/icon_top_dz_ss" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_9"
+        android:text="成都办"
+        android:textColor="#333333"
+        android:textSize="@dimen/text_21" />
+</LinearLayout>

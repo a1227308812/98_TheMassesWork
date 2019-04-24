@@ -2,9 +2,12 @@ package com.westar.library_base.base;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.util.MultiTypeDelegate;
+import com.westar.masseswork_98.library_base.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +37,9 @@ public abstract class SingleBaseAdapter<T> extends CustomBaseAdapter<T> {
             mData = new ArrayList<>();
         }
         if (mData.size() == 0) {
-//            View emptyView = LayoutInflater.from(this.context).inflate(R.layout.view_empty, null, false);
-//            // 没有数据的时候默认显示该布局
-//            this.setEmptyView(emptyView);
+            View emptyView = LayoutInflater.from(this.context).inflate(R.layout.view_empty, null, false);
+            // 没有数据的时候默认显示该布局
+            this.setEmptyView(emptyView);
         }
         //设置布局的类型type
         setMultiTypeDelegate(new MultiTypeDelegate<T>() {

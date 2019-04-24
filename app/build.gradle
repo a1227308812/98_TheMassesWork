@@ -27,7 +27,7 @@ android {
         ndk {
             // 1、armeabi 是限制tbs的支持
             // 2、Realm 2.0之后 不再支持armeabi  必须添加armeabi-v7a
-            abiFilters "armeabi", "armeabi-v7a"
+            abiFilters "armeabi", "armeabi-v7a","x86"
         }
 
         multiDexEnabled true

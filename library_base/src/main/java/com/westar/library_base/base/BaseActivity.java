@@ -2,6 +2,7 @@ package com.westar.library_base.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 
@@ -66,7 +68,7 @@ public abstract class BaseActivity extends BaseMvpActivity {
      */
     @Override
     public void setContentView(int layoutResID) {
-        View rootView = LayoutInflater.from(this).inflate(layoutResID, null);
+        ViewGroup rootView = (ViewGroup) LayoutInflater.from(this).inflate(layoutResID, null);
         rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
         super.setContentView(rootView);
     }

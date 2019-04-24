@@ -1,16 +1,16 @@
 package com.westar.masseswork_98.ui;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.util.QMUIResHelper;
-import com.qmuiteam.qmui.widget.QMUIPagerAdapter;
 import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.uuzuche.lib_zxing.DisplayUtil;
 import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
@@ -35,7 +35,7 @@ public class HomeGroupActivity extends BaseActivity {
     @BindView(R.id.vp)
     ViewPager vp;
     @BindView(R.id.qmui_tab)
-    QMUITabSegment qmuiTab;
+    QMUITabSegment tabSegment;
 
 
     MenuFragmentAdapter pagerAdapter;
@@ -60,8 +60,6 @@ public class HomeGroupActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        initTabs();
-
         officeHallFragment = new OfficeHallFragment();
         newsInformationFragment = new NewsInformationFragment();
         convenientServiceFragment = new ConvenientServiceFragment();
@@ -75,43 +73,31 @@ public class HomeGroupActivity extends BaseActivity {
         vp.setAdapter(pagerAdapter);
         vp.setOffscreenPageLimit(fragmentList.size());
         vp.setCurrentItem(0);
-        qmuiTab.setupWithViewPager(vp);
+        tabSegment.setupWithViewPager(vp, false);
+
+        initTabs();
 
     }
 
     private void initTabs() {
 
-//        int normalColor = QMUIResHelper.getAttrColor(mContext, R.attr.qmui_config_color_gray_6);
-//        int selectColor = QMUIResHelper.getAttrColor(mContext, R.attr.qmui_config_color_blue);
-        QMUITabSegment.Tab tab1 = new QMUITabSegment.Tab("第一个");
-        QMUITabSegment.Tab tab2 = new QMUITabSegment.Tab("第二个");
-        QMUITabSegment.Tab tab3 = new QMUITabSegment.Tab("第三个");
-        qmuiTab.addTab(tab1)
+        QMUITabSegment.Tab tab1 = new QMUITabSegment.Tab(getResources().getDrawable(R.drawable.icon_menu_bsdt_normal),
+                getResources().getDrawable(R.drawable.icon_menu_bsdt_focuse), "办事大厅", false);
+        tab1.setTextSize(DisplayUtil.dip2px(mContext, 10));
+        tab1.setTextColor(Color.parseColor("#b6c2d2"), Color.parseColor("#4a6dd5"));
+        QMUITabSegment.Tab tab2 = new QMUITabSegment.Tab(getResources().getDrawable(R.drawable.icon_menu_xwzx_normal),
+                getResources().getDrawable(R.drawable.icon_menu_xwzx_focuse), "新闻资讯", false);
+        tab2.setTextSize(DisplayUtil.dip2px(mContext, 10));
+        tab2.setTextColor(Color.parseColor("#b6c2d2"), Color.parseColor("#4a6dd5"));
+        QMUITabSegment.Tab tab3 = new QMUITabSegment.Tab(getResources().getDrawable(R.drawable.icon_menu_bmfw_normal),
+                getResources().getDrawable(R.drawable.icon_menu_bmfw_focuse), "便民服务", false);
+        tab3.setTextSize(DisplayUtil.dip2px(mContext, 10));
+        tab3.setTextColor(Color.parseColor("#b6c2d2"), Color.parseColor("#4a6dd5"));
+
+        tabSegment.addTab(tab1)
                 .addTab(tab2)
                 .addTab(tab3);
-//        tab.setTextColor(normalColor, selectColor)
-//                .set(1.6f)
-//                .setTextSize(QMUIDisplayHelper.sp2px(mContext, 13), QMUIDisplayHelper.sp2px(mContext, 15))
-//                .setDynamicChangeIconColor(false);
-//        QMUITab component = tab
-//                .setNormalDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_tabbar_component))
-//                .setSelectedDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_tabbar_component_selected))
-//                .setText("Components")
-//                .build();
-//        QMUITab util = tab
-//                .setNormalDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_tabbar_util))
-//                .setSelectedDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_tabbar_util_selected))
-//                .setText("Helper")
-//                .build();
-//        QMUITab lab = tab
-//                .setNormalDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_tabbar_lab))
-//                .setSelectedDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_tabbar_lab_selected))
-//                .setText("Lab")
-//                .build();
-//
-//        mTabSegment.addTab(component)
-//                .addTab(util)
-//                .addTab(lab);
+        tabSegment.notifyDataChanged();//刷新
     }
 
     @Override
