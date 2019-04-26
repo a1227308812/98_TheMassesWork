@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_leave_message"
+        android:title="留言咨询"/>
+
+    <item
+        android:id="@+id/menu_phone"
+        android:title="电话咨询"/>
+
+</menu>

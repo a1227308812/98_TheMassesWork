@@ -23,6 +23,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -76,7 +77,6 @@ public class TopBarLayout extends LinearLayout {
     public TopBarLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOrientation(VERTICAL);
-
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.QMUITopBar, R.attr.QMUITopBarStyle, 0);
         mTopBarSeparatorColor = array.getColor(R.styleable.QMUITopBar_qmui_topbar_separator_color,
                 ContextCompat.getColor(context, R.color.qmui_config_color_separator));
@@ -94,8 +94,9 @@ public class TopBarLayout extends LinearLayout {
         mTopBar.getCommonFieldFormTypedArray(context, array);
         LayoutParams lp = new LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-//                QMUIDisplayHelper.dp2px(context, 40));
-                QMUIResHelper.getAttrDimen(context, R.attr.qmui_topbar_height));
+                QMUIDisplayHelper.dp2px(context, 44));
+//                QMUIResHelper.getAttrDimen(context, R.attr.qmui_topbar_height));
+        LLog.e("ccc", "qmui_topbar_height = " + QMUIResHelper.getAttrDimen(context, R.attr.qmui_topbar_height));
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 //            int statueBarHight = QMUIDisplayHelper.dp2px(context, 20);
@@ -108,6 +109,7 @@ public class TopBarLayout extends LinearLayout {
         addView(mTopBar, lp);
 
         array.recycle();
+//        mTopBar.setBackgroundColor(Color.RED);
 //        setBackgroundDividerEnabled(hasSeparator);
 
     }

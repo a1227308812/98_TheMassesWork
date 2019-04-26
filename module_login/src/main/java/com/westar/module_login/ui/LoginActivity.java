@@ -1,14 +1,16 @@
 package com.westar.module_login.ui;
 
 
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.RegexUtils;
@@ -16,7 +18,6 @@ import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
-import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
@@ -166,6 +167,17 @@ public class LoginActivity extends BaseActivity {
                         }
                     }
                 }));
+
+        etYzm.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    btnLogin.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override

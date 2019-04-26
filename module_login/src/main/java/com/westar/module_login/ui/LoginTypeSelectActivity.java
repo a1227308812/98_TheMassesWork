@@ -57,34 +57,32 @@ public class LoginTypeSelectActivity extends BaseActivity {
                 .setShadowColor(ContextCompat.getColor(mContext, R.color.shadow_color))
                 .setRoundwWidth(10));
 
-        tvQuickLogin.setOnClickListener(new View.OnClickListener() {
+        addSubscribe(RxView.clicks(tvQuickLogin).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
-            public void onClick(View v) {
-                ToastUtils.showShort("游客登录");
+            public void accept(Object o) throws Exception {
                 ARouter.getInstance()
                         .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
                         .navigation();
             }
-        });
-
-        RxView.clicks(stvWeixin).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+        }));
+        addSubscribe(RxView.clicks(stvWeixin).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
                 ToastUtils.showShort("微信登录！");
             }
-        });
-        RxView.clicks(stvZhifubao).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+        }));
+        addSubscribe(RxView.clicks(stvZhifubao).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
                 ToastUtils.showShort("支付宝登录！");
             }
-        });
-        RxView.clicks(stvMsg).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+        }));
+        addSubscribe(RxView.clicks(stvMsg).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
                 skipActivity(LoginActivity.class, null);
             }
-        });
+        }));
     }
 
     @Override

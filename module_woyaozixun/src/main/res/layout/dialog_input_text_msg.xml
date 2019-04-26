@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/rl_outside_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_inputdlg_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#ffffff">
+
+        <RelativeLayout
+            android:id="@+id/rl_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:layout_marginLeft="15dp"
+                android:text="取消"
+                android:textSize="13sp"
+                android:textColor="#828899"/>
+
+            <TextView
+                android:id="@+id/tv_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="9dp"
+                android:layout_marginRight="15dp"
+                android:gravity="right"
+                android:text="发布"
+                android:textSize="13sp"
+                android:textColor="#000000"/>
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_input_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_btn"
+            android:lineSpacingMultiplier="1.2"
+            android:maxLength="100"
+            android:maxLines="2"
+            android:minHeight="44dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:scrollbars="vertical"
+            android:textColor="#303545"
+            android:textCursorDrawable="@drawable/color_text_cursor"
+            android:textSize="14sp"
+            android:background="@null"
+            tools:ignore="InvalidImeActionId" />
+
+        <TextView
+            android:id="@+id/tv_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="9dp"
+            android:text="100"
+            android:textSize="10sp"
+            android:textColor="#828899" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_voice_input"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/rl_inputdlg_view"
+        android:gravity="center"
+        android:background="#dadfe6"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="按住直接说"
+            android:textSize="13sp"
+            android:textColor="#4a6dd5"/>
+    </LinearLayout>
+
+</RelativeLayout>

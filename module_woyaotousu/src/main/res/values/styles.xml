@@ -8,4 +8,28 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 中间弹出框 -->
+    <style name="dialog_center" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 去黑边 -->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:screenOrientation">portrait</item>
+        <!-- 设置是否可滑动 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 背景 -->
+        <!-- 窗口背景 -->
+        <item name="android:windowNoDisplay">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 是否变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 点击空白部分activity不消失 -->
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <!--底部弹出dialog的移动动画-->
+    <style name="menu_animation">
+        <item name="android:windowEnterAnimation">@anim/menu_appear</item>
+        <item name="android:windowExitAnimation">@anim/menu_disappear</item>
+    </style>
+
 </resources>

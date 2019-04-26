@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#ffffff</color>
+
+
+
+    <!-- 页间间隔颜色，EditView下划线颜色-->
+    <color name="colorBlank">#e6e6e6</color>
+    <!-- EditText上方显示的hint名字-->
+    <color name="colorHintName">#b6c2d2</color>
+    <!-- EditText输入后文字显示颜色-->
+    <color name="colorTousuText">#303545</color>
 </resources>

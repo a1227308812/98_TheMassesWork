@@ -12,14 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/LibBaseTheme"
         tools:replace="Android:icon, android:theme"> <!-- 忽略导入的module的主题和icon -->
-
-        <activity android:name=".ZhiNengWenDaActivity">
+        <activity
+            android:name=".ZhiNengWenDaActivity"
+            android:theme="@style/mainStyle"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LiuYanZiXunActivity"></activity>
     </application>
 
 </manifest>

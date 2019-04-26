@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".BanJianChaXunDetailsActivity" />
-        <activity android:name=".BanJianHistoryListActivity"/>
+        <activity android:name=".BanJianHistoryListActivity" />
+        <activity android:name=".SaoYiSaoActivity" />
+        <activity android:name=".beanactivity.NoTitleActivity"></activity>
     </application>
 
 </manifest>

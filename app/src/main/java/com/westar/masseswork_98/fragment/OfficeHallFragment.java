@@ -7,8 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -21,6 +23,7 @@ import com.westar.library_base.banner.GlideImageLoader;
 import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.SingleBaseAdapter;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.view.TopBarLayout;
@@ -148,7 +151,15 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
         homeBanner.setIndicatorGravity(BannerConfig.CENTER);
 
         View leftView = LayoutInflater.from(mContext).inflate(R.layout.top_left_view, null);
+        RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        leftView.setLayoutParams(leftParams);
+
         View rightView = LayoutInflater.from(mContext).inflate(R.layout.top_right_view, null);
+        RelativeLayout.LayoutParams rightParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        rightParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        rightView.setLayoutParams(rightParams);
+
         toolbarLayout.addLeftView(leftView, R.id.top_left_address);
         toolbarLayout.addRightView(rightView, R.id.top_right_menu);
         addSubscribe(RxView.clicks(leftView)
@@ -157,6 +168,8 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                     @Override
                     public void accept(Object o) throws Exception {
                         ToastUtils.showShort("选择地址");
+                        ARouter.getInstance().build(ArouterPath.APP_CHOICE_ADDRESS_ACTIVITY).navigation();
+
                     }
                 }));
         addSubscribe(RxView.clicks(rightView.findViewById(R.id.iv_more))
@@ -173,6 +186,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                     @Override
                     public void accept(Object o) throws Exception {
                         ToastUtils.showShort("跳转搜索");
+                        ARouter.getInstance().build(ArouterPath.APP_SEARCH_ACTIVITY).navigation();
                     }
                 }));
 

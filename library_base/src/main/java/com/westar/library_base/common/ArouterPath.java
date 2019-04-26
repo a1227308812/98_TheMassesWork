@@ -5,10 +5,15 @@ package com.westar.library_base.common;
  * 描述：路由地址
  */
 public interface ArouterPath {
-    /*app主工程模块*/
+    /*app主工程模块 测试Activity*/
     String APP_MAIN_ACTIVITY = "/app/MainActivity";
     //首页
     String APP_HOMEGROUP_ACTIVITY = "/app/HomeGroupActivity";
+
+    //地址选择页面
+    String APP_CHOICE_ADDRESS_ACTIVITY = "/app/ChoiceAddressActivity";
+    //搜索页面
+    String APP_SEARCH_ACTIVITY = "/app/SearchActivity";
 
 
     /*更新模块*/

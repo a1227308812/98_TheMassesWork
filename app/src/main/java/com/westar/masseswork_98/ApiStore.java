@@ -2,7 +2,6 @@ package com.westar.masseswork_98;
 
 import com.westar.library_base.http.BaseApi;
 import com.westar.library_base.http.been.HttpResult;
-import com.westar.module_login.been.User;
 
 import java.util.List;
 

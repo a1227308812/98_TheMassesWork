@@ -2,9 +2,11 @@ package com.westar.masseswork_98.ui.activity;
 
 import android.widget.LinearLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.been.AddressNode;
 import com.westar.masseswork_98.interfaces.IChoiceAddressClick;
@@ -16,6 +18,7 @@ import java.util.List;
 /**
  * 选择地址界面
  */
+@Route(path = ArouterPath.APP_CHOICE_ADDRESS_ACTIVITY)
 public class ChoiceAddressActivity extends ToolbarActivity {
     private LinearLayout llChoiceAddress;
     List<AddressNode> lv1List;
@@ -128,7 +131,7 @@ public class ChoiceAddressActivity extends ToolbarActivity {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
+        return this.bindToLifecycle();
     }
 
     @Override

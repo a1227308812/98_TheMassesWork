@@ -246,7 +246,7 @@ public class TopBar extends RelativeLayout {
         }
     }
 
-    private TextView getTitleView(boolean isEmoji) {
+    public TextView getTitleView(boolean isEmoji) {
         if (mTitleView == null) {
 //            mTitleView = isEmoji ? new EmojiconTextView(getContext()) : new TextView(getContext());
             mTitleView = new TextView(getContext());

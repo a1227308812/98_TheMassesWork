@@ -1,11 +1,62 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="HomeTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="LibBaseTheme">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+
+    <style name="mainStyle" parent="AppTheme">
+        <item name="android:popupMenuStyle">@style/popmenuStyle</item>
+        <item name="android:dropDownListViewStyle">@style/popmenuDivier</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/popmeuText</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/popmeuText</item>
+    </style>
+
+    <!--popMenu的Style-->
+    <style name="popmenuStyle" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/black</item><!-- popMenu的背景色-->
+        <item name="android:background">@drawable/bg_zixun_menu</item>
+    </style>
+
+    <!--popmenu的字体颜色-->
+    <style name="popmeuText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--popMenu分割线的颜色-->
+    <style name="popmenuDivier">
+        <item name="android:dividerHeight">2sp</item>
+    </style>
+
+    <!--底部弹出dialog的移动动画-->
+    <style name="menu_animation">
+        <item name="android:windowEnterAnimation">@anim/menu_appear</item>
+        <item name="android:windowExitAnimation">@anim/menu_disappear</item>
+    </style>
+
+    <!-- 中间弹出框 -->
+    <style name="dialog_center" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 去黑边 -->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:screenOrientation">portrait</item>
+        <!-- 设置是否可滑动 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 背景 -->
+        <!-- 窗口背景 -->
+        <item name="android:windowNoDisplay">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 是否变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 点击空白部分activity不消失 -->
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
 
 </resources>

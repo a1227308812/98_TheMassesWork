@@ -42,9 +42,6 @@ public abstract class ToolbarActivity extends BaseActivity {
 //                    topBarLayout.getmTopBar().setLayoutParams(topParams);
 //                }
 //            });
-//            DisplayMetrics metrics = QMUIDisplayHelper.getDisplayMetrics(mContext);
-//            LLog.e("ccc", "--------161  density-------------  " + metrics.density);
-//            LLog.e("ccc", "--------161  scaledDensity-------------  " + metrics.scaledDensity);
         }
         super.setContentView(rootView);
 

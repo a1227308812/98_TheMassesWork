@@ -17,7 +17,7 @@
             android:id="@id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:qmui_topbar_height="@dimen/dp_44" />
+            />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

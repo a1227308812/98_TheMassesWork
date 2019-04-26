@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,12 @@ import android.widget.LinearLayout;
 
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUILoadingView;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.westar.library_base.eventbus.BaseEvent;
+import com.westar.library_base.utils.LLog;
 import com.westar.masseswork_98.library_base.R;
 
 import org.greenrobot.eventbus.EventBus;
@@ -47,6 +50,10 @@ public abstract class BaseActivity extends BaseMvpActivity {
         ButterKnife.bind(this);
         //ARouter inject注入
         ARouter.getInstance().inject(this);
+
+        DisplayMetrics metrics = QMUIDisplayHelper.getDisplayMetrics(mContext);
+        LLog.e("ccc", "--------density-------------  " + metrics.density);
+        LLog.e("ccc", "--------scaledDensity-------------  " + metrics.scaledDensity);
 
 
         initStatusBar();

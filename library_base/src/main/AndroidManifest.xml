@@ -10,17 +10,19 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <application>
+    <application
+        android:name="com.westar.library_base.base.BaseApplication"
+        android:networkSecurityConfig="@xml/network_security_config">
         <!--<meta-data-->
-            <!--android:name="design_width_in_dp"-->
-            <!--android:value="375"/>-->
+        <!--android:name="design_width_in_dp"-->
+        <!--android:value="375"/>-->
         <!--<meta-data-->
-            <!--android:name="design_height_in_dp"-->
-            <!--android:value="667"/>-->
+        <!--android:name="design_height_in_dp"-->
+        <!--android:value="667"/>-->
         <activity android:name="com.westar.library_base.preview.ui.TbsPreviewActivity"></activity>
     </application>
 

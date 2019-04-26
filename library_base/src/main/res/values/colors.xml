@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="color_divider">#e6e6e6</color>
 
     <color name="splash_bg">#F8F6EC</color>
     <color name="orange">#FF9600</color>
@@ -24,4 +25,6 @@
         <item>@color/aqua</item>
         <item>@color/yellow</item>
     </array>
+
+
 </resources>

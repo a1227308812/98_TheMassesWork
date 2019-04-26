@@ -37,7 +37,7 @@
 
         <activity android:name=".ui.HomeGroupActivity" />
         <activity android:name=".ui.activity.ChoiceAddressActivity" />
-        <activity android:name=".ui.activity.SearchActivity">
+        <activity android:name=".ui.activity.GlobalSearchActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
 
