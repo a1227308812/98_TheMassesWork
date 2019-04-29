@@ -23,12 +23,13 @@ import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.SingleBaseAdapter;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.eventbus.EventBusUtlis;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.library_base.http.been.HttpRequest;
-import com.westar.library_base.utils.LLog;
 import com.westar.library_base.view.TopBarLayout;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.been.NewsInformationTabs;
+import com.westar.library_base.eventbus.OpenSolideFragmentEvent;
 import com.westar.masseswork_98.mvp.contract.NewsInformationContract;
 import com.westar.masseswork_98.mvp.presenter.NewsInformationPresenter;
 
@@ -173,7 +174,8 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("跳转我的页面");
+                        ToastUtils.showShort("展开我的页面");
+                        EventBusUtlis.sendEvent(new OpenSolideFragmentEvent());
                     }
                 }));
 

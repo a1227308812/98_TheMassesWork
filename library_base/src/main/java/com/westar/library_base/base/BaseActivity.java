@@ -22,6 +22,7 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUILoadingView;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.westar.library_base.eventbus.BaseEvent;
+import com.westar.library_base.eventbus.EventBusUtlis;
 import com.westar.library_base.utils.LLog;
 import com.westar.masseswork_98.library_base.R;
 
@@ -43,13 +44,12 @@ public abstract class BaseActivity extends BaseMvpActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //设置显示布局的默认底色
-        View view  = getWindow().getDecorView();
+        View view = getWindow().getDecorView();
         view.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
 
         mContext = this;
         setContentView(getLayoutID());
         QMUIStatusBarHelper.translucent(this);
-
 
         ButterKnife.bind(this);
         //ARouter inject注入
@@ -142,16 +142,16 @@ public abstract class BaseActivity extends BaseMvpActivity {
     @Override
     public void onStart() {
         super.onStart();
-        if (isRegisterEvenetBus()) {
-            EventBus.getDefault().register(this);
+        if (!isRegisterEvenetBus()) {
+            EventBusUtlis.register(this);
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (isRegisterEvenetBus()) {
-            EventBus.getDefault().unregister(this);
+        if (!isRegisterEvenetBus()) {
+            EventBusUtlis.unregister(this);
         }
 
     }
@@ -206,9 +206,11 @@ public abstract class BaseActivity extends BaseMvpActivity {
 
     }
 
-    //注册EvenetBus
+    /**
+     * 是否注册EvenetBus
+     */
     protected boolean isRegisterEvenetBus() {
-        return false;
+        return EventBusUtlis.isRegistered(this);
     }
 
 

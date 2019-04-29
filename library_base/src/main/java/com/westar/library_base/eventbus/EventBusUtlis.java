@@ -31,7 +31,7 @@ public class EventBusUtlis {
      *
      * @param baseEvent
      */
-    public static void sendEvent(BaseEvent baseEvent) {
+    public static void sendEvent(Object baseEvent) {
         EventBus.getDefault().post(baseEvent);
     }
 
@@ -40,7 +40,7 @@ public class EventBusUtlis {
      *
      * @param baseEvent
      */
-    public static void sendStickyEvent(BaseEvent baseEvent) {
+    public static void sendStickyEvent(Object baseEvent) {
         EventBus.getDefault().postSticky(baseEvent);
     }
 
@@ -49,7 +49,17 @@ public class EventBusUtlis {
      *
      * @param baseEvent
      */
-    public static void removeStickyEvent(BaseEvent baseEvent) {
+    public static void removeStickyEvent(Object baseEvent) {
         EventBus.getDefault().removeStickyEvent(baseEvent);
+    }
+
+    /**
+     * 判断是否已经注册
+     *
+     * @param o
+     * @return
+     */
+    public static boolean isRegistered(Object o) {
+        return EventBus.getDefault().isRegistered(o);
     }
 }

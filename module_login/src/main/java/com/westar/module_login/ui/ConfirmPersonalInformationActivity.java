@@ -16,6 +16,9 @@ import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.common.Common;
+import com.westar.library_base.eventbus.EventBusUtlis;
+import com.westar.library_base.eventbus.SolideTypeEvent;
 import com.westar.library_base.view.TopBarLayout;
 import com.westar.module_login.R;
 
@@ -54,15 +57,13 @@ public class ConfirmPersonalInformationActivity extends ToolbarActivity {
         addSubscribe(RxView.clicks(stvConfirmPersonal).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                // TODO: 2019/4/16 立即实名认证
-                ToastUtils.showShort("立即实名认证");
                 skipActivity(IDCardConfirmActivity.class, null);
             }
         }));
         addSubscribe(RxView.clicks(tvNotConfirm).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                // TODO: 2019/4/16 暂不实名认证，跳转主页
+                EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.NOT_AUTHENTICATION));
                 ARouter.getInstance()
                         .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
                         .navigation();

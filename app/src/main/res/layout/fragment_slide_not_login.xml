@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/png_wd_bg"
+    android:paddingStart="@dimen/dp_15"
+    android:paddingEnd="@dimen/dp_15"
+    >
+
+
+    <com.coorchice.library.SuperTextView
+        android:id="@+id/stv_user_photo"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="@dimen/dp_90"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:stv_corner="@dimen/dp_90"
+        app:stv_drawableAsBackground="true"
+        app:stv_state_drawable="@mipmap/ic_launcher"
+        app:stv_stroke_color="@color/white"
+        app:stv_stroke_width="@dimen/dp_2" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_gywm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_60"
+        android:background="@drawable/bg_me_child_menu"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/dp_60"
+        android:paddingEnd="@dimen/dp_15"
+        android:paddingStart="@dimen/dp_15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stv_user_photo">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="关于我们"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16" />
+
+        <com.coorchice.library.SuperTextView
+            android:layout_width="@dimen/dp_8"
+            android:layout_height="@dimen/dp_12"
+            app:stv_drawableAsBackground="true"
+            app:stv_state_drawable="@drawable/icon_top_fh_bs"
+            app:stv_state_drawable_rotate="180" />
+    </LinearLayout>
+
+    <com.coorchice.library.SuperTextView
+        android:id="@+id/btn_login"
+        android:layout_width="@dimen/dp_345"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_30"
+        android:gravity="center"
+        android:text="立即登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toTopOf="@id/tv_tip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:stv_corner="@dimen/dp_10"
+        app:stv_shaderEnable="true"
+        app:stv_shaderEndColor="#5698f0"
+        app:stv_shaderMode="leftToRight"
+        app:stv_shaderStartColor="#4a6dd5" />
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_80"
+        android:text="登陆后，可享受更多便捷服务"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -125,13 +125,13 @@ public abstract class BaseFragment extends BaseMvpFragment {
      * @return true绑定EventBus事件分发，默认不绑定，子类需要绑定的话复写此方法返回true.
      */
     protected boolean isRegisterEventBus() {
-        return false;
+        return EventBus.getDefault().isRegistered(this);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (isRegisterEventBus()) {
+        if (!isRegisterEventBus()) {
             EventBus.getDefault().register(this);
         }
     }
@@ -139,7 +139,7 @@ public abstract class BaseFragment extends BaseMvpFragment {
     @Override
     public void onStop() {
         super.onStop();
-        if (isRegisterEventBus()) {
+        if (!isRegisterEventBus()) {
             EventBus.getDefault().unregister(this);
         }
     }

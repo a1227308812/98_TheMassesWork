@@ -49,6 +49,7 @@ import io.realm.Sort;
 /**
  * Created by ZWP on 2019/4/26 15:17.
  * 描述：全局搜索页面
+ * todo 历史搜索的最大行数没法控制，很烦，空了在去想
  */
 @Route(path = ArouterPath.APP_SEARCH_ACTIVITY)
 public class GlobalSearchActivity extends BaseActivity implements GlobalSearchContract.View {

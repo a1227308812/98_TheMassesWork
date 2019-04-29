@@ -23,6 +23,9 @@ import com.westar.Config;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.common.Common;
+import com.westar.library_base.eventbus.EventBusUtlis;
+import com.westar.library_base.eventbus.SolideTypeEvent;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.module_login.R;
 
@@ -190,6 +193,7 @@ public class IDCardConfirmActivity extends ToolbarActivity {
                         public void run() {
                             tipDialog.dismiss();
                             ToastUtils.showShort("检测通过！");
+                            EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.HAD_AUTHENTICATION));
                             //跳转主页
                             ARouter.getInstance().build(ArouterPath.APP_HOMEGROUP_ACTIVITY).navigation();
                         }

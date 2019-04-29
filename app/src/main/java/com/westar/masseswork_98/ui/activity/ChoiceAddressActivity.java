@@ -21,7 +21,9 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
- * 选择地址界面
+ * Created by ZWP on 2019/4/29 17:57.
+ * 描述：选择地址界面
+ * todo 地址的动态添加逻辑还没有处理好，空了在去想
  */
 @Route(path = ArouterPath.APP_CHOICE_ADDRESS_ACTIVITY)
 public class ChoiceAddressActivity extends ToolbarActivity implements ChoiceAddressContract.View {
@@ -110,7 +112,8 @@ public class ChoiceAddressActivity extends ToolbarActivity implements ChoiceAddr
                         realm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
-                                RealmResults<AddressNode> realmResults = realm.where(AddressNode.class).equalTo("parentId", String.valueOf(addressNodeList.get(pos))).findAll();
+                                RealmResults<AddressNode> realmResults = realm.where(AddressNode.class)
+                                        .equalTo("parentId", addressNodeList.get(pos).getParentId()).findAll();
                                 addLeaveLayout(realmResults);
                             }
                         });

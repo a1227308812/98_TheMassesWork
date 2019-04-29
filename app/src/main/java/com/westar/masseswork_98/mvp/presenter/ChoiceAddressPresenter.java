@@ -49,6 +49,8 @@ public class ChoiceAddressPresenter extends BasePresenter<ChoiceAddressContract.
                         realm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
+                                realm.where(AddressNode.class).findAll().deleteAllFromRealm();
+
                                 for (AddressNode addressNode : data) {
                                     realm.copyToRealm(addressNode);
                                 }

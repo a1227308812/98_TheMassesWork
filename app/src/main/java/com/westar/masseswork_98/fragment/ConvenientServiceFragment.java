@@ -1,8 +1,6 @@
 package com.westar.masseswork_98.fragment;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -11,21 +9,18 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
-import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.uuzuche.lib_zxing.DisplayUtil;
 import com.westar.Config;
 import com.westar.library_base.base.BaseFragment;
-import com.westar.library_base.base.BaseMvpFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.eventbus.EventBusUtlis;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.library_base.view.TopBarLayout;
 import com.westar.masseswork_98.R;
-import com.westar.masseswork_98.been.NewsInformationTabs;
+import com.westar.library_base.eventbus.OpenSolideFragmentEvent;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -120,7 +115,8 @@ public class ConvenientServiceFragment extends BaseFragment {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("跳转我的页面");
+                        ToastUtils.showShort("滑出我的页面");
+                        EventBusUtlis.sendEvent(new OpenSolideFragmentEvent());
                     }
                 }));
 

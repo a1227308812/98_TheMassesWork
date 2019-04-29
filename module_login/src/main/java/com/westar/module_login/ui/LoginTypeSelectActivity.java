@@ -15,6 +15,9 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.common.Common;
+import com.westar.library_base.eventbus.EventBusUtlis;
+import com.westar.library_base.eventbus.SolideTypeEvent;
 import com.westar.library_base.view.shadowView.ShadowHelper;
 import com.westar.library_base.view.shadowView.ShadowProperty;
 import com.westar.library_base.base.BasePresenter;
@@ -60,6 +63,7 @@ public class LoginTypeSelectActivity extends BaseActivity {
         addSubscribe(RxView.clicks(tvQuickLogin).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
+                EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.NOT_LOGIN));
                 ARouter.getInstance()
                         .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
                         .navigation();

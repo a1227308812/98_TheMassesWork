@@ -23,6 +23,9 @@ import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.common.Common;
+import com.westar.library_base.eventbus.EventBusUtlis;
+import com.westar.library_base.eventbus.SolideTypeEvent;
 import com.westar.library_base.view.shadowView.ShadowHelper;
 import com.westar.library_base.view.shadowView.ShadowProperty;
 import com.westar.module_login.R;
@@ -109,14 +112,15 @@ public class LoginActivity extends BaseActivity {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        //显示登录加载弹窗
-                        showLoadingDialog();
+                        if (cbZcxy.isChecked()){
+                            //显示登录加载弹窗
+                            showLoadingDialog();
 
-                        Realm realm = Realm.getDefaultInstance();
-                        realm.beginTransaction();//开启事务
+                            Realm realm = Realm.getDefaultInstance();
+                            realm.beginTransaction();//开启事务
 
-                        User user = realm.where(User.class).equalTo("userName", etAccount.getText().toString()).findFirst();
-                        if (user != null && etYzm.getText().toString().equals(user.getPassword())) {
+                            User user = realm.where(User.class).equalTo("userName", etAccount.getText().toString()).findFirst();
+                            if (user != null && etYzm.getText().toString().equals(user.getPassword())) {
 //                            //验证通过 登录成功
 //                            new QMUITipDialog.Builder(mContext)
 //                                    .setTipWord("登录成功!")
@@ -124,13 +128,18 @@ public class LoginActivity extends BaseActivity {
 //                                    .create()
 //                                    .show();
 
-                            skipActivity(ConfirmPersonalInformationActivity.class, null);
+                                EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.HAD_AUTHENTICATION));
+                                skipActivity(ConfirmPersonalInformationActivity.class, null);
 
-                        } else {
-                            ToastUtils.showShort("登录失败！");
+                            } else {
+                                ToastUtils.showShort("登录失败！");
+                            }
+                            realm.commitTransaction();
+                            hideLoadingDialog();
+                        }else {
+                            ToastUtils.showShort("请先阅读并同意《注册协议》！");
                         }
-                        realm.commitTransaction();
-                        hideLoadingDialog();
+
                     }
                 }));
 

@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:stv_corner="@dimen/dp_14"
+        app:stv_corner="@dimen/dp_100"
         app:stv_solid="#f5f6f8" />
 
 </android.support.constraint.ConstraintLayout>
