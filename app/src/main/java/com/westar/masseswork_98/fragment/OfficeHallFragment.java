@@ -150,6 +150,10 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
         //设置指示器位置（当banner模式中有指示器时）
         homeBanner.setIndicatorGravity(BannerConfig.CENTER);
 
+
+        //不显示默认返回键
+        toolbarLayout.showBackView(false);
+
         View leftView = LayoutInflater.from(mContext).inflate(R.layout.top_left_view, null);
         RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         leftParams.addRule(RelativeLayout.CENTER_VERTICAL);

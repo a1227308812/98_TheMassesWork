@@ -57,7 +57,7 @@ public class BanJianChaXunActivity extends ToolbarActivity {
 
     @Override
     protected void initView() {
-        isTopBarBackButton(true); //是否有toolbar的返回键和设置右上方扫描监听
+        isTopBarBackButton(); //是否有toolbar的返回键和设置右上方扫描监听
     }
 
     @Override
@@ -83,17 +83,7 @@ public class BanJianChaXunActivity extends ToolbarActivity {
     }
 
     //是否有toolbar的返回键和设置右上方扫描监听
-    private void isTopBarBackButton(boolean isBack) {
-        if (isBack) {
-            QMUIAlphaImageButton toolbar = topBarLayout.addLeftImageButton(R.drawable.icon_other_fh, getLayoutID());
-            toolbar.setChangeAlphaWhenPress(false);
-            toolbar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-        }
+    private void isTopBarBackButton() {
         final QMUIAlphaImageButton rightTopbar = topBarLayout.addRightImageButton(R.drawable.icon_top_sys, getLayoutID());
         rightTopbar.setChangeAlphaWhenPress(false);
         rightTopbar.setOnClickListener(new View.OnClickListener() {

@@ -93,7 +93,6 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
 
     @Override
     protected void initView() {
-        isTopBarBackButton(true); //是否有toolbar的返回键
         //姓名栏
         setEditTextNormal(tvTousuNameHint, etvTousuName ,"*姓名：");
         //身份证栏
@@ -182,20 +181,6 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
     @Override
     public String setBarTitle() {
         return "我要投诉";
-    }
-
-    //是否有toolbar的返回键
-    private void isTopBarBackButton(boolean isBack) {
-        if (isBack) {
-            QMUIAlphaImageButton toolbar = topBarLayout.addLeftImageButton(R.drawable.ic_back, getLayoutID());
-            toolbar.setChangeAlphaWhenPress(false);
-            toolbar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-        }
     }
 
     //设置字符输入类型的edittext的获取焦点事件

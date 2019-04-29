@@ -5,7 +5,7 @@ import com.westar.library_base.http.ObserverManager;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
 import com.westar.library_base.rxjava.RxScheduler;
-import com.westar.module_login.been.User;
+import com.westar.been.User;
 import com.westar.module_login.mvp.contract.LoginContract;
 import com.westar.module_login.mvp.modle.LoginModle;
 

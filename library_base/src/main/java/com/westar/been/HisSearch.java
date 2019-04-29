@@ -1,4 +1,4 @@
-package com.westar.masseswork_98.been;
+package com.westar.been;
 
 import java.io.Serializable;
 

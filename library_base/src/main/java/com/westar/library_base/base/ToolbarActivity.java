@@ -3,6 +3,7 @@ package com.westar.library_base.base;
 import android.support.constraint.ConstraintLayout;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -27,6 +28,12 @@ public abstract class ToolbarActivity extends BaseActivity {
         topBarLayout = rootView.findViewById(R.id.toolbar_layout);
         if (topBarLayout != null) {
             topBarLayout.setTitle(setBarTitle());
+            topBarLayout.leftBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 //            topBarLayout.post(new Runnable() {
 //                @Override
 //                public void run() {

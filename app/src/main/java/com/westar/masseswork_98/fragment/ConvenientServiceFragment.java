@@ -96,7 +96,9 @@ public class ConvenientServiceFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        toolbarLayout.setTitle("便民服务");
+        //不显示默认返回键
+        toolbarLayout.showBackView(false)
+                .setTitle("便民服务");
         RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(DisplayUtil.dip2px(mContext, 30), DisplayUtil.dip2px(mContext, 30));
         leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
         QMUIRadiusImageView leftView = new QMUIRadiusImageView(mContext);

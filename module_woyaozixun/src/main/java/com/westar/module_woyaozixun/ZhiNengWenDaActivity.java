@@ -54,7 +54,7 @@ public class ZhiNengWenDaActivity extends ToolbarActivity {
     protected void initView() {
         //myPopWindow = new MyPopWindow(this, Utils.dip2px(mContext, 120), Utils.dip2px(mContext, 80));
         myPopWindow = new MyPopWindow(this);
-        isTopBarBackButton(true); //是否有toolbar的返回键和右上方“+”监听
+        isTopBarBackButton(); //是否有toolbar的返回键和右上方“+”监听
         initRecyclerView();
         findViewById(R.id.stv_zixun_send).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,17 +77,7 @@ public class ZhiNengWenDaActivity extends ToolbarActivity {
     }
 
     //是否有toolbar的返回键和右上方“+”监听
-    private void isTopBarBackButton(boolean isBack) {
-        if (isBack) {
-            QMUIAlphaImageButton toolbar = topBarLayout.addLeftImageButton(R.drawable.ic_back, getLayoutID());
-            toolbar.setChangeAlphaWhenPress(false);
-            toolbar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-        }
+    private void isTopBarBackButton() {
         final QMUIAlphaImageButton rightTopbar = topBarLayout.addRightImageButton(R.drawable.ic_add, getLayoutID());
         rightTopbar.setChangeAlphaWhenPress(false);
         rightTopbar.setOnClickListener(new View.OnClickListener() {

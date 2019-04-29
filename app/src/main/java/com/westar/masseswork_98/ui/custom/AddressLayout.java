@@ -14,11 +14,11 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.westar.library_base.view.CustomFlexboxLayoutManager;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.adapter.AddressAdapter;
-import com.westar.masseswork_98.been.AddressNode;
+import com.westar.been.AddressNode;
 import com.westar.masseswork_98.interfaces.IChoiceAddressClick;
 
 import java.util.List;
@@ -28,9 +28,8 @@ import java.util.List;
  * Created by luoyz on 2019/4/12 11:49
  * Version : 1.0
  * Last update by luoyz on 2019/4/12 11:49
- * Describe : 地址选择控件
+ * Describe :
  */
-
 public class AddressLayout extends LinearLayout {
     private RecyclerView rvAddress;
     private TextView tvLabel;//标签名
@@ -63,16 +62,17 @@ public class AddressLayout extends LinearLayout {
     private void init(Context context) {
         mContext = context;
         View view = LayoutInflater.from(context).inflate(R.layout.address_layout, null);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
         rvAddress = view.findViewById(R.id.rvAddress);
         tvLabel = view.findViewById(R.id.tvLabelName);
         vLine = view.findViewById(R.id.vLine);
         this.addView(view);
 
-        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(context);
+        CustomFlexboxLayoutManager layoutManager = new CustomFlexboxLayoutManager(context);
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setJustifyContent(JustifyContent.FLEX_START);
+//        layoutManager.setFlexWrap(FlexWrap.WRAP);//按正常方向换行
         rvAddress.setLayoutManager(layoutManager);
         mAdapter = new AddressAdapter(mContext, null);
         rvAddress.setAdapter(mAdapter);

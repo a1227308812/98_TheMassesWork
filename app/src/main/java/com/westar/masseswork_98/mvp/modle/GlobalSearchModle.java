@@ -4,6 +4,7 @@ import com.westar.library_base.http.ObserverManager;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
 import com.westar.masseswork_98.been.GlobalSearchHistory;
+import com.westar.masseswork_98.been.GlobalSearchHot;
 import com.westar.masseswork_98.been.SearchResult;
 import com.westar.masseswork_98.mvp.contract.GlobalSearchContract;
 
@@ -18,11 +19,11 @@ import io.reactivex.Observable;
  */
 public class GlobalSearchModle implements GlobalSearchContract.Module {
     @Override
-    public Observable<HttpResult<List<GlobalSearchHistory>>> searchResult(HttpRequest httpRequest) {
-        HttpResult<List<GlobalSearchHistory>> httpResult = new HttpResult<>();
-        List<GlobalSearchHistory> resultList = new ArrayList<>();
+    public Observable<HttpResult<List<GlobalSearchHot>>> searchResult(HttpRequest httpRequest) {
+        HttpResult<List<GlobalSearchHot>> httpResult = new HttpResult<>();
+        List<GlobalSearchHot> resultList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            GlobalSearchHistory result = new GlobalSearchHistory();
+            GlobalSearchHot result = new GlobalSearchHot();
             result.setTitle("搜索结果事项" + i);
             resultList.add(result);
         }

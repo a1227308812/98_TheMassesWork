@@ -26,7 +26,7 @@ import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.view.shadowView.ShadowHelper;
 import com.westar.library_base.view.shadowView.ShadowProperty;
 import com.westar.module_login.R;
-import com.westar.module_login.been.User;
+import com.westar.been.User;
 import com.westar.module_login.mvp.presenter.LoginPresenter;
 
 import java.util.UUID;

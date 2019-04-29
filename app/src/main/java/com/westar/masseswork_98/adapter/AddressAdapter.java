@@ -7,9 +7,9 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.westar.been.AddressNode;
 import com.westar.library_base.base.SingleBaseAdapter;
 import com.westar.masseswork_98.R;
-import com.westar.masseswork_98.been.AddressNode;
 
 import java.util.List;
 

@@ -6,6 +6,7 @@ import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
 import com.westar.library_base.rxjava.RxScheduler;
 import com.westar.masseswork_98.been.GlobalSearchHistory;
+import com.westar.masseswork_98.been.GlobalSearchHot;
 import com.westar.masseswork_98.been.SearchResult;
 import com.westar.masseswork_98.mvp.contract.GlobalSearchContract;
 import com.westar.masseswork_98.mvp.modle.GlobalSearchModle;
@@ -31,15 +32,15 @@ public class GlobalSearchPresenter extends BasePresenter<GlobalSearchContract.Vi
         modle.searchResult(httpRequest)
                 .compose(mView.bindViewToLifecycle())
                 .compose(RxScheduler.rxObservableSchedulerHelper())
-                .subscribe(new ObserverManager<List<GlobalSearchHistory>>(mView.getBaseContext()) {
+                .subscribe(new ObserverManager<List<GlobalSearchHot>>(mView.getBaseContext()) {
 
                     @Override
-                    protected void onOther(HttpResult<List<GlobalSearchHistory>> httpResult) {
+                    protected void onOther(HttpResult<List<GlobalSearchHot>> httpResult) {
 
                     }
 
                     @Override
-                    protected void onSuccess(List<GlobalSearchHistory> data) {
+                    protected void onSuccess(List<GlobalSearchHot> data) {
                         mView.onSuccess(data);
                     }
 

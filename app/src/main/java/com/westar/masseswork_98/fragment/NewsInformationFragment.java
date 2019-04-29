@@ -121,7 +121,6 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
 
     @Override
     protected void initView() {
-        toolbarLayout.setTitle("咨询");
         RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(DisplayUtil.dip2px(mContext, 30), DisplayUtil.dip2px(mContext, 30));
         leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
         QMUIRadiusImageView leftView = new QMUIRadiusImageView(mContext);
@@ -129,6 +128,9 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
         leftView.setLayoutParams(leftParams);
         GlideApp.with(mContext).load("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=328179059,3377101288&fm=27&gp=0.jpg").into(leftView);
 
+        //不显示默认返回键
+        toolbarLayout.showBackView(false)
+                .setTitle("咨询");
         View rightView = LayoutInflater.from(mContext).inflate(R.layout.top_right_view, null);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         params.addRule(RelativeLayout.CENTER_VERTICAL);

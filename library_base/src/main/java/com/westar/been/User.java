@@ -1,12 +1,9 @@
-package com.westar.module_login.been;
+package com.westar.been;
 
 import java.io.Serializable;
 
-import io.realm.RealmModel;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.RealmClass;
-import io.realm.annotations.RealmModule;
 
 /**
  * Created by ZWP on 2019/3/25 16:56.

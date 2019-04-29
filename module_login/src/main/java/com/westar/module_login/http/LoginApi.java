@@ -2,7 +2,7 @@ package com.westar.module_login.http;
 
 import com.westar.library_base.http.BaseApi;
 import com.westar.library_base.http.been.HttpResult;
-import com.westar.module_login.been.User;
+import com.westar.been.User;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;

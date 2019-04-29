@@ -74,7 +74,6 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
 
     @Override
     protected void initView() {
-        isTopBarBackButton(true); //是否有toolbar的返回键
         //姓名栏
         setEditTextNormal(tvZixunNameHint, etvZixunName ,"*姓名：");
         //手机栏
@@ -150,19 +149,6 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
 
     }
 
-    //是否有toolbar的返回键
-    private void isTopBarBackButton(boolean isBack) {
-        if (isBack) {
-            QMUIAlphaImageButton toolbar = topBarLayout.addLeftImageButton(R.drawable.ic_back, getLayoutID());
-            toolbar.setChangeAlphaWhenPress(false);
-            toolbar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-        }
-    }
 
     //设置字符输入类型的edittext的获取焦点事件
     private void setEditTextNormal(final TextView textView, final EditText editText , final String content) {

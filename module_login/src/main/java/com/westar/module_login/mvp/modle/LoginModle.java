@@ -3,7 +3,7 @@ package com.westar.module_login.mvp.modle;
 import com.blankj.utilcode.util.GsonUtils;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
-import com.westar.module_login.been.User;
+import com.westar.been.User;
 import com.westar.module_login.http.LoginClient;
 import com.westar.module_login.mvp.contract.LoginContract;
 

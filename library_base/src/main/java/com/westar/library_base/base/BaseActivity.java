@@ -42,6 +42,10 @@ public abstract class BaseActivity extends BaseMvpActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //设置显示布局的默认底色
+        View view  = getWindow().getDecorView();
+        view.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
+
         mContext = this;
         setContentView(getLayoutID());
         QMUIStatusBarHelper.translucent(this);
@@ -76,7 +80,6 @@ public abstract class BaseActivity extends BaseMvpActivity {
     @Override
     public void setContentView(int layoutResID) {
         ViewGroup rootView = (ViewGroup) LayoutInflater.from(this).inflate(layoutResID, null);
-        rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
         super.setContentView(rootView);
     }
 
@@ -87,7 +90,6 @@ public abstract class BaseActivity extends BaseMvpActivity {
      */
     @Override
     public void setContentView(View contentView) {
-        contentView.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
         super.setContentView(contentView);
     }
 

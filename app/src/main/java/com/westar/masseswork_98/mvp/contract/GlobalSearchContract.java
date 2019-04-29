@@ -3,8 +3,7 @@ package com.westar.masseswork_98.mvp.contract;
 import com.westar.library_base.base.BaseView;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
-import com.westar.masseswork_98.been.GlobalSearchHistory;
-import com.westar.masseswork_98.been.SearchResult;
+import com.westar.masseswork_98.been.GlobalSearchHot;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import io.reactivex.Observable;
  */
 public class GlobalSearchContract {
     public interface Module {
-        Observable<HttpResult<List<GlobalSearchHistory>>> searchResult(HttpRequest httpRequest);
+        Observable<HttpResult<List<GlobalSearchHot>>> searchResult(HttpRequest httpRequest);
     }
 
     public interface View extends BaseView {

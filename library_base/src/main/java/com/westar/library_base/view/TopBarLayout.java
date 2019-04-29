@@ -23,7 +23,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,13 +33,8 @@ import android.widget.TextView;
 import com.qmuiteam.qmui.R;
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
-import com.qmuiteam.qmui.util.QMUIDrawableHelper;
-import com.qmuiteam.qmui.util.QMUIResHelper;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
-import com.qmuiteam.qmui.util.QMUIViewHelper;
 import com.qmuiteam.qmui.widget.QMUIWindowInsetLayout;
-import com.uuzuche.lib_zxing.DisplayUtil;
-import com.westar.library_base.utils.LLog;
 
 /**
  * 这是一个对 {@link TopBar} 的代理类，需要它的原因是：
@@ -96,7 +90,7 @@ public class TopBarLayout extends LinearLayout {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 QMUIDisplayHelper.dp2px(context, 44));
 //                QMUIResHelper.getAttrDimen(context, R.attr.qmui_topbar_height));
-        LLog.e("ccc", "qmui_topbar_height = " + QMUIResHelper.getAttrDimen(context, R.attr.qmui_topbar_height));
+//        LLog.e("ccc", "qmui_topbar_height = " + QMUIResHelper.getAttrDimen(context, R.attr.qmui_topbar_height));
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 //            int statueBarHight = QMUIDisplayHelper.dp2px(context, 20);
@@ -109,10 +103,34 @@ public class TopBarLayout extends LinearLayout {
         addView(mTopBar, lp);
 
         array.recycle();
+        //默认添加自定义的返回键并显示
+        setBackView();
 //        mTopBar.setBackgroundColor(Color.RED);
 //        setBackgroundDividerEnabled(hasSeparator);
 
     }
+
+    private void setBackViewForQmui() {
+        setBackView(R.drawable.qmui_icon_topbar_back, R.id.qmui_topbar_item_left_back);
+    }
+
+    public QMUIAlphaImageButton setBackView() {
+        return setBackView(com.westar.masseswork_98.library_base.R.drawable.ic_back, com.westar.masseswork_98.library_base.R.id.left_top_back);
+    }
+
+    public QMUIAlphaImageButton leftBack;
+
+    public QMUIAlphaImageButton setBackView(int drawableResId, int viewId) {
+        leftBack = addLeftImageButton(drawableResId, viewId);
+        leftBack.setChangeAlphaWhenPress(false);
+        return leftBack;
+    }
+
+    public TopBarLayout showBackView(boolean show) {
+        leftBack.setVisibility(show ? VISIBLE : GONE);
+        return this;
+    }
+
 
     public void setCenterView(View view) {
         mTopBar.setCenterView(view);
