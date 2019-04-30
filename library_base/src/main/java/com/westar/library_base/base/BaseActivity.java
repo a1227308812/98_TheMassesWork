@@ -43,6 +43,8 @@ public abstract class BaseActivity extends BaseMvpActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //添加Activity到堆栈
+        BaseApplication.getIns().addActivity(this);
         //设置显示布局的默认底色
         View view = getWindow().getDecorView();
         view.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));

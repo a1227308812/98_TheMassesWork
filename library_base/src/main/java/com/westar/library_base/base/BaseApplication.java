@@ -1,5 +1,6 @@
 package com.westar.library_base.base;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
@@ -17,6 +18,8 @@ import com.westar.library_base.utils.Density;
 import com.westar.library_base.utils.LLog;
 import com.westar.library_base.utils.ScreenAdapter;
 
+import java.util.Stack;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -29,6 +32,9 @@ public class BaseApplication extends Application {
     private static BaseApplication sInstance;
 
     public static Context context;
+
+    //Activity栈
+    private static Stack<Activity> activityStack;
 
     public static BaseApplication getIns() {
         return sInstance;
@@ -101,5 +107,136 @@ public class BaseApplication extends Application {
         super.onTerminate();
         //ARouter 解绑
         ARouter.getInstance().destroy();
+    }
+
+
+    /**
+     * 添加Activity到栈
+     *
+     * @param activity
+     */
+    public void addActivity(Activity activity) {
+        if (activityStack == null) {
+            activityStack = new Stack<>();
+        }
+        activityStack.add(activity);
+    }
+
+    /**
+     * 获取当前Activity（栈中最后一个压入的）
+     *
+     * @return
+     */
+    public Activity currentActivity() {
+        Activity activity = activityStack.lastElement();
+        return activity;
+    }
+
+    /**
+     * 结束当前Activity（栈中最后一个压入的）
+     */
+    public void finishActivity() {
+        Activity activity = activityStack.lastElement();
+        finishActivity(activity);
+    }
+
+    /**
+     * 结束指定的Activity
+     *
+     * @param activity
+     */
+    public void finishActivity(Activity activity) {
+        if (activity != null) {
+            activityStack.remove(activity);
+            activity.finish();
+            activity = null;
+        }
+    }
+
+    /**
+     * 结束指定类名的Activity
+     *
+     * @param cls
+     */
+    public void finishActivity(Class<?> cls) {
+        for (Activity activity : activityStack) {
+            if (activity.getClass().equals(cls)) {
+                finishActivity(activity);
+            }
+        }
+    }
+
+
+    /**
+     * 结束除了当前的其他所有Activity
+     *
+     * @param activity
+     */
+    public void killOthersActivity(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        for (int i = 0, size = activityStack.size(); i < size; i++) {
+            if (null != activityStack.get(i) && activity != activityStack.get(i)) {
+                activityStack.get(i).finish();
+            }
+        }
+        activityStack.clear();
+        activityStack.add(activity);
+    }
+
+    /**
+     * 结束所有的Activity
+     */
+    public void finishAllActivity() {
+        for (int i = 0, size = activityStack.size(); i < size; i++) {
+            if (null != activityStack.get(i)) {
+                activityStack.get(i).finish();
+            }
+        }
+        activityStack.clear();
+    }
+
+    /**
+     * 判断Activity是否存在
+     *
+     * @param className
+     * @return
+     */
+    public boolean existActivity(String className) {
+        Activity activity = getActivityByName(className);
+        if (activity != null && !activity.isFinishing()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 根据名字查找Activity
+     *
+     * @param className
+     * @return
+     */
+    public Activity getActivityByName(String className) {
+        Activity activity = null;
+        for (int i = 0, size = activityStack.size(); i < size; i++) {
+            if (null != activityStack.get(i)) {
+                if (activityStack.get(i).getClass().getName().equals(className)) {
+                    activity = activityStack.get(i);
+                }
+            }
+        }
+        return activity;
+    }
+
+    /**
+     * 退出应用程序
+     */
+    public void appExit() {
+        try {
+            finishAllActivity();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
