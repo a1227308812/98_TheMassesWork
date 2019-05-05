@@ -14,6 +14,10 @@ public interface ArouterPath {
     String APP_CHOICE_ADDRESS_ACTIVITY = "/app/ChoiceAddressActivity";
     //搜索页面
     String APP_SEARCH_ACTIVITY = "/app/SearchActivity";
+    //设置页面
+    String APP_SETTING_ACTIVITY = "/app/SettingActivity";
+    //个人信息页面
+    String APP_PERSONAL_INFORMATION_ACTIVITY = "/app/personalInformationActivity";
 
 
     /*更新模块*/

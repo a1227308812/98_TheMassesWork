@@ -21,7 +21,6 @@ import com.westar.library_base.glide.GlideApp;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.been.MeCardInfo;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.functions.Consumer;

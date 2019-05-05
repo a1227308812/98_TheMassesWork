@@ -20,30 +20,30 @@
             android:name="android.max_aspect"
             android:value="2.4" />
 
-        <!--测试activity-->
+        <!-- 测试activity -->
         <activity android:name=".test.TestViewActivity" />
         <activity android:name=".MainActivity" />
-
         <activity android:name="com.westar.module_login.ui.WelcomeActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".test.PictureSelectActivity" />
-
         <activity android:name=".ui.HomeGroupActivity" />
         <activity android:name=".ui.activity.ChoiceAddressActivity" />
         <activity android:name=".ui.activity.GlobalSearchActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
 
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.PersonalInformationActivity"></activity>
     </application>
 
 </manifest>

@@ -137,6 +137,11 @@ public class NormalSolideFragment extends BaseFragment {
         initListener();
     }
 
+    /**
+     * 初始化tab参数
+     *
+     * @param tabs
+     */
     private void initChildTab(QMUITabSegment.Tab... tabs) {
         for (QMUITabSegment.Tab tab : tabs) {
             tab.getNormalIcon().setBounds(0, 0, getResources().getDimensionPixelSize(R.dimen.dp_25), getResources().getDimensionPixelSize(R.dimen.dp_25));
@@ -146,6 +151,30 @@ public class NormalSolideFragment extends BaseFragment {
     }
 
     private void initListener() {
+
+        meChildMenu.setOnTabClickListener(new QMUITabSegment.OnTabClickListener() {
+            @Override
+            public void onTabClick(int index) {
+                switch (index) {
+                    case 0:
+                        ToastUtils.showShort("跳转我的申办");
+                        break;
+                    case 1:
+                        ToastUtils.showShort("跳转我的预约");
+                        break;
+                    case 2:
+                        ToastUtils.showShort("跳转我的办件");
+                        break;
+                    case 3:
+                        ToastUtils.showShort("跳转我的投诉");
+                        break;
+                    case 4:
+                        ToastUtils.showShort("跳转我的咨询");
+                        break;
+                }
+            }
+        });
+
         addSubscribe(RxView.clicks(stvUserPhoto).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
@@ -191,7 +220,7 @@ public class NormalSolideFragment extends BaseFragment {
         addSubscribe(RxView.clicks(llGdsz).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ToastUtils.showShort("跳转更多设置界面");
+                ARouter.getInstance().build(ArouterPath.APP_SETTING_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llTcdl).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
