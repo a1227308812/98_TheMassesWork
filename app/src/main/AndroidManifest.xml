@@ -43,7 +43,12 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.PersonalInformationActivity"></activity>
+        <activity android:name=".ui.activity.PersonalInformationActivity" />
+        <activity android:name=".ui.activity.securityOfAccountActivity" />
+        <activity android:name=".ui.activity.ChangePhoneActivity" />
+        <activity android:name=".ui.activity.ConfirmNewPhoneActivity" />
+        <activity android:name=".ui.activity.RealNameAuthenticationActivity" />
+        <activity android:name=".ui.activity.AboutMeActivity"></activity>
     </application>
 
 </manifest>

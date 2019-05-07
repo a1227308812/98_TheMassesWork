@@ -9,6 +9,7 @@ import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
@@ -41,6 +42,7 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/4/16 11:04.
  * 描述：身份证认证界面
  */
+@Route(path = ArouterPath.MODULE_LOGIN_IDCARD_CONFIRM_ACTIVITY)
 public class IDCardConfirmActivity extends ToolbarActivity {
 
     TextView titleInfo;

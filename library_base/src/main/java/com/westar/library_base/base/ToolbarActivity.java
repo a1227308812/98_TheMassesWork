@@ -23,7 +23,7 @@ public abstract class ToolbarActivity extends BaseActivity {
     @Override
     public void setContentView(int layoutResID) {
         LinearLayout rootView = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_toolbar, null);
-        ViewGroup childView = (ViewGroup) LayoutInflater.from(this).inflate(layoutResID, null);
+        ViewGroup childView = (ViewGroup) LayoutInflater.from(this).inflate(layoutResID, rootView, false);
         rootView.addView(childView);
         topBarLayout = rootView.findViewById(R.id.toolbar_layout);
         if (topBarLayout != null) {

@@ -4,6 +4,7 @@ package com.westar.module_login.ui;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -16,6 +17,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -50,6 +52,7 @@ public class LoginActivity extends BaseActivity {
     TextInputEditText etYzm;
     AppCompatButton btnLogin;
     CheckedTextView cbZcxy;
+    AppCompatTextView btnYzm;
 
     LoginPresenter presenter;
 
@@ -85,6 +88,7 @@ public class LoginActivity extends BaseActivity {
         etYzm = findViewById(R.id.et_yzm);
         btnLogin = findViewById(R.id.btn_login);
         cbZcxy = findViewById(R.id.cb_zcxy);
+        btnYzm = findViewById(R.id.btn_yzm);
 
         contentLayout = findViewById(R.id.contentLayout);
     }
@@ -105,14 +109,13 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-
         //登录
         addSubscribe(RxView.clicks(btnLogin)
                 .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        if (cbZcxy.isChecked()){
+                        if (cbZcxy.isChecked()) {
                             //显示登录加载弹窗
                             showLoadingDialog();
 
@@ -136,7 +139,7 @@ public class LoginActivity extends BaseActivity {
                             }
                             realm.commitTransaction();
                             hideLoadingDialog();
-                        }else {
+                        } else {
                             ToastUtils.showShort("请先阅读并同意《注册协议》！");
                         }
 

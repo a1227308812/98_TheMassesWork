@@ -3,15 +3,13 @@
     <item android:state_pressed="false">
         <shape android:shape="rectangle">
             <gradient android:endColor="#5698f0" android:startColor="#4a6dd5" />
-            <size android:width="@dimen/dp_10" android:height="@dimen/dp_1" />
-            <corners android:radius="@dimen/dp_10" />
+            <corners android:radius="@dimen/dp_40" />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <gradient android:endColor="#995698f0" android:startColor="#994a6dd5" />
-            <size android:width="@dimen/dp_10" android:height="@dimen/dp_1" />
-            <corners android:radius="@dimen/dp_10" />
+            <corners android:radius="@dimen/dp_40" />
         </shape>
     </item>
 </selector>

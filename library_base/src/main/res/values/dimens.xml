@@ -92,6 +92,7 @@
     <dimen name="dp_170">170.0dp</dimen>
     <dimen name="dp_176">176.0dp</dimen>
     <dimen name="dp_180">180.0dp</dimen>
+    <dimen name="dp_190">190.0dp</dimen>
     <dimen name="dp_184">184.0dp</dimen>
     <dimen name="dp_200">200.0dp</dimen>
     <dimen name="dp_204">204.0dp</dimen>

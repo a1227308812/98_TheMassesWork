@@ -85,7 +85,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_wd_next_hs" />
+            app:srcCompat="@drawable/icc_right_background" />
 
         <View
             android:layout_width="0dp"
@@ -142,7 +142,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_wd_next_hs" />
+            app:srcCompat="@drawable/icc_right_background" />
 
         <View
             android:layout_width="0dp"
@@ -199,7 +199,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_wd_next_hs" />
+            app:srcCompat="@drawable/icc_right_background" />
 
         <View
             android:layout_width="0dp"
@@ -254,7 +254,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_wd_next_hs" />
+            app:srcCompat="@drawable/icc_right_background" />
 
         <View
             android:layout_width="0dp"

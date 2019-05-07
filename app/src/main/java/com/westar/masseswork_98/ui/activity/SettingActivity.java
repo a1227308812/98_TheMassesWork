@@ -58,19 +58,19 @@ public class SettingActivity extends ToolbarActivity {
         addSubscribe(RxView.clicks(rlSecurityOfAccounts).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-
+                skipActivity(securityOfAccountActivity.class, null);
             }
         }));
         addSubscribe(RxView.clicks(rlRealNameAuthentication).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-
+                skipActivity(RealNameAuthenticationActivity.class, null);
             }
         }));
         addSubscribe(RxView.clicks(rlAboutMe).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-
+                skipActivity(AboutMeActivity.class, null);
             }
         }));
     }

@@ -25,9 +25,14 @@ public interface ArouterPath {
 
 
     /*登录模块*/
+    //欢迎界面
     String MODULE_LOGIN_WELCOME_ACTIVITY = "/module_login/WelcomeActivity";
+    //登录界面
     String MODULE_LOGIN_LOGIN_ACTIVITY = "/module_login/LoginActivity";
+    //指纹验证界面
     String MODULE_LOGIN_FINGERPRINT_VERIFICATION_ACTIVITY = "/module_login/FingerprintVerificationActivity";
+    //身份证信息上传界面
+    String MODULE_LOGIN_IDCARD_CONFIRM_ACTIVITY = "/module_login/IDCardConfirmActivity";
 
 
     /*我要预约模块*/
