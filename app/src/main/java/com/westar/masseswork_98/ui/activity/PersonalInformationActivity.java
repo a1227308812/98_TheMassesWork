@@ -1,8 +1,6 @@
 package com.westar.masseswork_98.ui.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
@@ -13,7 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bigkoo.pickerview.utils.PickerViewAnimateUtil;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -25,11 +25,17 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
+import com.westar.been.LocationNode;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.http.been.HttpRequest;
+import com.westar.library_base.utils.PickerUtil;
 import com.westar.masseswork_98.R;
+import com.westar.masseswork_98.mvp.contract.PersonalInformationContract;
+import com.westar.masseswork_98.mvp.presenter.PersonalInformationPresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -41,7 +47,7 @@ import io.reactivex.functions.Consumer;
  * 描述：个人信息页面
  */
 @Route(path = ArouterPath.APP_PERSONAL_INFORMATION_ACTIVITY)
-public class PersonalInformationActivity extends ToolbarActivity {
+public class PersonalInformationActivity extends ToolbarActivity implements PersonalInformationContract.View {
 
     @BindView(R.id.iv_change_photo)
     SuperTextView ivChangePhoto;
@@ -62,6 +68,8 @@ public class PersonalInformationActivity extends ToolbarActivity {
     @BindView(R.id.cl_birthday)
     ConstraintLayout clBirthday;
 
+    PersonalInformationPresenter presenter;
+
     @Override
     public String setBarTitle() {
         return "个人信息";
@@ -79,13 +87,17 @@ public class PersonalInformationActivity extends ToolbarActivity {
 
     @Override
     protected void initView() {
-
+        //加载头像
+        ivChangePhoto.setUrlImage("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=328179059,3377101288&fm=27&gp=0.jpg");
+        ininLisenter();
     }
 
     @Override
     protected void initData() {
-        //加载头像
-        ivChangePhoto.setUrlImage("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=328179059,3377101288&fm=27&gp=0.jpg");
+
+    }
+
+    private void ininLisenter() {
         addSubscribe(RxView.clicks(ivChangePhoto).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
@@ -122,6 +134,7 @@ public class PersonalInformationActivity extends ToolbarActivity {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
                                 dialog.dismiss();
+
                             }
                         })
                         .addAction("确定", new QMUIDialogAction.ActionListener() {
@@ -130,11 +143,12 @@ public class PersonalInformationActivity extends ToolbarActivity {
                                 EditText editText = dialog.findViewById(editId);
                                 if (!TextUtils.isEmpty(editText.getText().toString()) && editText.getText().toString().length() <= 10) {
                                     // TODO: 2019/5/5 上传新的昵称数据 ，并在上传成功之后更新本地昵称信息
-                                    ToastUtils.showShort("上传新的昵称数据");
+                                    presenter.updatePersonalInfo(new HttpRequest());
                                     etNickname.setText(editText.getText().toString());
                                 } else {
                                     ToastUtils.showShort("昵称长度不可超过10位！");
                                 }
+                                dialog.cancel();
                             }
                         });
                 builder.create().show();
@@ -148,38 +162,76 @@ public class PersonalInformationActivity extends ToolbarActivity {
         addSubscribe(RxView.clicks(clLocation).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ToastUtils.showShort("选择地址");
+                presenter.getServiceAddressData(new HttpRequest());
             }
         }));
         addSubscribe(RxView.clicks(clGender).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ToastUtils.showShort("选择性别");
-                new QMUIDialog.MenuDialogBuilder(mContext)
-                        .addItems(new String[]{"男", "女"}, new QMUIDialog.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (0 == which) {
-                                    ToastUtils.showShort("选择了男");
-                                } else {
-                                    ToastUtils.showShort("选择了女");
-                                }
-                                dialog.cancel();
-                            }
-                        }).show();
+                PickerUtil.alertGenderPicker(mContext, new PickerUtil.OnGenderPickerLisenter() {
+                    @Override
+                    public void onClick(View view, int postion, PickerUtil.Gender gender) {
+                        etGender.setText(gender.getTitle());
+                    }
+                });
             }
         }));
         addSubscribe(RxView.clicks(clBirthday).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ToastUtils.showShort("选择生日");
+                PickerUtil.alertTimerPicker(mContext, PickerUtil.PickerType.YEAR_MONTH_DAY, new PickerUtil.TimerPickerCallBack() {
+                    @Override
+                    public void onTimeSelect(String date) {
+                        etBirthday.setText(date);
+                    }
+                });
             }
         }));
     }
 
+    private void choiceAddress(List<LocationNode> locationNodeList) {
+        // TODO: 2019/5/6
+        if (null != locationNodeList && locationNodeList.size() > 0) {
+            final List<LocationNode> provinceList = locationNodeList;
+            final List<List<LocationNode>> cityList = new ArrayList<>();
+            final List<List<List<LocationNode>>> areaList = new ArrayList<>();
+            //初始化数据
+            for (LocationNode province : provinceList) {
+                List<LocationNode> citys = province.getChilds();
+                cityList.add(citys);
+
+                List<List<LocationNode>> cityAreas = new ArrayList<>();
+                for (LocationNode city : citys) {
+                    List<LocationNode> areas = city.getChilds();
+                    cityAreas.add(areas);
+                }
+                areaList.add(cityAreas);
+            }
+
+            OptionsPickerBuilder builder = new OptionsPickerBuilder(mContext, new OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                    etLocation.setText(provinceList.get(options1).getName() + "--"
+                            + cityList.get(options1).get(options2).getName() + "--"
+                            + areaList.get(options1).get(options2).get(options3).getName());
+                }
+            });
+
+            builder.setTitleText("请选择地址")
+                    .setOutSideCancelable(true)
+                    .setCyclic(false, false, false)
+                    .build();
+
+            OptionsPickerView pvOptions = builder.build();
+            pvOptions.setKeyBackCancelable(true);
+            pvOptions.setPicker(provinceList, cityList, areaList);
+            pvOptions.show();
+        }
+    }
+
     @Override
     protected BasePresenter createPresenter() {
-        return null;
+        return presenter = new PersonalInformationPresenter();
     }
 
     @Override
@@ -199,7 +251,10 @@ public class PersonalInformationActivity extends ToolbarActivity {
 
     @Override
     public void onSuccess(Object data) {
-
+        if (data != null) {
+            List<LocationNode> locationNodeList = (List<LocationNode>) data;
+            choiceAddress(locationNodeList);
+        }
     }
 
     @Override
@@ -239,5 +294,10 @@ public class PersonalInformationActivity extends ToolbarActivity {
                     break;
             }
         }
+    }
+
+    @Override
+    public void updatePersonalResult(String s) {
+        ToastUtils.showShort(s);
     }
 }
