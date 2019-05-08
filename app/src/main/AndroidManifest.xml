@@ -48,7 +48,8 @@
         <activity android:name=".ui.activity.ChangePhoneActivity" />
         <activity android:name=".ui.activity.ConfirmNewPhoneActivity" />
         <activity android:name=".ui.activity.RealNameAuthenticationActivity" />
-        <activity android:name=".ui.activity.AboutMeActivity"></activity>
+        <activity android:name=".ui.activity.AboutMeActivity" />
+        <activity android:name=".ui.activity.FeedBackActivity"></activity>
     </application>
 
 </manifest>

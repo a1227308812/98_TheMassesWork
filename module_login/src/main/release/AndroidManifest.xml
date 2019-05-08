@@ -3,8 +3,6 @@
     package="com.westar.module_login">
 
     <application>
-
-
         <activity android:name=".ui.LoginActivity" />
         <activity
             android:name=".ui.WelcomeActivity"
@@ -13,6 +11,8 @@
         <activity android:name=".ui.LoginTypeSelectActivity" />
         <activity android:name=".ui.ConfirmPersonalInformationActivity" />
         <activity android:name=".ui.IDCardConfirmActivity" />
+        <activity android:name=".ui.FaceRecognitionAuthenticationActivity"></activity>
+        <activity android:name=".ui.FaceInAuthenticationActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.FaceRecognitionAuthenticationActivity">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="@dimen/dp_325"
+        android:layout_height="@dimen/dp_270"
+        android:layout_marginBottom="@dimen/dp_10"
+        app:layout_constraintBottom_toTopOf="@id/tv_tip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/png_smrz" />
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_100"
+        android:text="人脸识别时，请根据提示做出表情"
+        android:textColor="#303545"
+        android:textSize="@dimen/text_18"
+        app:layout_constraintBottom_toTopOf="@id/stv_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.coorchice.library.SuperTextView
+        android:id="@+id/stv_next"
+        android:layout_width="@dimen/dp_345"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginBottom="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_30"
+        android:gravity="center"
+        android:text="继续"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:stv_corner="@dimen/dp_10"
+        app:stv_shaderEnable="true"
+        app:stv_shaderEndColor="#5698f0"
+        app:stv_shaderMode="leftToRight"
+        app:stv_shaderStartColor="#4a6dd5" />
+
+</android.support.constraint.ConstraintLayout>

@@ -50,6 +50,7 @@ public abstract class ObserverManager<T> implements Observer<HttpResult<T>> {
 
     @Override
     public void onError(Throwable t) {
+        onFinish();
         //网络请求自定义异常类
         RetrofitException.ResponeThrowable responeThrowable = RetrofitException.retrofitException(t);
         switch (responeThrowable.code) {
@@ -66,7 +67,6 @@ public abstract class ObserverManager<T> implements Observer<HttpResult<T>> {
                 ToastUtils.showShort(responeThrowable.message);
                 break;
         }
-        onFinish();
     }
 
     /**

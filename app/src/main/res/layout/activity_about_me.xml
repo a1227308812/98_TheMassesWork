@@ -1,9 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.AboutMeActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.coorchice.library.SuperTextView
+            android:id="@+id/stv_logo"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginTop="@dimen/dp_52"
+            app:stv_corner="@dimen/dp_10" />
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_17"
+            android:text=""
+            android:textColor="#303545"
+            android:textSize="@dimen/text_18" />
+
+
+        <com.coorchice.library.SuperTextView
+            android:id="@+id/stv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_21"
+            android:gravity="center"
+            android:minWidth="@dimen/dp_140"
+            android:paddingEnd="@dimen/dp_10"
+            android:paddingStart="@dimen/dp_10"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_15"
+            app:stv_corner="@dimen/dp_20"
+            app:stv_solid="#b6c2d2" />
+
+        <TextView
+            android:id="@+id/tv_app_describe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_17"
+            android:text=""
+            android:textColor="#b6c2d2"
+            android:textSize="@dimen/text_14" />
+
+        <LinearLayout
+            android:id="@+id/ll_tel"
+            android:layout_width="@dimen/dp_235"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_52"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:srcCompat="@drawable/icon_gywm_bh" />
+
+            <TextView
+                android:id="@+id/tv_tel_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#828899"
+                android:textSize="@dimen/text_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_email"
+            android:layout_width="@dimen/dp_235"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:srcCompat="@drawable/icon_gywm_yx" />
+
+            <TextView
+                android:id="@+id/tv_email_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#828899"
+                android:textSize="@dimen/text_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_web_site"
+            android:layout_width="@dimen/dp_235"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:srcCompat="@drawable/icon_gywm_yx" />
+
+            <TextView
+                android:id="@+id/tv_web_site_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#828899"
+                android:textSize="@dimen/text_14" />
+        </LinearLayout>
+
+
+        <com.coorchice.library.SuperTextView
+            android:id="@+id/stv_feedback"
+            android:layout_width="@dimen/dp_140"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_47"
+            android:gravity="center"
+            android:text="意见反馈"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_15"
+            app:stv_corner="@dimen/dp_20"
+            app:stv_solid="#828899" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

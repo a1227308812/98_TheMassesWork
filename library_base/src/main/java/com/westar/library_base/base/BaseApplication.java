@@ -73,7 +73,7 @@ public class BaseApplication extends Application {
 
         //头条适配方案
         ScreenAdapter.setup(this);
-        ScreenAdapter.register(this, 400f, ScreenAdapter.MATCH_BASE_WIDTH, ScreenAdapter.MATCH_UNIT_DP);
+        ScreenAdapter.register(this, 420f, ScreenAdapter.MATCH_BASE_WIDTH, ScreenAdapter.MATCH_UNIT_DP);
 
         // 安装图片引擎
         ImageEngine.install(new GlideEngine(this));

@@ -18,6 +18,8 @@ public interface ArouterPath {
     String APP_SETTING_ACTIVITY = "/app/SettingActivity";
     //个人信息页面
     String APP_PERSONAL_INFORMATION_ACTIVITY = "/app/personalInformationActivity";
+    //个人信息页面
+    String APP_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY = "/app/FaceRecognitionAuthenticationActivity";
 
 
     /*更新模块*/

@@ -31,4 +31,10 @@ public interface ApiStore extends BaseApi {
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     @POST("/workApp/login")
     Observable<HttpResult<List<String>>> officahHellGetBannerData(@Field("jsonParam") String jsonParam);
+
+
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    @POST("/app/feedBack")
+    Observable<HttpResult<String>> feedBack(@Field("jsonParam") String jsonParam);
 }

@@ -22,7 +22,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public abstract class AppClientContract<T> {
     //默认超时时间 1分钟
     private static long DEFAULT_TIMEOUT = 1;
-    protected static String baseUrl = "";
+    protected static String baseUrl = "192.168.1.44:80";
 
     /**
      * 获取自定义的apiclass

@@ -184,7 +184,7 @@ public class NormalSolideFragment extends BaseFragment {
         addSubscribe(RxView.clicks(stvDjrz).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ToastUtils.showShort("跳转认证界面");
+                ARouter.getInstance().build(ArouterPath.APP_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llMoreCard).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
