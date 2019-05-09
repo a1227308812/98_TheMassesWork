@@ -108,6 +108,7 @@
     <dimen name="dp_325">325.0dp</dimen>
     <dimen name="dp_340">340.0dp</dimen>
     <dimen name="dp_345">345.0dp</dimen>
+    <dimen name="dp_350">350.0dp</dimen>
     <dimen name="dp_355">355.0dp</dimen>
     <dimen name="dp_380">380.0dp</dimen>
     <dimen name="dp_400">400.0dp</dimen>

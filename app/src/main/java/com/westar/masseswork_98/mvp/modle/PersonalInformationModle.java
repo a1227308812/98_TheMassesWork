@@ -18,7 +18,7 @@ import io.reactivex.Observable;
  * Created by ZWP on 2019/5/6 16:15.
  * 描述：
  */
-public class PersonalInformationModule implements PersonalInformationContract.Module {
+public class PersonalInformationModle implements PersonalInformationContract.Module {
 
     @Override
     public Observable<HttpResult<List<LocationNode>>> getServiceAddressData(HttpRequest httpRequest) {

@@ -31,6 +31,7 @@ import io.reactivex.functions.Consumer;
  */
 public class CustomHorizontalScrollView extends HorizontalScrollView {
     Context mContext;
+    ItemViewClick itemViewClick;
 
     public CustomHorizontalScrollView(Context context) {
         super(context);
@@ -124,9 +125,64 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
         return this;
     }
 
+    /**
+     * 动态添加子view
+     *
+     * @param meCardInfo
+     * @return
+     */
+    public CustomHorizontalScrollView addChildView(final MeCardInfo meCardInfo) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_me_card_menu, null, false);
+        AppCompatImageView cardtypeView = view.findViewById(R.id.iv_card_type);
+        TextView titleView = view.findViewById(R.id.tv_titlle);
+        TextView tv_describle = view.findViewById(R.id.tv_describle);
+        TextView tv_describle2 = view.findViewById(R.id.tv_describle2);
+        TextView tv_authentication_status = view.findViewById(R.id.tv_authentication_status);
+
+        GlideApp.with(mContext).load(meCardInfo.getTypeUrl()).into(cardtypeView);
+        if (!TextUtils.isEmpty(meCardInfo.getTitle())) {
+            titleView.setText(meCardInfo.getTitle());
+        }
+        if (!TextUtils.isEmpty(meCardInfo.getDescrible())) {
+            tv_describle.setText(meCardInfo.getDescrible());
+        }
+        if (!TextUtils.isEmpty(meCardInfo.getDescrible2())) {
+            tv_describle2.setText(meCardInfo.getDescrible2());
+        }
+        if (!TextUtils.isEmpty(meCardInfo.getAuthenticationStatus())) {
+            tv_authentication_status.setText(meCardInfo.getAuthenticationStatus());
+        }
+
+        setChildBackgroundDrawable(view, meCardInfo.getColors());
+
+        RxView.clicks(view).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        if (itemViewClick != null)
+                            itemViewClick.onClick(meCardInfo);
+                    }
+                });
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(DisplayUtil.dip2px(mContext, 230), LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMarginEnd(DisplayUtil.dip2px(mContext, 10));
+        rootLayout.addView(view, layoutParams);
+
+        return this;
+    }
+
     public void clearChildView() {
         rootLayout.removeAllViews();
         requestLayout();
+    }
+
+    public ItemViewClick getItemViewClick() {
+        return itemViewClick;
+    }
+
+    public CustomHorizontalScrollView setItemViewClick(ItemViewClick itemViewClick) {
+        this.itemViewClick = itemViewClick;
+        return this;
     }
 
     public interface ItemViewClick {

@@ -6,20 +6,18 @@ import com.westar.library_base.http.ObserverManager;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
 import com.westar.library_base.rxjava.RxScheduler;
-import com.westar.masseswork_98.mvp.contract.ChangePhoneContract;
 import com.westar.masseswork_98.mvp.contract.ConfirmNewPhoneContract;
-import com.westar.masseswork_98.mvp.modle.ChangePhoneModule;
-import com.westar.masseswork_98.mvp.modle.ConfirmNewPhoneModule;
+import com.westar.masseswork_98.mvp.modle.ConfirmNewPhoneModle;
 
 /**
  * Created by ZWP on 2019/5/7 17:11.
  * 描述：
  */
 public class ConfirmNewPhonePresenter extends BasePresenter<ConfirmNewPhoneContract.View> implements ConfirmNewPhoneContract.Presenter {
-    ConfirmNewPhoneModule module;
+    ConfirmNewPhoneModle module;
 
     public ConfirmNewPhonePresenter() {
-        module = new ConfirmNewPhoneModule();
+        module = new ConfirmNewPhoneModle();
     }
 
     @Override

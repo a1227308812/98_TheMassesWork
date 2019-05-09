@@ -20,6 +20,10 @@ public interface ArouterPath {
     String APP_PERSONAL_INFORMATION_ACTIVITY = "/app/personalInformationActivity";
     //个人信息页面
     String APP_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY = "/app/FaceRecognitionAuthenticationActivity";
+    //我的证照列表页面
+    String APP_CARD_LIST_ACTIVITY = "/app/CardListActivity";
+    //我的证照详情页面
+    String APP_CARD_DETAIL_ACTIVITY = "/app/CardDetailActivity";
 
 
     /*更新模块*/

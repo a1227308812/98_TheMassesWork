@@ -7,17 +7,17 @@ import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
 import com.westar.library_base.rxjava.RxScheduler;
 import com.westar.masseswork_98.mvp.contract.ChangePhoneContract;
-import com.westar.masseswork_98.mvp.modle.ChangePhoneModule;
+import com.westar.masseswork_98.mvp.modle.ChangePhoneModle;
 
 /**
  * Created by ZWP on 2019/5/7 17:11.
  * 描述：
  */
 public class ChangePhonePresenter extends BasePresenter<ChangePhoneContract.View> implements ChangePhoneContract.Presenter {
-    ChangePhoneModule module;
+    ChangePhoneModle module;
 
     public ChangePhonePresenter() {
-        module = new ChangePhoneModule();
+        module = new ChangePhoneModle();
     }
 
     @Override

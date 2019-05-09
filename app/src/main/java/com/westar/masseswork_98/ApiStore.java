@@ -2,6 +2,7 @@ package com.westar.masseswork_98;
 
 import com.westar.library_base.http.BaseApi;
 import com.westar.library_base.http.been.HttpResult;
+import com.westar.masseswork_98.been.MeCardInfo;
 
 import java.util.List;
 
@@ -32,9 +33,25 @@ public interface ApiStore extends BaseApi {
     @POST("/workApp/login")
     Observable<HttpResult<List<String>>> officahHellGetBannerData(@Field("jsonParam") String jsonParam);
 
-
+    /**
+     * 反馈建议
+     *
+     * @param jsonParam
+     * @return
+     */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     @POST("/app/feedBack")
     Observable<HttpResult<String>> feedBack(@Field("jsonParam") String jsonParam);
+
+    /**
+     * 获取我的证照列表数据
+     *
+     * @param jsonParam
+     * @return
+     */
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    @POST("/app/cardlist")
+    Observable<HttpResult<List<MeCardInfo>>> cardlist(@Field("jsonParam") String jsonParam);
 }

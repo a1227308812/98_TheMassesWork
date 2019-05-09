@@ -7,7 +7,7 @@ import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
 import com.westar.library_base.rxjava.RxScheduler;
 import com.westar.masseswork_98.mvp.contract.PersonalInformationContract;
-import com.westar.masseswork_98.mvp.modle.PersonalInformationModule;
+import com.westar.masseswork_98.mvp.modle.PersonalInformationModle;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ import java.util.List;
  * 描述：
  */
 public class PersonalInformationPresenter extends BasePresenter<PersonalInformationContract.View> implements PersonalInformationContract.Presenter {
-    PersonalInformationModule module;
+    PersonalInformationModle module;
 
     public PersonalInformationPresenter() {
-        module = new PersonalInformationModule();
+        module = new PersonalInformationModle();
     }
 
     @Override

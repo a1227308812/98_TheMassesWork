@@ -57,9 +57,9 @@ public abstract class BaseActivity extends BaseMvpActivity {
         //ARouter inject注入
         ARouter.getInstance().inject(this);
 
-        DisplayMetrics metrics = QMUIDisplayHelper.getDisplayMetrics(mContext);
-        LLog.e("ccc", "--------density-------------  " + metrics.density);
-        LLog.e("ccc", "--------scaledDensity-------------  " + metrics.scaledDensity);
+//        DisplayMetrics metrics = QMUIDisplayHelper.getDisplayMetrics(mContext);
+//        LLog.e("ccc", "--------density-------------  " + metrics.density);
+//        LLog.e("ccc", "--------scaledDensity-------------  " + metrics.scaledDensity);
 
 
         initStatusBar();
@@ -139,7 +139,6 @@ public abstract class BaseActivity extends BaseMvpActivity {
     protected void hideLoadingDialog() {
     }
 
-    ;
 
     @Override
     public void onStart() {

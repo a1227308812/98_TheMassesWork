@@ -78,8 +78,8 @@ ext {
             //时间,地址,条件选择器
             "pickerView"                   : 'com.contrarywind:Android-PickerView:4.1.8',
             //SmartRefreshLayout
-            "smartRefreshLayout"           : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-4',
-            "SmartRefreshHeader"           : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-4',
+            "smartRefreshLayout"           : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-24',
+            "SmartRefreshHeader"           : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-24',
             //banner
             "banner"                       : 'com.youth.banner:banner:1.4.10',
             //eventbus

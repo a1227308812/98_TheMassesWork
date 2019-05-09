@@ -5,38 +5,38 @@ import com.westar.library_base.http.ObserverManager;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
 import com.westar.library_base.rxjava.RxScheduler;
-import com.westar.masseswork_98.been.AboutMe;
-import com.westar.masseswork_98.mvp.contract.AboutMeContract;
-import com.westar.masseswork_98.mvp.modle.AboutMeModle;
+import com.westar.masseswork_98.been.MeCardInfo;
+import com.westar.masseswork_98.mvp.contract.CardListContract;
+import com.westar.masseswork_98.mvp.modle.CardListModle;
+
+import java.util.List;
 
 /**
- * Created by ZWP on 2019/5/8 10:11.
+ * Created by ZWP on 2019/5/9 11:09.
  * 描述：
  */
-public class AboutMePresenter extends BasePresenter<AboutMeContract.View> implements AboutMeContract.Presenter {
-    AboutMeModle module;
+public class CardListPresenter extends BasePresenter<CardListContract.View> implements CardListContract.Presenter {
+    CardListModle modle;
 
-    public AboutMePresenter() {
-        module = new AboutMeModle();
+    public CardListPresenter() {
+        modle = new CardListModle();
     }
 
     @Override
-    public void getAboutMe(HttpRequest httpRequest) {
+    public void cardList(HttpRequest httpRequest) {
         if (!isViewAttached()) return;
-
         mView.showLoading();
-        module.getAboutMe(httpRequest)
+        modle.cardList(httpRequest)
                 .compose(mView.bindViewToLifecycle())
                 .compose(RxScheduler.rxObservableSchedulerHelper())
-                .subscribe(new ObserverManager<AboutMe>(mView.getBaseContext()) {
-
+                .subscribe(new ObserverManager<List<MeCardInfo>>(mView.getBaseContext()) {
                     @Override
-                    protected void onOther(HttpResult<AboutMe> httpResult) {
+                    protected void onOther(HttpResult httpResult) {
 
                     }
 
                     @Override
-                    protected void onSuccess(AboutMe data) {
+                    protected void onSuccess(List<MeCardInfo> data) {
                         mView.onSuccess(data);
                     }
 

@@ -49,7 +49,9 @@
         <activity android:name=".ui.activity.ConfirmNewPhoneActivity" />
         <activity android:name=".ui.activity.RealNameAuthenticationActivity" />
         <activity android:name=".ui.activity.AboutMeActivity" />
-        <activity android:name=".ui.activity.FeedBackActivity"></activity>
+        <activity android:name=".ui.activity.FeedBackActivity" />
+        <activity android:name=".ui.activity.CardListActivity" />
+        <activity android:name=".ui.activity.CardDetailActivity"></activity>
     </application>
 
 </manifest>

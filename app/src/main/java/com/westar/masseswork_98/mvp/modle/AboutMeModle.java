@@ -12,7 +12,7 @@ import io.reactivex.Observable;
  * Created by ZWP on 2019/5/8 10:11.
  * 描述：
  */
-public class AboutMeModule implements AboutMeContract.Module {
+public class AboutMeModle implements AboutMeContract.Module {
     @Override
     public Observable<HttpResult<AboutMe>> getAboutMe(HttpRequest httpRequest) {
         HttpResult<AboutMe> httpResult = new HttpResult<>();
