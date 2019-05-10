@@ -26,9 +26,14 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.been.LocationNode;
+import com.westar.been.User;
+import com.westar.library_base.base.BaseApplication;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.eventbus.BaseEvent;
+import com.westar.library_base.eventbus.EventBusUtlis;
+import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.utils.PickerUtil;
 import com.westar.masseswork_98.R;
@@ -67,6 +72,8 @@ public class PersonalInformationActivity extends ToolbarActivity implements Pers
     TextInputEditText etBirthday;
     @BindView(R.id.cl_birthday)
     ConstraintLayout clBirthday;
+    @BindView(R.id.stv_confirm)
+    SuperTextView stvConfirm;
 
     PersonalInformationPresenter presenter;
 
@@ -87,8 +94,16 @@ public class PersonalInformationActivity extends ToolbarActivity implements Pers
 
     @Override
     protected void initView() {
-        //加载头像
-        ivChangePhoto.setUrlImage("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=328179059,3377101288&fm=27&gp=0.jpg");
+        User user = BaseApplication.getIns().getUser();
+        if (user != null) {
+            //加载头像
+            ivChangePhoto.setUrlImage(user.getPhotoUrl());
+            etNickname.setText(user.getUserName());
+            etGender.setText(user.getGender());
+            etLocation.setText(user.getDomicile_address());
+            etBirthday.setText(user.getBirthday());
+        }
+
         ininLisenter();
     }
 
@@ -142,8 +157,7 @@ public class PersonalInformationActivity extends ToolbarActivity implements Pers
                             public void onClick(QMUIDialog dialog, int index) {
                                 EditText editText = dialog.findViewById(editId);
                                 if (!TextUtils.isEmpty(editText.getText().toString()) && editText.getText().toString().length() <= 10) {
-                                    // TODO: 2019/5/5 上传新的昵称数据 ，并在上传成功之后更新本地昵称信息
-                                    presenter.updatePersonalInfo(new HttpRequest());
+                                    // TODO: 2019/5/5 修改新的昵称数据 ，并在点击更新之后上传更新的昵称信息
                                     etNickname.setText(editText.getText().toString());
                                 } else {
                                     ToastUtils.showShort("昵称长度不可超过10位！");
@@ -187,8 +201,33 @@ public class PersonalInformationActivity extends ToolbarActivity implements Pers
                 });
             }
         }));
+
+        addSubscribe(RxView.clicks(stvConfirm).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                //提交修改的数据
+                if (TextUtils.isEmpty(etNickname.getText().toString())) {
+
+                }
+                if (TextUtils.isEmpty(etGender.getText().toString())) {
+
+                }
+                if (TextUtils.isEmpty(etLocation.getText().toString())) {
+
+                }
+                if (TextUtils.isEmpty(etBirthday.getText().toString())) {
+
+                }
+                presenter.updatePersonalInfo(new HttpRequest());
+            }
+        }));
     }
 
+    /**
+     * 选择地区
+     *
+     * @param locationNodeList
+     */
     private void choiceAddress(List<LocationNode> locationNodeList) {
         // TODO: 2019/5/6
         if (null != locationNodeList && locationNodeList.size() > 0) {
@@ -285,7 +324,7 @@ public class PersonalInformationActivity extends ToolbarActivity implements Pers
                         if (media.isCut()) {
                             String cutPath = selectList.get(0).getCutPath();
                             // TODO: 2019/5/5 1、上传选择的图片
-
+                            presenter.updatePersonalInfo(new HttpRequest());
                             //2、本地修改图片的加载
                             ivChangePhoto.setUrlImage(cutPath);
                             // TODO: 2019/5/5 3、通知其他有头像的页面刷新页面
@@ -297,7 +336,14 @@ public class PersonalInformationActivity extends ToolbarActivity implements Pers
     }
 
     @Override
-    public void updatePersonalResult(String s) {
-        ToastUtils.showShort(s);
+    public void updatePersonalResult(User user) {
+        if (user != null) {
+            ToastUtils.showShort("修改成功！");
+            BaseApplication.getIns().setUser(user);
+            // TODO: 2019/5/10 修改个人头像显示和名称显示
+            EventBusUtlis.sendStickyEvent(new UpdataUserInfoEvent());
+        } else {
+            ToastUtils.showShort("修改失败！请稍后重试！");
+        }
     }
 }

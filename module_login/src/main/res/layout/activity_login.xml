@@ -213,7 +213,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_87"
-            android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+            android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
             android:gravity="center_vertical"
             android:text="我同意某某政务中心的《注册协议》"
             android:textSize="@dimen/text_14"

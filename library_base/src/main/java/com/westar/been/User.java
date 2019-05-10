@@ -22,6 +22,10 @@ public class User extends RealmObject implements Serializable {
      */
     private String userName;
     /**
+     * 账号
+     */
+    private String account;
+    /**
      * 密码
      */
     private String password;
@@ -37,6 +41,22 @@ public class User extends RealmObject implements Serializable {
      * 分数
      */
     private String fraction;
+    /**
+     * 头像地址
+     */
+    private String photoUrl;
+    /**
+     * 户籍地址
+     */
+    private String domicile_address;
+    /**
+     * 生日
+     */
+    private String birthday;
+    /**
+     * 事项提醒通知
+     */
+    private String noticeDescribe;
 
     public String getPassword() {
         return password;
@@ -74,6 +94,15 @@ public class User extends RealmObject implements Serializable {
         return this;
     }
 
+    public String getAccount() {
+        return account;
+    }
+
+    public User setAccount(String account) {
+        this.account = account;
+        return this;
+    }
+
     public String getAge() {
         return age;
     }
@@ -98,6 +127,42 @@ public class User extends RealmObject implements Serializable {
 
     public User setFraction(String fraction) {
         this.fraction = fraction;
+        return this;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public User setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+        return this;
+    }
+
+    public String getDomicile_address() {
+        return domicile_address;
+    }
+
+    public User setDomicile_address(String domicile_address) {
+        this.domicile_address = domicile_address;
+        return this;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public User setBirthday(String birthday) {
+        this.birthday = birthday;
+        return this;
+    }
+
+    public String getNoticeDescribe() {
+        return noticeDescribe;
+    }
+
+    public User setNoticeDescribe(String noticeDescribe) {
+        this.noticeDescribe = noticeDescribe;
         return this;
     }
 }

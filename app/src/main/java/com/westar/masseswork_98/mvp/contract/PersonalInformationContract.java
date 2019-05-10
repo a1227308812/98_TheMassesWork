@@ -2,6 +2,7 @@ package com.westar.masseswork_98.mvp.contract;
 
 import com.westar.been.LocationNode;
 import com.westar.been.LocationResult;
+import com.westar.been.User;
 import com.westar.library_base.base.BaseView;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.http.been.HttpResult;
@@ -24,11 +25,11 @@ public class PersonalInformationContract {
          * @param httpRequest
          * @return
          */
-        Observable<HttpResult<String>> updatePersonalInfo(HttpRequest httpRequest);
+        Observable<HttpResult<User>> updatePersonalInfo(HttpRequest httpRequest);
     }
 
     public interface View extends BaseView {
-        void updatePersonalResult(String s);
+        void updatePersonalResult(User user);
     }
 
     public interface Presenter {

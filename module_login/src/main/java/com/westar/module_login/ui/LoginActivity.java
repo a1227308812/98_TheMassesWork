@@ -23,6 +23,7 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
+import com.westar.library_base.base.BaseApplication;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.common.Common;
@@ -122,7 +123,7 @@ public class LoginActivity extends BaseActivity {
                             Realm realm = Realm.getDefaultInstance();
                             realm.beginTransaction();//开启事务
 
-                            User user = realm.where(User.class).equalTo("userName", etAccount.getText().toString()).findFirst();
+                            User user = realm.where(User.class).equalTo("account", etAccount.getText().toString()).findFirst();
                             if (user != null && etYzm.getText().toString().equals(user.getPassword())) {
 //                            //验证通过 登录成功
 //                            new QMUITipDialog.Builder(mContext)
@@ -130,6 +131,8 @@ public class LoginActivity extends BaseActivity {
 //                                    .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
 //                                    .create()
 //                                    .show();
+                                //设置当前登录user
+                                BaseApplication.getIns().setUser(user);
 
                                 EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.HAD_AUTHENTICATION));
                                 skipActivity(ConfirmPersonalInformationActivity.class, null);
@@ -158,16 +161,21 @@ public class LoginActivity extends BaseActivity {
                             realm.beginTransaction();//开启事务
 
                             User hasUser = realm.where(User.class)
-                                    .equalTo("userName", etAccount.getText().toString())
+                                    .equalTo("account", etAccount.getText().toString())
                                     .findFirst();
                             if (hasUser == null) {
                                 //创建一个数据库对象
                                 User user = realm.createObject(User.class, UUID.randomUUID().toString());
-                                user.setUserName(etAccount.getText().toString())
+                                user.setAccount(etAccount.getText().toString())
+                                        .setUserName(etAccount.getText().toString())
                                         .setPassword(etYzm.getText().toString())
                                         .setAge("22")
                                         .setGender("男")
+                                        .setDomicile_address("四川省成都市武侯区科园三路火炬时代B区")
+                                        .setPhotoUrl("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=328179059,3377101288&fm=27&gp=0.jpg")
+                                        .setBirthday("1990-12-21")
                                         .setFraction("88")
+                                        .setNoticeDescribe("您好，您已成功预约2019-01-12日 14：00-15：00的号，请提前做好准备。")
                                         .setCardId("10001");
                                 ToastUtils.showShort("注册成功！");
                             } else {

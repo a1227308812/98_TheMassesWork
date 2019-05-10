@@ -19,11 +19,14 @@ import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
+import com.westar.been.User;
 import com.westar.library_base.banner.GlideImageLoader;
+import com.westar.library_base.base.BaseApplication;
 import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.SingleBaseAdapter;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.view.TopBarLayout;
@@ -34,6 +37,9 @@ import com.westar.masseswork_98.mvp.presenter.OfficeHallPresenter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -71,6 +77,9 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
     LinearLayout llWyzx;
     @BindView(R.id.recyc_rdsx)
     RecyclerView recycRdsx;
+
+    View leftView;
+    View rightView;
 
     OfficeHallPresenter presenter;
 
@@ -154,18 +163,25 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
         //不显示默认返回键
         toolbarLayout.showBackView(false);
 
-        View leftView = LayoutInflater.from(mContext).inflate(R.layout.top_left_view, null);
+        leftView = LayoutInflater.from(mContext).inflate(R.layout.top_left_view, null);
         RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
         leftView.setLayoutParams(leftParams);
 
-        View rightView = LayoutInflater.from(mContext).inflate(R.layout.top_right_view, null);
+        rightView = LayoutInflater.from(mContext).inflate(R.layout.top_right_view, null);
         RelativeLayout.LayoutParams rightParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         rightParams.addRule(RelativeLayout.CENTER_VERTICAL);
         rightView.setLayoutParams(rightParams);
 
         toolbarLayout.addLeftView(leftView, R.id.top_left_address);
         toolbarLayout.addRightView(rightView, R.id.top_right_menu);
+
+        initUserInfo();
+
+        initListener();
+    }
+
+    private void initListener() {
         addSubscribe(RxView.clicks(leftView)
                 .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
@@ -250,16 +266,14 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
 
     @Override
     protected void initData() {
-        presenter.getBaseData(new HttpRequest());
+//        presenter.getBaseData(new HttpRequest());
         presenter.getBannerData(new HttpRequest());
         presenter.getHotData(new HttpRequest());
     }
 
     @Override
     public void getBaseData(AccountInfo data) {
-        tvMessage.setText(data.getNoticeDescribe());
-        tvUserName.setText(data.getUserName());
-        GlideApp.with(mContext).load(data.getHead_portrait()).into(qivUserPhoto);
+
     }
 
     @Override
@@ -285,6 +299,21 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
     public void onStop() {
         super.onStop();
         homeBanner.stopAutoPlay();
+    }
+
+
+    private void initUserInfo() {
+        User user = BaseApplication.getIns().getUser();
+        tvMessage.setText(user.getNoticeDescribe());
+        tvUserName.setText(user.getUserName());
+        GlideApp.with(mContext).load(user.getPhotoUrl()).into(qivUserPhoto);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onUpdataUserInfoStickyEventBusCome(UpdataUserInfoEvent event) {
+        if (event != null) {
+            initUserInfo();
+        }
     }
 
     /**

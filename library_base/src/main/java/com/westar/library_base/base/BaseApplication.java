@@ -12,6 +12,7 @@ import com.coorchice.library.ImageEngine;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.tencent.smtt.sdk.QbSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+import com.westar.been.User;
 import com.westar.library_base.supertext.GlideEngine;
 import com.westar.library_base.utils.AppUtil;
 import com.westar.library_base.utils.Density;
@@ -38,6 +39,16 @@ public class BaseApplication extends Application {
 
     public static BaseApplication getIns() {
         return sInstance;
+    }
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

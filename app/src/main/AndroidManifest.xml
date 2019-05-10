@@ -51,7 +51,9 @@
         <activity android:name=".ui.activity.AboutMeActivity" />
         <activity android:name=".ui.activity.FeedBackActivity" />
         <activity android:name=".ui.activity.CardListActivity" />
-        <activity android:name=".ui.activity.CardDetailActivity"></activity>
+        <activity android:name=".ui.activity.CardDetailActivity" />
+        <activity android:name=".ui.activity.AddressManagerActivity" />
+        <activity android:name=".ui.activity.AddAddressActivity"></activity>
     </application>
 
 </manifest>

@@ -24,6 +24,8 @@ public interface ArouterPath {
     String APP_CARD_LIST_ACTIVITY = "/app/CardListActivity";
     //我的证照详情页面
     String APP_CARD_DETAIL_ACTIVITY = "/app/CardDetailActivity";
+    //地址管理页面
+    String APP_ADDRESS_MANAGER_ACTIVITY = "/app/AddressManagerActivity";
 
 
     /*更新模块*/

@@ -16,14 +16,21 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.uuzuche.lib_zxing.DisplayUtil;
 import com.westar.Config;
+import com.westar.been.User;
+import com.westar.library_base.base.BaseApplication;
 import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.common.Common;
+import com.westar.library_base.eventbus.BaseEvent;
+import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.been.MeCardInfo;
 import com.westar.masseswork_98.ui.custom.CustomHorizontalScrollView;
 import com.westar.masseswork_98.ui.custom.CustomTabSegment;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.concurrent.TimeUnit;
 
@@ -168,7 +175,7 @@ public class NormalSolideFragment extends BaseFragment {
         addSubscribe(RxView.clicks(stvUserPhoto).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ToastUtils.showShort("跳转个人信息界面");
+                ARouter.getInstance().build(ArouterPath.APP_PERSONAL_INFORMATION_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(stvDjrz).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
@@ -180,20 +187,19 @@ public class NormalSolideFragment extends BaseFragment {
         addSubscribe(RxView.clicks(llMoreCard).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ToastUtils.showShort("跳转更多证照界面");
                 ARouter.getInstance().build(ArouterPath.APP_CARD_LIST_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llWdsc).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-//                ARouter.getInstance().build(ArouterPath.APP_CARD_LIST_ACTIVITY).navigation();
+                ToastUtils.showShort("跳转我的收藏界面");
             }
         }));
         addSubscribe(RxView.clicks(llDzgl).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ToastUtils.showShort("跳转地址管理界面");
+                ARouter.getInstance().build(ArouterPath.APP_ADDRESS_MANAGER_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llWdkd).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
@@ -266,7 +272,14 @@ public class NormalSolideFragment extends BaseFragment {
                         getResources().getDimensionPixelSize(R.dimen.dp_3));
             }
         }
-        stvUserPhoto.setUrlImage("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=328179059,3377101288&fm=27&gp=0.jpg");
+        initUserInfo();
+
+    }
+
+    private void initUserInfo() {
+        User user = BaseApplication.getIns().getUser();
+        stvUserPhoto.setUrlImage(user.getPhotoUrl());
+        tvUserName.setText(user.getUserName());
     }
 
     @Override
@@ -307,6 +320,13 @@ public class NormalSolideFragment extends BaseFragment {
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
         return this.bindToLifecycle();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onUpdataUserInfoStickyEventBusCome(UpdataUserInfoEvent event) {
+        if (event != null) {
+            initUserInfo();
+        }
     }
 
 }

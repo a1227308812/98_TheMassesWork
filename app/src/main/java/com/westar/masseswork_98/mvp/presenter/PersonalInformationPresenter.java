@@ -1,6 +1,7 @@
 package com.westar.masseswork_98.mvp.presenter;
 
 import com.westar.been.LocationNode;
+import com.westar.been.User;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.http.ObserverManager;
 import com.westar.library_base.http.been.HttpRequest;
@@ -69,18 +70,18 @@ public class PersonalInformationPresenter extends BasePresenter<PersonalInformat
     public void updatePersonalInfo(HttpRequest httpRequest) {
         if (!isViewAttached()) return;
         mView.showLoading();
-        module.getServiceAddressData(httpRequest)
+        module.updatePersonalInfo(httpRequest)
                 .compose(mView.bindViewToLifecycle())
                 .compose(RxScheduler.rxObservableSchedulerHelper())
-                .subscribe(new ObserverManager<String>(mView.getBaseContext()) {
+                .subscribe(new ObserverManager<User>(mView.getBaseContext()) {
 
                     @Override
-                    protected void onOther(HttpResult<String> httpResult) {
+                    protected void onOther(HttpResult<User> httpResult) {
 
                     }
 
                     @Override
-                    protected void onSuccess(String data) {
+                    protected void onSuccess(User data) {
                         mView.updatePersonalResult(data);
                     }
 

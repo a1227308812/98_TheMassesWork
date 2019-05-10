@@ -19,11 +19,14 @@ import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.uuzuche.lib_zxing.DisplayUtil;
 import com.westar.Config;
+import com.westar.been.User;
+import com.westar.library_base.base.BaseApplication;
 import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.SingleBaseAdapter;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.eventbus.EventBusUtlis;
+import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.view.TopBarLayout;
@@ -32,6 +35,9 @@ import com.westar.masseswork_98.been.NewsInformationTabs;
 import com.westar.library_base.eventbus.OpenSolideFragmentEvent;
 import com.westar.masseswork_98.mvp.contract.NewsInformationContract;
 import com.westar.masseswork_98.mvp.presenter.NewsInformationPresenter;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +66,8 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
 
     List<NewsInformationTabs> tabs;
 
+    QMUIRadiusImageView leftView;
+
     @Override
     public void showLoading() {
 
@@ -86,7 +94,7 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
             tabs.clear();
             tabs.addAll((List<NewsInformationTabs>) data);
             //初始化资讯信息
-            initInformation(tabs);
+            initInformationMenu(tabs);
         }
     }
 
@@ -122,16 +130,18 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
 
     @Override
     protected void initView() {
-        RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(DisplayUtil.dip2px(mContext, 30), DisplayUtil.dip2px(mContext, 30));
-        leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
-        QMUIRadiusImageView leftView = new QMUIRadiusImageView(mContext);
-        leftView.setCircle(true);
-        leftView.setLayoutParams(leftParams);
-        GlideApp.with(mContext).load("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=328179059,3377101288&fm=27&gp=0.jpg").into(leftView);
-
         //不显示默认返回键
         toolbarLayout.showBackView(false)
                 .setTitle("咨询");
+
+        RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(DisplayUtil.dip2px(mContext, 30), DisplayUtil.dip2px(mContext, 30));
+        leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        leftView = new QMUIRadiusImageView(mContext);
+        leftView.setCircle(true);
+        leftView.setLayoutParams(leftParams);
+
+        initUserInfo();
+
         View rightView = LayoutInflater.from(mContext).inflate(R.layout.top_right_view, null);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         params.addRule(RelativeLayout.CENTER_VERTICAL);
@@ -220,7 +230,12 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
         presenter.getTabData(new HttpRequest());
     }
 
-    private void initInformation(final List<NewsInformationTabs> tabs) {
+    /**
+     * 初始化资讯信息tabs
+     *
+     * @param tabs
+     */
+    private void initInformationMenu(final List<NewsInformationTabs> tabs) {
 
         for (NewsInformationTabs newsInformationTabs : tabs) {
             QMUITabSegment.Tab tab1 = new QMUITabSegment.Tab(newsInformationTabs.getTabTitle());
@@ -232,6 +247,18 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
         tabZx.notifyDataChanged();//刷新
 
         tabZx.selectTab(0);
+    }
+
+    private void initUserInfo() {
+        User user = BaseApplication.getIns().getUser();
+        GlideApp.with(mContext).load(user.getPhotoUrl()).into(leftView);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onUpdataUserInfoStickyEventBusCome(UpdataUserInfoEvent event) {
+        if (event != null) {
+            initUserInfo();
+        }
     }
 
 

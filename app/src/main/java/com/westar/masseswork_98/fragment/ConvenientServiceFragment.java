@@ -12,14 +12,20 @@ import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.uuzuche.lib_zxing.DisplayUtil;
 import com.westar.Config;
+import com.westar.been.User;
+import com.westar.library_base.base.BaseApplication;
 import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.eventbus.EventBusUtlis;
+import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.library_base.view.TopBarLayout;
 import com.westar.masseswork_98.R;
 import com.westar.library_base.eventbus.OpenSolideFragmentEvent;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +39,9 @@ import io.reactivex.functions.Consumer;
 public class ConvenientServiceFragment extends BaseFragment {
     @BindView(R.id.toolbar_layout)
     TopBarLayout toolbarLayout;
+
+
+    QMUIRadiusImageView leftView;
 
     @Override
     public void showLoading() {
@@ -96,10 +105,11 @@ public class ConvenientServiceFragment extends BaseFragment {
                 .setTitle("便民服务");
         RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(DisplayUtil.dip2px(mContext, 30), DisplayUtil.dip2px(mContext, 30));
         leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
-        QMUIRadiusImageView leftView = new QMUIRadiusImageView(mContext);
+        leftView = new QMUIRadiusImageView(mContext);
         leftView.setCircle(true);
         leftView.setLayoutParams(leftParams);
-        GlideApp.with(mContext).load("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=328179059,3377101288&fm=27&gp=0.jpg").into(leftView);
+
+        initUserInfo();
 
         View rightView = LayoutInflater.from(mContext).inflate(R.layout.top_right_view, null);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -143,5 +153,17 @@ public class ConvenientServiceFragment extends BaseFragment {
     @Override
     protected void initData() {
 
+    }
+
+    private void initUserInfo() {
+        User user = BaseApplication.getIns().getUser();
+        GlideApp.with(mContext).load(user.getPhotoUrl()).into(leftView);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onUpdataUserInfoStickyEventBusCome(UpdataUserInfoEvent event) {
+        if (event != null) {
+            initUserInfo();
+        }
     }
 }

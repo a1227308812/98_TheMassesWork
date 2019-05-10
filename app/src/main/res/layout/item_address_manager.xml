@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_18"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="TextView"
+        android:textColor="#303545"
+        android:textSize="@dimen/text_18"
+        app:layout_constraintEnd_toStartOf="@+id/iv_state"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_address_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_90"
+        android:layout_marginTop="@dimen/dp_15"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="TextView"
+        android:textColor="#828899"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_15"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="TextView"
+        android:textColor="#828899"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_address_detail"
+        app:layout_constraintStart_toStartOf="@+id/tv_address_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_address_detail" />
+
+    <ImageView
+        android:id="@+id/iv_edit"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginEnd="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/icon_dzxz_bj" />
+
+    <ImageView
+        android:id="@+id/iv_state"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_dzxz_mr_focuse" />
+</android.support.constraint.ConstraintLayout>
