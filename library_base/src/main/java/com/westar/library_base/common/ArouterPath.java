@@ -6,26 +6,24 @@ package com.westar.library_base.common;
  */
 public interface ArouterPath {
     /*app主工程模块 测试Activity*/
-    String APP_MAIN_ACTIVITY = "/app/MainActivity";
+    String APP_MAIN_ACTIVITY = "/home/MainActivity";
     //首页
-    String APP_HOMEGROUP_ACTIVITY = "/app/HomeGroupActivity";
+    String APP_HOMEGROUP_ACTIVITY = "/home/HomeGroupActivity";
 
     //地址选择页面
-    String APP_CHOICE_ADDRESS_ACTIVITY = "/app/ChoiceAddressActivity";
+    String APP_CHOICE_ADDRESS_ACTIVITY = "/home/ChoiceAddressActivity";
     //搜索页面
-    String APP_SEARCH_ACTIVITY = "/app/SearchActivity";
+    String APP_SEARCH_ACTIVITY = "/home/SearchActivity";
     //设置页面
-    String APP_SETTING_ACTIVITY = "/app/SettingActivity";
+    String APP_SETTING_ACTIVITY = "/home/SettingActivity";
     //个人信息页面
-    String APP_PERSONAL_INFORMATION_ACTIVITY = "/app/personalInformationActivity";
-    //个人信息页面
-    String APP_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY = "/app/FaceRecognitionAuthenticationActivity";
+    String APP_PERSONAL_INFORMATION_ACTIVITY = "/home/personalInformationActivity";
     //我的证照列表页面
-    String APP_CARD_LIST_ACTIVITY = "/app/CardListActivity";
+    String APP_CARD_LIST_ACTIVITY = "/home/CardListActivity";
     //我的证照详情页面
-    String APP_CARD_DETAIL_ACTIVITY = "/app/CardDetailActivity";
+    String APP_CARD_DETAIL_ACTIVITY = "/home/CardDetailActivity";
     //地址管理页面
-    String APP_ADDRESS_MANAGER_ACTIVITY = "/app/AddressManagerActivity";
+    String APP_ADDRESS_MANAGER_ACTIVITY = "/home/AddressManagerActivity";
 
 
     /*更新模块*/
@@ -39,8 +37,11 @@ public interface ArouterPath {
     String MODULE_LOGIN_LOGIN_ACTIVITY = "/module_login/LoginActivity";
     //指纹验证界面
     String MODULE_LOGIN_FINGERPRINT_VERIFICATION_ACTIVITY = "/module_login/FingerprintVerificationActivity";
+    //人脸识别页面
+    String MODULE_LOGIN_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY = "/module_login/FaceRecognitionAuthenticationActivity";
     //身份证信息上传界面
     String MODULE_LOGIN_IDCARD_CONFIRM_ACTIVITY = "/module_login/IDCardConfirmActivity";
+
 
 
     /*我要预约模块*/

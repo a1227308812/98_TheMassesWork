@@ -132,13 +132,6 @@ public class CardDetailActivity extends ToolbarActivity {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        return this.bindToLifecycle();
     }
 }

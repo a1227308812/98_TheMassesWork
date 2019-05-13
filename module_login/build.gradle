@@ -77,6 +77,5 @@ dependencies {
     //集成基础库
     implementation project(':library_base')
     implementation project(':library_fingerprint')
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

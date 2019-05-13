@@ -22,7 +22,6 @@ import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.common.Common;
-import com.westar.library_base.eventbus.BaseEvent;
 import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.been.MeCardInfo;
@@ -181,7 +180,7 @@ public class NormalSolideFragment extends BaseFragment {
         addSubscribe(RxView.clicks(stvDjrz).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.APP_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY).navigation();
+                ARouter.getInstance().build(ArouterPath.MODULE_LOGIN_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llMoreCard).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
