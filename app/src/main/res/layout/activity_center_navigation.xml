@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activity.CenterNavigationActivity">
+
+    <com.amap.api.maps2d.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/bottom_sheet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="506dp"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="@dimen/dp_65"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <LinearLayout
+            android:id="@+id/ll_center_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="88dp">
+
+            <Button
+                android:id="@+id/btn_center_list"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:background="@drawable/bg_button_style"
+                android:drawableLeft="@drawable/icon_zxdh_lb"
+                android:drawablePadding="@dimen/dp_15"
+                android:elevation="@dimen/dp_2"
+                android:gravity="center_vertical"
+                android:paddingLeft="37dp"
+                android:text="政务中心列表"
+                android:textColor="#4a6dd5"
+                android:textSize="@dimen/sp_16" />
+
+            <Button
+                android:id="@+id/btn_orientation"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:layout_marginLeft="@dimen/dp_23"
+                android:background="@drawable/bg_button_style"
+                android:drawableBottom="@drawable/icon_zxdh_dw"
+                android:elevation="@dimen/dp_2"
+                android:padding="@dimen/dp_16" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_below="@id/ll_center_list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            android:background="@drawable/bg_title_center_list"
+            android:elevation="@dimen/dp_2"
+            android:gravity="center"
+            android:text="政务中心列表"
+            android:textColor="#303545"
+            android:textSize="@dimen/sp_14" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_center_list_place"
+            android:layout_below="@id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            android:background="@drawable/bg_content_center_list"
+            android:elevation="@dimen/dp_2">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

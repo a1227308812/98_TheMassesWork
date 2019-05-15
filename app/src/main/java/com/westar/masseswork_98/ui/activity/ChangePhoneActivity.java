@@ -14,11 +14,10 @@ import com.westar.Config;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.http.been.HttpRequest;
-import com.westar.library_base.http.been.HttpResult;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.mvp.contract.ChangePhoneContract;
 import com.westar.masseswork_98.mvp.presenter.ChangePhonePresenter;
-import com.westar.masseswork_98.ui.custom.CustomTextInputEditText;
+import com.westar.library_base.view.CustomTextInputEditText;
 
 import java.util.concurrent.TimeUnit;
 

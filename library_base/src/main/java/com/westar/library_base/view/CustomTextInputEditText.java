@@ -1,4 +1,4 @@
-package com.westar.masseswork_98.ui.custom;
+package com.westar.library_base.view;
 
 import android.content.Context;
 import android.support.design.widget.TextInputEditText;

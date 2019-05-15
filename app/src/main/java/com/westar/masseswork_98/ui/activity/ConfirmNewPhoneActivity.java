@@ -16,7 +16,7 @@ import com.westar.library_base.http.been.HttpRequest;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.mvp.contract.ConfirmNewPhoneContract;
 import com.westar.masseswork_98.mvp.presenter.ConfirmNewPhonePresenter;
-import com.westar.masseswork_98.ui.custom.CustomTextInputEditText;
+import com.westar.library_base.view.CustomTextInputEditText;
 
 import java.util.concurrent.TimeUnit;
 

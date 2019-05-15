@@ -46,7 +46,7 @@
         </LinearLayout>
 
 
-        <com.westar.masseswork_98.ui.custom.CustomTabSegment
+        <com.westar.library_base.view.HorizonScrollSelfTabSegment
             android:id="@+id/me_child_menu"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_80"
@@ -97,7 +97,7 @@
                     app:stv_state_drawable_rotate="180" />
             </LinearLayout>
 
-            <com.westar.masseswork_98.ui.custom.CustomHorizontalScrollView
+            <com.westar.masseswork_98.ui.custom.MeCardHorizontalScrollView
                 android:id="@+id/recyc_me_cards"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

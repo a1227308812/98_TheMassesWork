@@ -34,6 +34,7 @@ import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.been.AccountInfo;
 import com.westar.masseswork_98.mvp.contract.OfficeHallContract;
 import com.westar.masseswork_98.mvp.presenter.OfficeHallPresenter;
+import com.westar.masseswork_98.ui.activity.MoreFunctionActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -187,9 +188,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("选择地址");
                         ARouter.getInstance().build(ArouterPath.APP_CHOICE_ADDRESS_ACTIVITY).navigation();
-
                     }
                 }));
         addSubscribe(RxView.clicks(rightView.findViewById(R.id.iv_more))
@@ -197,7 +196,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("跳转更多功能");
+                        ARouter.getInstance().build(ArouterPath.APP_MOREFUNCTION_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(rightView.findViewById(R.id.iv_search))
@@ -205,7 +204,6 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("跳转搜索");
                         ARouter.getInstance().build(ArouterPath.APP_SEARCH_ACTIVITY).navigation();
                     }
                 }));
@@ -216,7 +214,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("我要办事");
+                        ARouter.getInstance().build(ArouterPath.MODULE_WOYAOBANSHI_ITEM_LIST_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(rootView.findViewById(R.id.ll_wycx))

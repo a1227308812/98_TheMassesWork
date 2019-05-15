@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="smartrefresh_layout" type="id"/>
-    <item name="recyc_list" type="id"/>
+    <item name="smartrefresh_layout" type="id" />
+    <item name="recyc_list" type="id" />
 
-    <item name="search_view" type="id"/>
-    <item name="toolbar_layout" type="id"/>
+    <item name="search_view" type="id" />
+    <item name="toolbar_layout" type="id" />
 
 
     <!--item分割线-->
-    <item name="last_line" type="id"/>
+    <item name="item_footer_space" type="id" />
+    <item name="item_header_space" type="id" />
 
-    <item name="top_left_address" type="id"/>
-    <item name="top_right_menu" type="id"/>
+    <item name="top_left_address" type="id" />
+    <item name="top_right_menu" type="id" />
     <!--左上角返回键-->
-    <item name="left_top_back" type="id"/>
+    <item name="left_top_back" type="id" />
 
 
 </resources>

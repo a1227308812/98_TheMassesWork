@@ -4,15 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemListActivity">
+    android:background="#ffffff"
+    tools:context=".ui.ItemListActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <com.qmuiteam.qmui.widget.QMUITabSegment
+        android:id="@+id/qmui_tab"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:qmui_tab_icon_position="bottom"
+        app:qmui_tab_mode="fixed" />
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_30"
+        android:background="@color/qmui_config_color_red"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qmui_tab">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/iv_search"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+
+    <com.westar.library_base.view.CustomHorizonTabLayout
+        android:id="@+id/qmui_filter_tab"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="#dadfe6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_search"
+        app:qmui_tab_icon_position="bottom"
+        app:qmui_tab_mode="fixed" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@id/smartrefresh_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qmui_filter_tab">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/recyc_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eff3f7" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 
 </android.support.constraint.ConstraintLayout>

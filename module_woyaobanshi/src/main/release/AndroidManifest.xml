@@ -4,7 +4,7 @@
     package="com.westar.module_woyaobanshi">
 
     <application> <!-- 忽略导入的module的主题和icon -->
-        <activity android:name=".ItemListActivity" />
+        <activity android:name=".ui.ItemListActivity" />
     </application>
 
 </manifest>

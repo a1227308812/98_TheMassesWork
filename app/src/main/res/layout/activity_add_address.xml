@@ -90,7 +90,7 @@
             android:paddingTop="@dimen/dp_10"
             app:hintTextAppearance="@style/EditText_hintTextAppearance">
 
-            <com.westar.masseswork_98.ui.custom.CustomTextInputEditText
+            <com.westar.library_base.view.CustomTextInputEditText
                 android:id="@+id/et_szdq"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

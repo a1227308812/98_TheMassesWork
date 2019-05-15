@@ -61,21 +61,21 @@ public abstract class SingleBaseAdapter<T> extends CustomBaseAdapter<T> {
     @Override
     protected void convert(BaseViewHolder helper, T item) {
         super.convert(helper, item);
-//        int position = helper.getAdapterPosition();
+        int position = helper.getAdapterPosition();
 
-//        if (helper.getView(R.id.item_header_space) != null) {
-//            if (position == 0) {
-//                helper.getView(R.id.item_header_space).setVisibility(View.VISIBLE);
-//            }else {
-//                helper.getView(R.id.item_header_space).setVisibility(View.GONE);
-//            }
-//        }
+        if (helper.getView(R.id.item_header_space) != null) {
+            if (position == 0) {
+                helper.setVisible(R.id.item_header_space,true);
+            } else {
+                helper.setVisible(R.id.item_header_space,false);
+            }
+        }
 
 //        if (helper.getView(R.id.item_footer_space) != null) {
 //            if (position == getData().size() - 1) {
-//                helper.getView(R.id.item_footer_space).setVisibility(View.VISIBLE);
-//            }else {
-//                helper.getView(R.id.item_footer_space).setVisibility(View.GONE);
+//                helper.setVisible(R.id.item_footer_space,true);
+//            } else {
+//                helper.setVisible(R.id.item_footer_space,false);
 //            }
 //        }
     }

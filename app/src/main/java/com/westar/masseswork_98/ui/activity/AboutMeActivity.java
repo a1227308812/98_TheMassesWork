@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
@@ -18,6 +19,7 @@ import com.westar.Config;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.callback.IPermissionsCallBack;
+import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.utils.AppUtil;
 import com.westar.masseswork_98.R;
@@ -34,6 +36,7 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/5/7 20:45.
  * 描述：
  */
+@Route(path = ArouterPath.APP_ABOUTME_ACTIVITY)
 public class AboutMeActivity extends ToolbarActivity implements AboutMeContract.View {
 
     @BindView(R.id.stv_logo)

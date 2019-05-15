@@ -3,7 +3,6 @@ package com.westar.masseswork_98.ui.custom;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.support.v4.widget.ImageViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -29,23 +28,23 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/4/30 15:33.
  * 描述：自定义横向滑动控件，滑动事件自己处理
  */
-public class CustomHorizontalScrollView extends HorizontalScrollView {
+public class MeCardHorizontalScrollView extends HorizontalScrollView {
     Context mContext;
     ItemViewClick itemViewClick;
 
-    public CustomHorizontalScrollView(Context context) {
+    public MeCardHorizontalScrollView(Context context) {
         super(context);
         mContext = context;
         initView();
     }
 
-    public CustomHorizontalScrollView(Context context, AttributeSet attrs) {
+    public MeCardHorizontalScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         initView();
     }
 
-    public CustomHorizontalScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MeCardHorizontalScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         initView();
@@ -86,7 +85,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
      * @param itemViewClick
      * @return
      */
-    public CustomHorizontalScrollView addChildView(final MeCardInfo meCardInfo, final ItemViewClick itemViewClick) {
+    public MeCardHorizontalScrollView addChildView(final MeCardInfo meCardInfo, final ItemViewClick itemViewClick) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.layout_me_card_menu, null, false);
         AppCompatImageView cardtypeView = view.findViewById(R.id.iv_card_type);
         TextView titleView = view.findViewById(R.id.tv_titlle);
@@ -131,7 +130,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
      * @param meCardInfo
      * @return
      */
-    public CustomHorizontalScrollView addChildView(final MeCardInfo meCardInfo) {
+    public MeCardHorizontalScrollView addChildView(final MeCardInfo meCardInfo) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.layout_me_card_menu, null, false);
         AppCompatImageView cardtypeView = view.findViewById(R.id.iv_card_type);
         TextView titleView = view.findViewById(R.id.tv_titlle);
@@ -180,7 +179,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
         return itemViewClick;
     }
 
-    public CustomHorizontalScrollView setItemViewClick(ItemViewClick itemViewClick) {
+    public MeCardHorizontalScrollView setItemViewClick(ItemViewClick itemViewClick) {
         this.itemViewClick = itemViewClick;
         return this;
     }

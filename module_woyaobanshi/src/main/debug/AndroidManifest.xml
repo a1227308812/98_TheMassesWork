@@ -13,7 +13,7 @@
         android:theme="@style/LibBaseTheme"
         tools:replace="Android:icon, android:theme"> <!-- 忽略导入的module的主题和icon -->
 
-        <activity android:name=".ItemListActivity">
+        <activity android:name=".ui.ItemListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

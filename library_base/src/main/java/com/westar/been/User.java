@@ -16,47 +16,47 @@ public class User extends RealmObject implements Serializable {
     /**
      * 身份id
      */
-    private String cardId;
+    private String cardId = "";
     /**
      * 姓名
      */
-    private String userName;
+    private String userName = "";
     /**
      * 账号
      */
-    private String account;
+    private String account = "";
     /**
      * 密码
      */
-    private String password;
+    private String password = "";
     /**
      * 年龄
      */
-    private String age;
+    private String age = "";
     /**
      * 性别
      */
-    private String gender;
+    private String gender = "";
     /**
      * 分数
      */
-    private String fraction;
+    private String fraction = "";
     /**
      * 头像地址
      */
-    private String photoUrl;
+    private String photoUrl = "";
     /**
      * 户籍地址
      */
-    private String domicile_address;
+    private String domicile_address = "";
     /**
      * 生日
      */
-    private String birthday;
+    private String birthday = "";
     /**
      * 事项提醒通知
      */
-    private String noticeDescribe;
+    private String noticeDescribe = "";
 
     public String getPassword() {
         return password;

@@ -129,7 +129,9 @@ ext {
             "FileDownloader"               : 'com.liulishuo.filedownloader:library:1.7.5',
             "autosize"                     : 'me.jessyan:autosize:1.1.2',
             //流式布局
-            "FlexBox"                      : 'com.google.android:flexbox:1.0.0'
+            "FlexBox"                      : 'com.google.android:flexbox:1.0.0',
+            //星级
+            "materialratingbar"                      : 'me.zhanghai.android.materialratingbar:library:1.3.2'
 
     ]
 }

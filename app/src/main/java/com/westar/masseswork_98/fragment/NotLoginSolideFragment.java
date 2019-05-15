@@ -64,6 +64,14 @@ public class NotLoginSolideFragment extends BaseFragment {
                         ARouter.getInstance().build(ArouterPath.MODULE_LOGIN_LOGIN_ACTIVITY).navigation();
                     }
                 }));
+        addSubscribe(RxView.clicks(llGywm)
+                .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        ARouter.getInstance().build(ArouterPath.APP_ABOUTME_ACTIVITY).navigation();
+                    }
+                }));
     }
 
     @Override

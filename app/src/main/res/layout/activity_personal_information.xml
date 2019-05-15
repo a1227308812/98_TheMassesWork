@@ -68,7 +68,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.westar.masseswork_98.ui.custom.CustomTextInputEditText
+                <com.westar.library_base.view.CustomTextInputEditText
                     android:id="@+id/et_nickname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.westar.masseswork_98.ui.custom.CustomTextInputEditText
+                <com.westar.library_base.view.CustomTextInputEditText
                     android:id="@+id/et_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
 
                 >
 
-                <com.westar.masseswork_98.ui.custom.CustomTextInputEditText
+                <com.westar.library_base.view.CustomTextInputEditText
                     android:id="@+id/et_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -237,7 +237,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.westar.masseswork_98.ui.custom.CustomTextInputEditText
+                <com.westar.library_base.view.CustomTextInputEditText
                     android:id="@+id/et_birthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

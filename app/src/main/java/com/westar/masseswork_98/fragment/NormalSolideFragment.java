@@ -25,8 +25,8 @@ import com.westar.library_base.common.Common;
 import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.been.MeCardInfo;
-import com.westar.masseswork_98.ui.custom.CustomHorizontalScrollView;
-import com.westar.masseswork_98.ui.custom.CustomTabSegment;
+import com.westar.masseswork_98.ui.custom.MeCardHorizontalScrollView;
+import com.westar.library_base.view.HorizonScrollSelfTabSegment;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -48,11 +48,11 @@ public class NormalSolideFragment extends BaseFragment {
     @BindView(R.id.tv_user_name)
     TextView tvUserName;
     @BindView(R.id.me_child_menu)
-    CustomTabSegment meChildMenu;
+    HorizonScrollSelfTabSegment meChildMenu;
     @BindView(R.id.ll_more_card)
     LinearLayout llMoreCard;
     @BindView(R.id.recyc_me_cards)
-    CustomHorizontalScrollView recycMeCards;
+    MeCardHorizontalScrollView recycMeCards;
     @BindView(R.id.ll_wdsc)
     LinearLayout llWdsc;
     @BindView(R.id.ll_dzgl)
@@ -123,7 +123,7 @@ public class NormalSolideFragment extends BaseFragment {
                         .setDescrible2("违章缴费，到期换证")
                         .setAuthenticationStatus("已认证")
                         .setTypeUrl("http://img3.imgtn.bdimg.com/it/u=1736640203,2595736136&fm=26&gp=0.jpg"))
-                .setItemViewClick(new CustomHorizontalScrollView.ItemViewClick() {
+                .setItemViewClick(new MeCardHorizontalScrollView.ItemViewClick() {
                     @Override
                     public void onClick(MeCardInfo meCardInfo) {
                         ARouter.getInstance().build(ArouterPath.APP_CARD_DETAIL_ACTIVITY).withSerializable("MeCardInfo", meCardInfo).navigation();

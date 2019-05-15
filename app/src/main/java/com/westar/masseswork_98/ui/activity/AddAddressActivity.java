@@ -1,7 +1,6 @@
 package com.westar.masseswork_98.ui.activity;
 
 
-import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckedTextView;
@@ -14,7 +13,6 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.jakewharton.rxbinding2.widget.RxCheckedTextView;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.been.LocationNode;
@@ -22,17 +20,15 @@ import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.masseswork_98.R;
-import com.westar.masseswork_98.been.AddressInfo;
 import com.westar.masseswork_98.mvp.contract.AddAddressContract;
 import com.westar.masseswork_98.mvp.presenter.AddAddressPresenter;
-import com.westar.masseswork_98.ui.custom.CustomTextInputEditText;
+import com.westar.library_base.view.CustomTextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 
 /**
