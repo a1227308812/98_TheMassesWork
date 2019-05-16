@@ -15,7 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_9"
-        android:text="成都办"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="武侯区"
         android:textColor="#333333"
         android:textSize="@dimen/text_21" />
 </LinearLayout>

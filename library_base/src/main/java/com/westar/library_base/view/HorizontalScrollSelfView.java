@@ -157,6 +157,11 @@ public class HorizontalScrollSelfView extends HorizontalScrollView {
         return this;
     }
 
+    public HorizontalScrollSelfView clearChildAllView() {
+        layoutGroup.removeAllViews();
+        return this;
+    }
+
     public interface ChildClick {
         void clickPosition(String position);
     }

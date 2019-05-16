@@ -40,6 +40,7 @@ import com.qmuiteam.qmui.util.QMUILangHelper;
 import com.qmuiteam.qmui.util.QMUIResHelper;
 import com.qmuiteam.qmui.widget.QMUIItemViewsAdapter;
 import com.qmuiteam.qmui.widget.QMUITabSegment;
+import com.westar.masseswork_98.library_base.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -348,12 +349,13 @@ public class CustomHorizonTabLayout extends HorizontalScrollView {
     /**
      * 设置 indicator 为自定义的 Drawable(默认跟随 Tab 的 selectedColor)
      */
-    public void setIndicatorDrawable(Drawable indicatorDrawable) {
+    public CustomHorizonTabLayout setIndicatorDrawable(Drawable indicatorDrawable) {
         mIndicatorDrawable = indicatorDrawable;
         if (indicatorDrawable != null) {
             mIndicatorHeight = indicatorDrawable.getIntrinsicHeight();
         }
         mContentLayout.invalidate();
+        return this;
     }
 
     /**
@@ -383,12 +385,12 @@ public class CustomHorizonTabLayout extends HorizontalScrollView {
      *
      * @param hasIndicator 是否需要显示 indicator
      */
-    public void setHasIndicator(boolean hasIndicator) {
+    public CustomHorizonTabLayout setHasIndicator(boolean hasIndicator) {
         if (mHasIndicator != hasIndicator) {
             mHasIndicator = hasIndicator;
             invalidate();
         }
-
+        return this;
     }
 
     public int getMode() {
@@ -502,22 +504,25 @@ public class CustomHorizonTabLayout extends HorizontalScrollView {
     /**
      * 设置 Tab 正常状态下的颜色
      */
-    public void setDefaultNormalColor(@ColorInt int defaultNormalColor) {
+    public CustomHorizonTabLayout setDefaultNormalColor(@ColorInt int defaultNormalColor) {
         mDefaultNormalColor = defaultNormalColor;
+        return this;
     }
 
     /**
      * 设置 Tab 选中状态下的颜色
      */
-    public void setDefaultSelectedColor(@ColorInt int defaultSelectedColor) {
+    public CustomHorizonTabLayout setDefaultSelectedColor(@ColorInt int defaultSelectedColor) {
         mDefaultSelectedColor = defaultSelectedColor;
+        return this;
     }
 
     /**
      * @param defaultTabIconPosition
      */
-    public void setDefaultTabIconPosition(@IconPosition int defaultTabIconPosition) {
+    public CustomHorizonTabLayout setDefaultTabIconPosition(@IconPosition int defaultTabIconPosition) {
         mDefaultTabIconPosition = defaultTabIconPosition;
+        return this;
     }
 
 
@@ -1338,7 +1343,7 @@ public class CustomHorizonTabLayout extends HorizontalScrollView {
             }
 
             if (-1 != childViewBackgroundRes) {
-                tv.setBackgroundResource(childViewBackgroundRes);
+                tv.setBackground(ContextCompat.getDrawable(getContext(), childViewBackgroundRes));
             }
             if (textPadding != null) {
                 tv.setPadding(textMargin[0], textMargin[1], textMargin[2], textMargin[3]);
