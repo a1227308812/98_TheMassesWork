@@ -2,36 +2,28 @@ package com.westar.module_woyaochaxun;
 
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.LifecycleTransformer;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
-import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.callback.IPermissionsCallBack;
 import com.westar.library_base.common.ArouterPath;
 
-import butterknife.BindView;
-
 /**
  * Created by ZWP on 2019/4/8 13:10.
  * 描述：办件查询界面
  */
-@Route(path = ArouterPath.MODULE_WOYAOCHAXUN_BAN_JIAN_CHA_XUN_ACTIVITY)
+@Route(path = ArouterPath.BANJIANCHAXUN_ACTIVITY)
 public class BanJianChaXunActivity extends ToolbarActivity {
 
 

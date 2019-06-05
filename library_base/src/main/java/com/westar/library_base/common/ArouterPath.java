@@ -5,69 +5,104 @@ package com.westar.library_base.common;
  * 描述：路由地址
  */
 public interface ArouterPath {
+    /**
+     * 主模块分组
+     */
+    String GROUP_HOME = "home";
+    /**
+     * 更新模块分组
+     */
+    String GROUP_UPDATE = "update";
+    /**
+     * 登录模块分组
+     */
+    String GROUP_LOGIN = "login";
+    /**
+     * 我要预约模块分组
+     */
+    String GROUP_WOYAOYUYUE = "woyaoyuyue";
+    /**
+     * 我要办事模块分组
+     */
+    String GROUP_WOYAOBANSHI = "woyaobanshi";
+    /**
+     * 我要查询模块分组
+     */
+    String GROUP_WOYAOCHAXUN = "woyaochaxun";
+    /**
+     * 我要咨询模块分组
+     */
+    String GROUP_WOYAOZIXUN = "woyaozixun";
+    /**
+     * 我要投诉模块分组
+     */
+    String GROUP_WOYAOTOUSU = "woyaotousu";
+
+
+
+
     /*app主工程模块 测试Activity*/
-    String APP_MAIN_ACTIVITY = "/home/MainActivity";
+    String MAIN_ACTIVITY = "/" + GROUP_HOME + "/MainActivity";
     //首页
-    String APP_HOMEGROUP_ACTIVITY = "/home/HomeGroupActivity";
+    String HOMEGROUP_ACTIVITY = "/" + GROUP_HOME + "/HomeGroupActivity";
 
     //地址选择页面
-    String APP_CHOICE_ADDRESS_ACTIVITY = "/home/ChoiceAddressActivity";
+    String CHOICE_ADDRESS_ACTIVITY = "/" + GROUP_HOME + "/ChoiceAddressActivity";
     //搜索页面
-    String APP_SEARCH_ACTIVITY = "/home/SearchActivity";
+    String SEARCH_ACTIVITY = "/" + GROUP_HOME + "/SearchActivity";
     //设置页面
-    String APP_SETTING_ACTIVITY = "/home/SettingActivity";
+    String SETTING_ACTIVITY = "/" + GROUP_HOME + "/SettingActivity";
     //个人信息页面
-    String APP_PERSONAL_INFORMATION_ACTIVITY = "/home/personalInformationActivity";
+    String PERSONAL_INFORMATION_ACTIVITY = "/" + GROUP_HOME + "/personalInformationActivity";
     //我的证照列表页面
-    String APP_CARD_LIST_ACTIVITY = "/home/CardListActivity";
+    String CARD_LIST_ACTIVITY = "/" + GROUP_HOME + "/CardListActivity";
     //我的证照详情页面
-    String APP_CARD_DETAIL_ACTIVITY = "/home/CardDetailActivity";
+    String CARD_DETAIL_ACTIVITY = "/" + GROUP_HOME + "/CardDetailActivity";
     //地址管理页面
-    String APP_ADDRESS_MANAGER_ACTIVITY = "/home/AddressManagerActivity";
+    String ADDRESS_MANAGER_ACTIVITY = "/" + GROUP_HOME + "/AddressManagerActivity";
     //关于我们页面
-    String APP_ABOUTME_ACTIVITY = "/home/AboutMeActivity";
+    String ABOUTME_ACTIVITY = "/" + GROUP_HOME + "/AboutMeActivity";
     //更多功能页面
-    String APP_MOREFUNCTION_ACTIVITY = "/home/MoreFunctionActivity";
+    String MOREFUNCTION_ACTIVITY = "/" + GROUP_HOME + "/MoreFunctionActivity";
 
 
     /*更新模块*/
-    String MODULE_UPDATE_UPDATE_ACTIVITY = "/module_update/UpdateActivity";
+    String UPDATE_ACTIVITY = "/" + GROUP_UPDATE + "/UpdateActivity";
 
 
     /*登录模块*/
     //欢迎界面
-    String MODULE_LOGIN_WELCOME_ACTIVITY = "/module_login/WelcomeActivity";
+    String WELCOME_ACTIVITY = "/" + GROUP_LOGIN + "/WelcomeActivity";
     //登录界面
-    String MODULE_LOGIN_LOGIN_ACTIVITY = "/module_login/LoginActivity";
+    String LOGIN_ACTIVITY = "/" + GROUP_LOGIN + "/LoginActivity";
     //指纹验证界面
-    String MODULE_LOGIN_FINGERPRINT_VERIFICATION_ACTIVITY = "/module_login/FingerprintVerificationActivity";
+    String FINGERPRINT_VERIFICATION_ACTIVITY = "/" + GROUP_LOGIN + "/FingerprintVerificationActivity";
     //人脸识别页面
-    String MODULE_LOGIN_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY = "/module_login/FaceRecognitionAuthenticationActivity";
+    String FACE_RECOGNITION_AUTHENTICATION_ACTIVITY = "/" + GROUP_LOGIN + "/FaceRecognitionAuthenticationActivity";
     //身份证信息上传界面
-    String MODULE_LOGIN_IDCARD_CONFIRM_ACTIVITY = "/module_login/IDCardConfirmActivity";
-
+    String IDCARD_CONFIRM_ACTIVITY = "/" + GROUP_LOGIN + "/IDCardConfirmActivity";
 
 
     /*我要预约模块*/
-    String MODULE_WOYAOYUYUE_SELECT_DEP_ACTIVITY = "/module_woyaoyuyue/SelectDepActivity";
+    String SELECT_DEP_ACTIVITY = "/" + GROUP_WOYAOYUYUE + "/SelectDepActivity";
 
 
     /*我要办事模块*/
-    String MODULE_WOYAOBANSHI_ITEM_LIST_ACTIVITY = "/module_woyaobanshi/ItemListActivity";
+    String ITEM_LIST_ACTIVITY = "/" + GROUP_WOYAOBANSHI + "/ItemListActivity";
 
 
     /*我要查询模块*/
-    String MODULE_WOYAOCHAXUN_BAN_JIAN_CHA_XUN_ACTIVITY = "/module_woyaochaxun/BanJianChaXunActivity";
+    String BANJIANCHAXUN_ACTIVITY = "/" + GROUP_WOYAOCHAXUN + "/BanJianChaXunActivity";
 
 
     /*我要咨询模块*/
-    String MODULE_WOYAOZIXUN_ZHI_NENG_WEN_DA_ACTIVITY = "/module_woyaozixun/ZhiNengWenDaActivity";
+    String ZHINENGWENDA_ACTIVITY = "/" + GROUP_WOYAOZIXUN + "/ZhiNengWenDaActivity";
 
 
     /*我要投诉模块*/
-    String MODULE_WOYAOTOUSU_WO_YAO_TOU_SU_ACTIVITY = "/module_woyaotousu/WoYaoTouSuActivity";
+    String WOYAOTOUSU_ACTIVITY = "/" + GROUP_WOYAOTOUSU + "/WoYaoTouSuActivity";
 
 
     /*我的模块*/
-    String MODULE_ME_ME_ACTIVITY = "/module_me/MeActivity";
+    String ME_ACTIVITY = "/module_me/MeActivity";
 }

@@ -31,7 +31,6 @@ import com.westar.library_base.base.BaseApplication;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
-import com.westar.library_base.eventbus.BaseEvent;
 import com.westar.library_base.eventbus.EventBusUtlis;
 import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.library_base.http.been.HttpRequest;
@@ -51,7 +50,7 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/5/5 11:27.
  * 描述：个人信息页面
  */
-@Route(path = ArouterPath.APP_PERSONAL_INFORMATION_ACTIVITY)
+@Route(path = ArouterPath.PERSONAL_INFORMATION_ACTIVITY)
 public class PersonalInformationActivity extends ToolbarActivity implements PersonalInformationContract.View {
 
     @BindView(R.id.iv_change_photo)

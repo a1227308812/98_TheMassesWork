@@ -1,7 +1,6 @@
 package com.westar.module_login.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -33,16 +32,13 @@ import com.westar.module_login.R;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 
 /**
  * Created by ZWP on 2019/4/16 11:04.
  * 描述：身份证认证界面
  */
-@Route(path = ArouterPath.MODULE_LOGIN_IDCARD_CONFIRM_ACTIVITY)
+@Route(path = ArouterPath.IDCARD_CONFIRM_ACTIVITY)
 public class IDCardConfirmActivity extends ToolbarActivity {
 
     TextView titleInfo;
@@ -197,7 +193,7 @@ public class IDCardConfirmActivity extends ToolbarActivity {
                             ToastUtils.showShort("检测通过！");
                             EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.HAD_AUTHENTICATION));
                             //跳转主页
-                            ARouter.getInstance().build(ArouterPath.APP_HOMEGROUP_ACTIVITY).navigation();
+                            ARouter.getInstance().build(ArouterPath.HOMEGROUP_ACTIVITY).navigation();
                         }
                     }, 1500);
                 } else {

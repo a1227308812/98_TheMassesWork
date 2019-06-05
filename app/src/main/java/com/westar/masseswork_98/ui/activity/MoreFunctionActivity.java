@@ -8,8 +8,6 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.google.auto.common.MoreElements;
-import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
@@ -26,7 +24,7 @@ import java.util.List;
  * 更多功能界面
  * Created by lgy on 19/4/28
  */
-@Route(path = ArouterPath.APP_MOREFUNCTION_ACTIVITY)
+@Route(path = ArouterPath.MOREFUNCTION_ACTIVITY)
 public class MoreFunctionActivity extends ToolbarActivity {
 
     private RecyclerView rvTotalFunc; //所有功能列表

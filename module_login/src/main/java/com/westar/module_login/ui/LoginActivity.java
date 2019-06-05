@@ -17,7 +17,6 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -45,7 +44,7 @@ import io.realm.Realm;
  * Created by ZWP on 2019/3/28 17:04.
  * 描述：登录页面
  */
-@Route(path = ArouterPath.MODULE_LOGIN_LOGIN_ACTIVITY)
+@Route(path = ArouterPath.LOGIN_ACTIVITY)
 public class LoginActivity extends BaseActivity {
 
 

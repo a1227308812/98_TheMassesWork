@@ -39,7 +39,7 @@ import butterknife.BindView;
  * Created by ZWP on 2019/4/8 18:30.
  * 描述：首页
  */
-@Route(path = ArouterPath.APP_HOMEGROUP_ACTIVITY)
+@Route(path = ArouterPath.HOMEGROUP_ACTIVITY)
 public class HomeGroupActivity extends BaseActivity {
 
     @BindView(R.id.drawerlayout)

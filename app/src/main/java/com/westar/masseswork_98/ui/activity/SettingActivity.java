@@ -20,7 +20,7 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/5/5 10:58.
  * 描述：设置界面
  */
-@Route(path = ArouterPath.APP_SETTING_ACTIVITY)
+@Route(path = ArouterPath.SETTING_ACTIVITY)
 public class SettingActivity extends ToolbarActivity {
 
     @BindView(R.id.rl_personal_information)

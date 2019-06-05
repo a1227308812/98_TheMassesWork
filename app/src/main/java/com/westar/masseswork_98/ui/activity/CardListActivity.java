@@ -17,7 +17,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.uuzuche.lib_zxing.DisplayUtil;
 import com.westar.library_base.base.BasePresenter;
@@ -39,7 +38,7 @@ import butterknife.BindView;
  * Created by ZWP on 2019/5/9 10:17.
  * 描述：证照列表界面
  */
-@Route(path = ArouterPath.APP_CARD_LIST_ACTIVITY)
+@Route(path = ArouterPath.CARD_LIST_ACTIVITY)
 public class CardListActivity extends ToolbarActivity implements CardListContract.View {
 
 

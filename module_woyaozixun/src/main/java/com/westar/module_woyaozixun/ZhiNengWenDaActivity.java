@@ -3,25 +3,19 @@ package com.westar.module_woyaozixun;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.coorchice.library.SuperTextView;
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
-import com.westar.library_base.eventbus.BaseEvent;
 import com.westar.module_woyaozixun.adapter.MyRecyclerAdapter;
 import com.westar.module_woyaozixun.util.Utils;
 import com.westar.module_woyaozixun.widget.MyPopWindow;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +24,7 @@ import java.util.List;
  * Created by ZWP on 2019/4/8 11:24.
  * 描述：智能问答界面
  */
-@Route(path = ArouterPath.MODULE_WOYAOZIXUN_ZHI_NENG_WEN_DA_ACTIVITY)
+@Route(path = ArouterPath.ZHINENGWENDA_ACTIVITY)
 public class ZhiNengWenDaActivity extends ToolbarActivity {
 
     private MyPopWindow myPopWindow; //自定义弹出菜单

@@ -10,7 +10,7 @@ import com.qmuiteam.qmui.widget.QMUITabSegment;
  * Created by ZWP on 2019/4/30 15:27.
  * 描述：滑动事件自己处理
  */
-public class HorizonScrollSelfTabSegment extends QMUITabSegment {
+public class HorizonScrollSelfTabSegment extends CustomHorizonTabLayout {
     public HorizonScrollSelfTabSegment(Context context) {
         super(context);
     }

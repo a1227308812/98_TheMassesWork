@@ -3,7 +3,6 @@ package com.westar.module_login.ui;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
-import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -70,7 +69,7 @@ public class LoginTypeSelectActivity extends BaseActivity {
                 BaseApplication.getIns().setUser(new User().setUserName("游客"));
 
                 ARouter.getInstance()
-                        .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
+                        .build(ArouterPath.HOMEGROUP_ACTIVITY)
                         .navigation();
 
             }

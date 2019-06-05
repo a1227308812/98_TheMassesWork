@@ -15,14 +15,13 @@ import com.westar.module_login.R;
 
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
 import io.reactivex.functions.Consumer;
 
 /**
  * Created by ZWP on 2019/3/25 16:50.
  * 描述：指纹验证界面
  */
-@Route(path = ArouterPath.MODULE_LOGIN_FINGERPRINT_VERIFICATION_ACTIVITY)
+@Route(path = ArouterPath.FINGERPRINT_VERIFICATION_ACTIVITY)
 public class FingerprintVerificationActivity extends BaseActivity {
 
     AppCompatButton appCompatButton;

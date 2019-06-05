@@ -1,6 +1,5 @@
 package com.westar.masseswork_98.ui.activity;
 
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.widget.LinearLayout;
 
@@ -11,18 +10,15 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
 import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.base.BasePresenter;
-import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.view.TopBarLayout;
 import com.westar.library_base.view.shadowView.ShadowHelper;
 import com.westar.library_base.view.shadowView.ShadowProperty;
 import com.westar.masseswork_98.R;
-import com.westar.module_login.ui.ConfirmPersonalInformationActivity;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -67,7 +63,7 @@ public class RealNameAuthenticationActivity extends BaseActivity {
         addSubscribe(RxView.clicks(authenticateNow).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.MODULE_LOGIN_IDCARD_CONFIRM_ACTIVITY).navigation();
+                ARouter.getInstance().build(ArouterPath.IDCARD_CONFIRM_ACTIVITY).navigation();
             }
         }));
     }

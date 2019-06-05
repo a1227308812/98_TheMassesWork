@@ -1,10 +1,6 @@
 package com.westar.masseswork_98.fragment;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,8 +17,6 @@ import com.westar.masseswork_98.R;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -61,7 +55,7 @@ public class NotLoginSolideFragment extends BaseFragment {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ARouter.getInstance().build(ArouterPath.MODULE_LOGIN_LOGIN_ACTIVITY).navigation();
+                        ARouter.getInstance().build(ArouterPath.LOGIN_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(llGywm)
@@ -69,7 +63,7 @@ public class NotLoginSolideFragment extends BaseFragment {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ARouter.getInstance().build(ArouterPath.APP_ABOUTME_ACTIVITY).navigation();
+                        ARouter.getInstance().build(ArouterPath.ABOUTME_ACTIVITY).navigation();
                     }
                 }));
     }

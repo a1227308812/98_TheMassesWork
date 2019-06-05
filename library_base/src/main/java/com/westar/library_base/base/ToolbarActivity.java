@@ -19,13 +19,14 @@ import com.westar.masseswork_98.library_base.R;
  */
 public abstract class ToolbarActivity extends BaseActivity {
     public TopBarLayout topBarLayout;
+    protected LinearLayout rootEditView;
 
     @Override
     public void setContentView(int layoutResID) {
-        LinearLayout rootView = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_toolbar, null);
-        ViewGroup childView = (ViewGroup) LayoutInflater.from(this).inflate(layoutResID, rootView, false);
-        rootView.addView(childView);
-        topBarLayout = rootView.findViewById(R.id.toolbar_layout);
+        rootEditView = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_toolbar, null);
+        ViewGroup childView = (ViewGroup) LayoutInflater.from(this).inflate(layoutResID, rootEditView, false);
+        rootEditView.addView(childView);
+        topBarLayout = rootEditView.findViewById(R.id.toolbar_layout);
         if (topBarLayout != null) {
             topBarLayout.setTitle(setBarTitle());
             topBarLayout.leftBack.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +51,7 @@ public abstract class ToolbarActivity extends BaseActivity {
 //                }
 //            });
         }
-        super.setContentView(rootView);
+        super.setContentView(rootEditView);
 
     }
 

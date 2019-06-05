@@ -204,7 +204,7 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
                     @Override
                     public void accept(Object o) throws Exception {
                         ToastUtils.showShort("跳转搜索");
-                        ARouter.getInstance().build(ArouterPath.APP_SEARCH_ACTIVITY).navigation();
+                        ARouter.getInstance().build(ArouterPath.SEARCH_ACTIVITY).navigation();
                     }
                 }));
 

@@ -10,7 +10,6 @@ import com.westar.been.TestBeen1;
 import com.westar.been.TestBeen2;
 import com.westar.been.TestBeen3;
 import com.westar.library_base.base.BaseActivity;
-import com.westar.library_base.base.BaseMvpActivity;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.utils.LLog;
@@ -29,7 +28,7 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/4/8 11:50.
  * 描述：更新模块
  */
-@Route(path = ArouterPath.MODULE_UPDATE_UPDATE_ACTIVITY)
+@Route(path = ArouterPath.UPDATE_ACTIVITY)
 public class UpdateActivity extends BaseActivity implements UpdateContract.View {
 
     UpdatePresenter updatePresenter;

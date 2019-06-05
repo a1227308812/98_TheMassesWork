@@ -11,7 +11,7 @@ import com.westar.library_base.common.ArouterPath;
  * Created by ZWP on 2019/4/8 11:27.
  * 描述：我的界面
  */
-@Route(path = ArouterPath.MODULE_ME_ME_ACTIVITY)
+@Route(path = ArouterPath.ME_ACTIVITY)
 public class MeActivity extends ToolbarActivity {
 
     @Override

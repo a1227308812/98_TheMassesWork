@@ -1,31 +1,22 @@
 package com.westar.module_login.ui;
 
-import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
-import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.common.Common;
 import com.westar.library_base.eventbus.EventBusUtlis;
 import com.westar.library_base.eventbus.SolideTypeEvent;
-import com.westar.library_base.view.TopBarLayout;
 import com.westar.module_login.R;
 
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -65,7 +56,7 @@ public class ConfirmPersonalInformationActivity extends ToolbarActivity {
             public void accept(Object o) throws Exception {
                 EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.NOT_AUTHENTICATION));
                 ARouter.getInstance()
-                        .build(ArouterPath.APP_HOMEGROUP_ACTIVITY)
+                        .build(ArouterPath.HOMEGROUP_ACTIVITY)
                         .navigation();
             }
         }));

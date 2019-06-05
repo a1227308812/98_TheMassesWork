@@ -52,7 +52,8 @@ dependencies {
 
     //腾讯tbs
     api files('libs/tbs_sdk_thirdapp_v4.3.0.1020_43633_sharewithdownload_withoutGame_obfs_20190111_105200.jar')
-
+    //通用资源
+    api project(':libray_res')
     //def
     api rootProject.ext.dependencies.junit
     api rootProject.ext.dependencies.runner
@@ -149,7 +150,6 @@ dependencies {
     api rootProject.ext.dependencies.Luban
     api rootProject.ext.dependencies.SuperTextView
     api rootProject.ext.dependencies.zxing
-    api rootProject.ext.dependencies.PictureSelector
 
     //    api rootProject.ext.dependencies.autosize
 
@@ -157,4 +157,5 @@ dependencies {
     api rootProject.ext.dependencies.FileDownloader
     api rootProject.ext.dependencies.FlexBox
     api rootProject.ext.dependencies.materialratingbar
+
 }

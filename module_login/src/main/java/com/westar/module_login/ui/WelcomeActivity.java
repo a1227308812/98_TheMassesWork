@@ -1,7 +1,6 @@
 package com.westar.module_login.ui;
 
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -22,14 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
 import io.reactivex.functions.Consumer;
 
 /**
  * Created by ZWP on 2019/3/25 16:47.
  * 描述：欢迎界面
  */
-@Route(path = ArouterPath.MODULE_LOGIN_WELCOME_ACTIVITY)
+@Route(path = ArouterPath.WELCOME_ACTIVITY)
 public class WelcomeActivity extends BaseActivity {
 
     ViewPager vPWelcome;

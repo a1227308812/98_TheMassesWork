@@ -1,8 +1,5 @@
 package com.westar.module_woyaoyuyue;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BasePresenter;
@@ -13,7 +10,7 @@ import com.westar.library_base.common.ArouterPath;
  * Created by ZWP on 2019/4/8 11:09.
  * 描述：预约部门选择
  */
-@Route(path = ArouterPath.MODULE_WOYAOYUYUE_SELECT_DEP_ACTIVITY)
+@Route(path = ArouterPath.SELECT_DEP_ACTIVITY)
 public class SelectDepActivity extends ToolbarActivity {
 
 

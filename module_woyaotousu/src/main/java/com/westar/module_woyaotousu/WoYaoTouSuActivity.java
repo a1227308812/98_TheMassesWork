@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.IBinder;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
@@ -34,7 +32,7 @@ import java.util.List;
  * Created by ZWP on 2019/4/8 11:20.
  * 描述：我要投诉发起界面
  */
-@Route(path = ArouterPath.MODULE_WOYAOTOUSU_WO_YAO_TOU_SU_ACTIVITY)
+@Route(path = ArouterPath.WOYAOTOUSU_ACTIVITY)
 public class WoYaoTouSuActivity extends ToolbarActivity {
 
     private InputTextMsgDialog inputTextMsgDialog; //自定义dialog

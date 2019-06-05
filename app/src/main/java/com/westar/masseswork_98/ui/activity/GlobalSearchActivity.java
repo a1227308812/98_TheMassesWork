@@ -51,7 +51,7 @@ import io.realm.Sort;
  * 描述：全局搜索页面
  * todo 历史搜索的最大行数没法控制，很烦，空了在去想
  */
-@Route(path = ArouterPath.APP_SEARCH_ACTIVITY)
+@Route(path = ArouterPath.SEARCH_ACTIVITY)
 public class GlobalSearchActivity extends BaseActivity implements GlobalSearchContract.View {
 
     @BindView(R.id.ivBack)

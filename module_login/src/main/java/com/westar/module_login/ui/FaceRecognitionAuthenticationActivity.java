@@ -20,7 +20,7 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/5/8 15:52.
  * 描述：人脸识别认证
  */
-@Route(path = ArouterPath.MODULE_LOGIN_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY)
+@Route(path = ArouterPath.FACE_RECOGNITION_AUTHENTICATION_ACTIVITY)
 public class FaceRecognitionAuthenticationActivity extends ToolbarActivity {
 
 

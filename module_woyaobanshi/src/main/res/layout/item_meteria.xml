@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_meteria_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/divider_meteria_item"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/divider_height"
+        android:layout_marginStart="@dimen/dp_15"
+        android:background="@color/color_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_meteria_item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_15"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text=""
+        android:textColor="#828899"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toStartOf="@+id/iv_meteria_arrow"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_meteria_item" />
+
+
+    <TextView
+        android:id="@+id/tv_default_table"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bg_meteria_table_select"
+        android:gravity="center"
+        android:text="空表"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_meteria_item_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_meteria_item_title" />
+
+    <TextView
+        android:id="@+id/tv_example_table"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginStart="@dimen/dp_10"
+        android:background="@drawable/bg_meteria_table_select"
+        android:gravity="center"
+        android:text="样表"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintBottom_toBottomOf="@id/tv_default_table"
+        app:layout_constraintStart_toEndOf="@id/tv_default_table"
+        app:layout_constraintTop_toTopOf="@id/tv_default_table" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_meteria_arrow"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginEnd="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_wd_next_hs" />
+</android.support.constraint.ConstraintLayout>

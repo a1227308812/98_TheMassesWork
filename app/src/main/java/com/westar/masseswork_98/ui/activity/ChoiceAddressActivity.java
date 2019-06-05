@@ -3,11 +3,16 @@ package com.westar.masseswork_98.ui.activity;
 import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.westar.Config;
 import com.westar.been.AddressNode;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.eventbus.AddressSelectEvent;
+import com.westar.library_base.eventbus.BaseEvent;
+import com.westar.library_base.eventbus.EventBusUtlis;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.interfaces.IChoiceAddressClick;
@@ -16,7 +21,9 @@ import com.westar.masseswork_98.mvp.presenter.ChoiceAddressPresenter;
 import com.westar.masseswork_98.ui.custom.AddressLayout;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.functions.Consumer;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -25,7 +32,7 @@ import io.realm.RealmResults;
  * 描述：选择地址界面
  * todo 地址的动态添加逻辑还没有处理好，空了在去想
  */
-@Route(path = ArouterPath.APP_CHOICE_ADDRESS_ACTIVITY)
+@Route(path = ArouterPath.CHOICE_ADDRESS_ACTIVITY)
 public class ChoiceAddressActivity extends ToolbarActivity implements ChoiceAddressContract.View {
     private LinearLayout llChoiceAddress;
 //    List<AddressNode> lv1List;
@@ -47,6 +54,17 @@ public class ChoiceAddressActivity extends ToolbarActivity implements ChoiceAddr
 
     @Override
     protected void initView() {
+        topBarLayout.addRightTextButton("确定", R.id.right_top_menu);
+        addSubscribe(RxView.clicks(topBarLayout.findViewById(R.id.right_top_menu))
+                .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        EventBusUtlis.sendStickyEvent(new AddressSelectEvent<String>().setData("南充市"));
+                        finish();
+                    }
+                }));
+
 //        lv1Layout = new AddressLayout(this);
 //        llChoiceAddress.addView(lv1Layout);
 //        lv1Layout.loadView("成都市", lv1List, new IChoiceAddressClick() {

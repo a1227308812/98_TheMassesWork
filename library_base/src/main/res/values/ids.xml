@@ -16,6 +16,8 @@
     <item name="top_right_menu" type="id" />
     <!--左上角返回键-->
     <item name="left_top_back" type="id" />
+    <!--右上角确认键-->
+    <item name="right_top_menu" type="id" />
 
 
 </resources>

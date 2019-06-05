@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/dp_15">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题这是标题"
+        android:textColor="#303545"
+        android:textSize="@dimen/text_14"
+        android:typeface="sans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.westar.library_base.view.HorizontalScrollSelfView
+        android:id="@+id/hsv_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:minHeight="@dimen/dp_24"
+        app:layout_constraintEnd_toEndOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+        android:id="@+id/ratingbar"
+        style="@style/Widget.MaterialRatingBar.RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:isIndicator="true"
+        android:maxHeight="@dimen/dp_28"
+        android:maxWidth="@dimen/dp_120"
+        android:numStars="5"
+        android:stepSize="0.5"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        app:layout_constraintTop_toBottomOf="@id/hsv_type"
+        app:mrb_fillBackgroundStars="false"
+        app:mrb_progressBackgroundTint="#b6c2d2"
+        app:mrb_progressTint="#f1af2f"
+        app:mrb_secondaryProgressTint="#b6c2d2" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_address"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_15"
+        android:src="@drawable/icon_top_dz_ls"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        app:layout_constraintTop_toBottomOf="@id/ratingbar" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:text="四川省成都市武侯区科园三路火炬时代B区702成都西辰软件有限公司"
+        android:textColor="#4a6dd5"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintBottom_toBottomOf="@id/iv_address"
+        app:layout_constraintEnd_toEndOf="@id/tv_title"
+        app:layout_constraintStart_toEndOf="@id/iv_address"
+        app:layout_constraintTop_toTopOf="@id/iv_address" />
+</android.support.constraint.ConstraintLayout>

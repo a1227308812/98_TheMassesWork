@@ -1,4 +1,4 @@
-package com.westar.module_woyaobanshi.ui;
+package com.westar.module_woyaobanshi.ui.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.Group;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -23,11 +23,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
@@ -42,20 +41,23 @@ import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.SingleBaseAdapter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.eventbus.AddressSelectEvent;
 import com.westar.library_base.http.been.HttpRequest;
 import com.westar.library_base.view.CustomHorizonTabLayout;
+import com.westar.library_base.view.HorizonScrollSelfTabSegment;
 import com.westar.library_base.view.HorizontalScrollSelfView;
 import com.westar.module_woyaobanshi.R;
 import com.westar.module_woyaobanshi.mvp.contract.ItemListContract;
 import com.westar.module_woyaobanshi.mvp.presenter.ItemListPresenter;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
@@ -63,13 +65,13 @@ import me.zhanghai.android.materialratingbar.MaterialRatingBar;
  * Created by ZWP on 2019/4/8 11:02.
  * 描述：我要办事的事项列表
  */
-@Route(path = ArouterPath.MODULE_WOYAOBANSHI_ITEM_LIST_ACTIVITY)
+@Route(path = ArouterPath.ITEM_LIST_ACTIVITY)
 public class ItemListActivity extends ToolbarActivity implements ItemListContract.View {
 
-    CustomHorizonTabLayout qmuiTab;
+    HorizonScrollSelfTabSegment qmuiTab;
     AppCompatEditText etSearch;
     AppCompatImageView ivSearch;
-    CustomHorizonTabLayout qmuiFilterTab;
+    HorizonScrollSelfTabSegment qmuiFilterTab;
     RecyclerView recycList;
     SmartRefreshLayout smartrefreshLayout;
     TextView tvFilterTabSelected;
@@ -83,6 +85,9 @@ public class ItemListActivity extends ToolbarActivity implements ItemListContrac
     int pageNum;
 
     View rightView;
+    AppCompatTextView addressView;
+
+    int REQ_CHOICE_ADDRESS = 1001;
 
 
     @Override
@@ -108,10 +113,11 @@ public class ItemListActivity extends ToolbarActivity implements ItemListContrac
     protected void initView() {
 
         rightView = LayoutInflater.from(mContext).inflate(R.layout.top_left_view, null);
+        addressView = rightView.findViewById(R.id.address);
         RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
         rightView.setLayoutParams(leftParams);
-
+        topBarLayout.setPadding(0, 0, DisplayUtil.dip2px(mContext, 15), 0);
         topBarLayout.addRightView(rightView, R.id.top_right_menu);
 
         //动态加载子menu
@@ -127,6 +133,7 @@ public class ItemListActivity extends ToolbarActivity implements ItemListContrac
                 .setHasIndicator(true)
                 .setIndicatorDrawable(new ColorDrawable(Color.parseColor("#4a6dd5")))
                 .setIndicatorWidthAdjustContent(true);
+        qmuiTab.selectTab(0);
         qmuiTab.notifyDataChanged();
 
         //动态加载子menu
@@ -184,25 +191,15 @@ public class ItemListActivity extends ToolbarActivity implements ItemListContrac
         addSubscribe(RxView.clicks(rightView).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.APP_CHOICE_ADDRESS_ACTIVITY).navigation(mContext, new NavCallback() {
-                    @Override
-                    public void onArrival(Postcard postcard) {
-                        ToastUtils.showShort("选择地址返回");
-                    }
-                });
+                ARouter.getInstance().build(ArouterPath.CHOICE_ADDRESS_ACTIVITY).navigation();
             }
         }));
 
         addSubscribe(RxView.clicks(reset).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.APP_CHOICE_ADDRESS_ACTIVITY).navigation(mContext, new NavCallback() {
-                    @Override
-                    public void onArrival(Postcard postcard) {
-                        groupFilterSeleted.setVisibility(View.GONE);
-                        qmuiFilterTab.setVisibility(View.VISIBLE);
-                    }
-                });
+                groupFilterSeleted.setVisibility(View.GONE);
+                qmuiFilterTab.setVisibility(View.VISIBLE);
             }
         }));
 
@@ -214,6 +211,13 @@ public class ItemListActivity extends ToolbarActivity implements ItemListContrac
                 presenter.getItemList(new HttpRequest());
             }
         }));
+
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                skipActivity(ItemDetailActivity.class, null);
+            }
+        });
 
         qmuiTab.setOnTabClickListener(new CustomHorizonTabLayout.OnTabClickListener() {
             @Override
@@ -234,10 +238,10 @@ public class ItemListActivity extends ToolbarActivity implements ItemListContrac
         qmuiFilterTab.setOnTabClickListener(new CustomHorizonTabLayout.OnTabClickListener() {
             @Override
             public void onTabClick(int index) {
+                QMUIDialog.MenuDialogBuilder builder;
                 switch (index) {
                     case 0:
-                        ToastUtils.showShort("弹出部门选择弹窗");
-                        QMUIDialog.MenuDialogBuilder builder = new QMUIDialog.MenuDialogBuilder(mContext);
+                        builder = new QMUIDialog.MenuDialogBuilder(mContext);
                         for (int i = 0; i < 10; i++) {
                             final String item = "部门" + i;
                             builder.addItem(item, new DialogInterface.OnClickListener() {
@@ -248,19 +252,69 @@ public class ItemListActivity extends ToolbarActivity implements ItemListContrac
                                     tvFilterTabSelected.setText(item);
                                     groupFilterSeleted.setVisibility(View.VISIBLE);
                                     qmuiFilterTab.setVisibility(View.GONE);
+                                    //刷新数据
+                                    presenter.getItemList(new HttpRequest());
                                 }
                             });
                         }
                         builder.show();
                         break;
                     case 1:
-                        ToastUtils.showShort("弹出主题选择弹窗");
+                        builder = new QMUIDialog.MenuDialogBuilder(mContext);
+                        for (int i = 0; i < 10; i++) {
+                            final String item = "主题" + i;
+                            builder.addItem(item, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                    // TODO: 2019/5/16 设置筛选栏的筛选条件
+                                    tvFilterTabSelected.setText(item);
+                                    groupFilterSeleted.setVisibility(View.VISIBLE);
+                                    qmuiFilterTab.setVisibility(View.GONE);
+                                    //刷新数据
+                                    presenter.getItemList(new HttpRequest());
+                                }
+                            });
+                        }
+                        builder.show();
                         break;
                     case 2:
-                        ToastUtils.showShort("弹出生命周期选择弹窗");
+                        builder = new QMUIDialog.MenuDialogBuilder(mContext);
+                        for (int i = 0; i < 10; i++) {
+                            final String item = "生命周期" + i;
+                            builder.addItem(item, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                    // TODO: 2019/5/16 设置筛选栏的筛选条件
+                                    tvFilterTabSelected.setText(item);
+                                    groupFilterSeleted.setVisibility(View.VISIBLE);
+                                    qmuiFilterTab.setVisibility(View.GONE);
+                                    //刷新数据
+                                    presenter.getItemList(new HttpRequest());
+                                }
+                            });
+                        }
+                        builder.show();
                         break;
                     case 3:
-                        ToastUtils.showShort("弹出特殊对象选择弹窗");
+                        builder = new QMUIDialog.MenuDialogBuilder(mContext);
+                        for (int i = 0; i < 10; i++) {
+                            final String item = "特殊对象" + i;
+                            builder.addItem(item, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                    // TODO: 2019/5/16 设置筛选栏的筛选条件
+                                    tvFilterTabSelected.setText(item);
+                                    groupFilterSeleted.setVisibility(View.VISIBLE);
+                                    qmuiFilterTab.setVisibility(View.GONE);
+                                    //刷新数据
+                                    presenter.getItemList(new HttpRequest());
+                                }
+                            });
+                        }
+                        builder.show();
                         break;
                 }
             }
@@ -319,6 +373,20 @@ public class ItemListActivity extends ToolbarActivity implements ItemListContrac
     }
 
 
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onAddressSelectEvent(AddressSelectEvent<String> event) {
+        if (event != null) {
+            //修改地区名称，并刷新数据
+            if (null != addressView) {
+                addressView.setText(event.getData());
+            }
+            initData();
+        }
+    }
+
+    /**
+     * 数据适配器
+     */
     class ItemListAdapter extends SingleBaseAdapter<ItemInfo> {
         //用于记录展开状态
         Map<Integer, Boolean> openState;

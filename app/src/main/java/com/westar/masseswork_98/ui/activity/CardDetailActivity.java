@@ -2,7 +2,6 @@ package com.westar.masseswork_98.ui.activity;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
@@ -21,13 +20,12 @@ import com.westar.masseswork_98.been.MeCardInfo;
 import java.io.Serializable;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by ZWP on 2019/5/9 11:25.
  * 描述：证照详情界面
  */
-@Route(path = ArouterPath.APP_CARD_DETAIL_ACTIVITY)
+@Route(path = ArouterPath.CARD_DETAIL_ACTIVITY)
 public class CardDetailActivity extends ToolbarActivity {
 
     @BindView(R.id.iv_qr_code)

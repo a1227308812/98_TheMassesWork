@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -36,7 +35,7 @@ import butterknife.BindView;
  * Created by ZWP on 2019/5/9 15:54.
  * 描述：地址管理界面
  */
-@Route(path = ArouterPath.APP_ADDRESS_MANAGER_ACTIVITY)
+@Route(path = ArouterPath.ADDRESS_MANAGER_ACTIVITY)
 public class AddressManagerActivity extends ToolbarActivity implements AddressManagerContract.View {
 
 

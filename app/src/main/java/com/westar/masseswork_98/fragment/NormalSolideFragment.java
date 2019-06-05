@@ -10,7 +10,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.coorchice.library.SuperTextView;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -84,15 +83,15 @@ public class NormalSolideFragment extends BaseFragment {
     @Override
     protected void initView() {
         //动态加载子menu
-        QMUITabSegment.Tab tab1 = new QMUITabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_wd_sb),
+        HorizonScrollSelfTabSegment.Tab tab1 = new HorizonScrollSelfTabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_wd_sb),
                 ContextCompat.getDrawable(mContext, R.drawable.icon_wd_sb), "我的申办", false);
-        QMUITabSegment.Tab tab2 = new QMUITabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wyyy),
+        HorizonScrollSelfTabSegment.Tab tab2 = new HorizonScrollSelfTabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wyyy),
                 ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wyyy), "我的预约", false);
-        QMUITabSegment.Tab tab3 = new QMUITabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wycx),
+        HorizonScrollSelfTabSegment.Tab tab3 = new HorizonScrollSelfTabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wycx),
                 ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wycx), "我的办件", false);
-        QMUITabSegment.Tab tab4 = new QMUITabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wyts),
+        HorizonScrollSelfTabSegment.Tab tab4 = new HorizonScrollSelfTabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wyts),
                 ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_wyts), "我的投诉", false);
-        QMUITabSegment.Tab tab5 = new QMUITabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_znwd),
+        HorizonScrollSelfTabSegment.Tab tab5 = new HorizonScrollSelfTabSegment.Tab(ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_znwd),
                 ContextCompat.getDrawable(mContext, R.drawable.icon_bsdt_znwd), "我的咨询", false);
 
         //批量初始化tab
@@ -126,7 +125,7 @@ public class NormalSolideFragment extends BaseFragment {
                 .setItemViewClick(new MeCardHorizontalScrollView.ItemViewClick() {
                     @Override
                     public void onClick(MeCardInfo meCardInfo) {
-                        ARouter.getInstance().build(ArouterPath.APP_CARD_DETAIL_ACTIVITY).withSerializable("MeCardInfo", meCardInfo).navigation();
+                        ARouter.getInstance().build(ArouterPath.CARD_DETAIL_ACTIVITY).withSerializable("MeCardInfo", meCardInfo).navigation();
                     }
                 });
 
@@ -138,8 +137,8 @@ public class NormalSolideFragment extends BaseFragment {
      *
      * @param tabs
      */
-    private void initChildTab(QMUITabSegment.Tab... tabs) {
-        for (QMUITabSegment.Tab tab : tabs) {
+    private void initChildTab(HorizonScrollSelfTabSegment.Tab... tabs) {
+        for (HorizonScrollSelfTabSegment.Tab tab : tabs) {
             tab.getNormalIcon().setBounds(0, 0, getResources().getDimensionPixelSize(R.dimen.dp_25), getResources().getDimensionPixelSize(R.dimen.dp_25));
             tab.getSelectedIcon().setBounds(0, 0, getResources().getDimensionPixelSize(R.dimen.dp_25), getResources().getDimensionPixelSize(R.dimen.dp_25));
             tab.setTextColor(ContextCompat.getColor(mContext, R.color.white), ContextCompat.getColor(mContext, R.color.white));
@@ -148,7 +147,7 @@ public class NormalSolideFragment extends BaseFragment {
 
     private void initListener() {
 
-        meChildMenu.setOnTabClickListener(new QMUITabSegment.OnTabClickListener() {
+        meChildMenu.setOnTabClickListener(new HorizonScrollSelfTabSegment.OnTabClickListener() {
             @Override
             public void onTabClick(int index) {
                 switch (index) {
@@ -174,19 +173,19 @@ public class NormalSolideFragment extends BaseFragment {
         addSubscribe(RxView.clicks(stvUserPhoto).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.APP_PERSONAL_INFORMATION_ACTIVITY).navigation();
+                ARouter.getInstance().build(ArouterPath.PERSONAL_INFORMATION_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(stvDjrz).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.MODULE_LOGIN_FACE_RECOGNITION_AUTHENTICATION_ACTIVITY).navigation();
+                ARouter.getInstance().build(ArouterPath.FACE_RECOGNITION_AUTHENTICATION_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llMoreCard).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.APP_CARD_LIST_ACTIVITY).navigation();
+                ARouter.getInstance().build(ArouterPath.CARD_LIST_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llWdsc).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
@@ -198,7 +197,7 @@ public class NormalSolideFragment extends BaseFragment {
         addSubscribe(RxView.clicks(llDzgl).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.APP_ADDRESS_MANAGER_ACTIVITY).navigation();
+                ARouter.getInstance().build(ArouterPath.ADDRESS_MANAGER_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llWdkd).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
@@ -216,7 +215,7 @@ public class NormalSolideFragment extends BaseFragment {
         addSubscribe(RxView.clicks(llGdsz).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
-                ARouter.getInstance().build(ArouterPath.APP_SETTING_ACTIVITY).navigation();
+                ARouter.getInstance().build(ArouterPath.SETTING_ACTIVITY).navigation();
             }
         }));
         addSubscribe(RxView.clicks(llTcdl).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
@@ -232,7 +231,7 @@ public class NormalSolideFragment extends BaseFragment {
 //                                //清空所有activity
 //                                BaseApplication.getIns().finishAllActivity();
                                 // TODO: 2019/4/30 清空当前账号信息，跳转登录页面
-                                ARouter.getInstance().build(ArouterPath.MODULE_LOGIN_LOGIN_ACTIVITY).navigation();
+                                ARouter.getInstance().build(ArouterPath.LOGIN_ACTIVITY).navigation();
                             }
                         })
                         .addAction("取消", new QMUIDialogAction.ActionListener() {

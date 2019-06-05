@@ -342,8 +342,9 @@ public class CustomHorizonTabLayout extends HorizontalScrollView {
         }
     }
 
-    public void setItemSpaceInScrollMode(int itemSpaceInScrollMode) {
+    public CustomHorizonTabLayout setItemSpaceInScrollMode(int itemSpaceInScrollMode) {
         mItemSpaceInScrollMode = itemSpaceInScrollMode;
+        return this;
     }
 
     /**
@@ -351,9 +352,10 @@ public class CustomHorizonTabLayout extends HorizontalScrollView {
      */
     public CustomHorizonTabLayout setIndicatorDrawable(Drawable indicatorDrawable) {
         mIndicatorDrawable = indicatorDrawable;
-        if (indicatorDrawable != null) {
-            mIndicatorHeight = indicatorDrawable.getIntrinsicHeight();
-        }
+        // TODO: 2019/5/17 看不懂源码里面的这个if为什么要把高度置空，所以删除
+//        if (indicatorDrawable != null) {
+//            mIndicatorHeight = indicatorDrawable.getIntrinsicHeight();
+//        }
         mContentLayout.invalidate();
         return this;
     }

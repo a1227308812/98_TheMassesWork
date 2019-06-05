@@ -2,6 +2,7 @@ package com.westar.masseswork_98.fragment;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.SingleBaseAdapter;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.eventbus.AddressSelectEvent;
 import com.westar.library_base.eventbus.UpdataUserInfoEvent;
 import com.westar.library_base.glide.GlideApp;
 import com.westar.library_base.http.been.HttpRequest;
@@ -34,7 +36,6 @@ import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.been.AccountInfo;
 import com.westar.masseswork_98.mvp.contract.OfficeHallContract;
 import com.westar.masseswork_98.mvp.presenter.OfficeHallPresenter;
-import com.westar.masseswork_98.ui.activity.MoreFunctionActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -80,6 +81,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
     RecyclerView recycRdsx;
 
     View leftView;
+    AppCompatTextView addressView;
     View rightView;
 
     OfficeHallPresenter presenter;
@@ -165,6 +167,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
         toolbarLayout.showBackView(false);
 
         leftView = LayoutInflater.from(mContext).inflate(R.layout.top_left_view, null);
+        addressView = leftView.findViewById(R.id.address);
         RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
         leftView.setLayoutParams(leftParams);
@@ -188,7 +191,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ARouter.getInstance().build(ArouterPath.APP_CHOICE_ADDRESS_ACTIVITY).navigation();
+                        ARouter.getInstance().build(ArouterPath.CHOICE_ADDRESS_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(rightView.findViewById(R.id.iv_more))
@@ -196,7 +199,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ARouter.getInstance().build(ArouterPath.APP_MOREFUNCTION_ACTIVITY).navigation();
+                        ARouter.getInstance().build(ArouterPath.MOREFUNCTION_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(rightView.findViewById(R.id.iv_search))
@@ -204,7 +207,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ARouter.getInstance().build(ArouterPath.APP_SEARCH_ACTIVITY).navigation();
+                        ARouter.getInstance().build(ArouterPath.SEARCH_ACTIVITY).navigation();
                     }
                 }));
 
@@ -214,7 +217,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ARouter.getInstance().build(ArouterPath.MODULE_WOYAOBANSHI_ITEM_LIST_ACTIVITY).navigation();
+                        ARouter.getInstance().build(ArouterPath.ITEM_LIST_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(rootView.findViewById(R.id.ll_wycx))
@@ -311,6 +314,17 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
     public void onUpdataUserInfoStickyEventBusCome(UpdataUserInfoEvent event) {
         if (event != null) {
             initUserInfo();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onAddressSelectEvent(AddressSelectEvent<String> event) {
+        if (event != null) {
+            //修改地区名称，并刷新数据
+            if (null != addressView) {
+                addressView.setText(event.getData());
+            }
+            initData();
         }
     }
 

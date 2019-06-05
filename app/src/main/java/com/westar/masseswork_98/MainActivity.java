@@ -39,7 +39,7 @@ import io.reactivex.functions.Consumer;
  * Created by ZWP on 2019/4/8 16:42.
  * 描述：主页
  */
-@Route(path = ArouterPath.APP_MAIN_ACTIVITY)
+@Route(path = ArouterPath.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity {
 
     TextView textView;
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity {
                         TestBeen3 testBeen3 = new TestBeen3("Jack", "22", "男");
 
                         // 2. 跳转并携带参数
-                        ARouter.getInstance().build(ArouterPath.MODULE_UPDATE_UPDATE_ACTIVITY)
+                        ARouter.getInstance().build(ArouterPath.UPDATE_ACTIVITY)
                                 .withLong("ll", 666L)
                                 .withString("ss", "888")
                                 .withInt("aa", 777)
