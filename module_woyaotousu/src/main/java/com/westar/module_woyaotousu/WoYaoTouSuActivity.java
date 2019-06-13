@@ -379,6 +379,6 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
 
     @Override
     public LifecycleTransformer bindViewToLifecycle() {
-        return null;
+        return this.bindToLifecycle();
     }
 }

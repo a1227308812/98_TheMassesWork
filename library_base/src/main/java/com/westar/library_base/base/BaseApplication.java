@@ -1,8 +1,11 @@
 package com.westar.library_base.base;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
@@ -14,15 +17,19 @@ import com.tencent.smtt.sdk.QbSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.westar.been.User;
 import com.westar.library_base.supertext.GlideEngine;
-import com.westar.library_base.utils.AppUtil;
-import com.westar.library_base.utils.Density;
 import com.westar.library_base.utils.LLog;
 import com.westar.library_base.utils.ScreenAdapter;
+import com.westar.masseswork_98.library_base.R;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 /**
@@ -88,6 +95,12 @@ public class BaseApplication extends Application {
 
         // 安装图片引擎
         ImageEngine.install(new GlideEngine(this));
+//        //初始化字体替换控件
+//        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+//                .setDefaultFontPath("fonts/PINGFANG_BOLD.TTF")
+//                .setFontAttrId(R.attr.fontPath)
+//                .build()
+//        );
     }
 
     /**
@@ -109,7 +122,8 @@ public class BaseApplication extends Application {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
+        //替换字体库的context
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
         MultiDex.install(this);
     }
 

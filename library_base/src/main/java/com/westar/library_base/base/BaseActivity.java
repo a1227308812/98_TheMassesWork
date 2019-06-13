@@ -39,6 +39,7 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends BaseMvpActivity {
 
     protected Context mContext;
+    protected View decorvView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,8 +47,8 @@ public abstract class BaseActivity extends BaseMvpActivity {
         //添加Activity到堆栈
         BaseApplication.getIns().addActivity(this);
         //设置显示布局的默认底色
-        View view = getWindow().getDecorView();
-        view.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
+        decorvView = getWindow().getDecorView();
+        decorvView.setBackgroundColor(ContextCompat.getColor(this, R.color.root_bg));
 
         mContext = this;
         setContentView(getLayoutID());

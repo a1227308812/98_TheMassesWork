@@ -33,8 +33,8 @@ public class ShadowHelper {
                         }
                         view.setPadding(newPaddingLift, newPaddingTop, newPaddingRight, newPaddingBottom);
                     }
-                    shadowProperty.setLayoutWidth(view.getWidth());
-                    shadowProperty.setLayoutHitht(view.getHeight());
+                    shadowProperty.setLayoutWidth(view.getMeasuredWidth());
+                    shadowProperty.setLayoutHitht(view.getMeasuredHeight());
                     view.setBackgroundDrawable(new ShadowViewDrawable(shadowProperty));
                 }
             });

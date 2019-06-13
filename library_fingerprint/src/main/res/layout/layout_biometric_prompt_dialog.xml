@@ -52,7 +52,7 @@
                 android:text="@string/biometric_dialog_state_normal"
                 android:textColor="#CDCED0"
                 android:textSize="16dp"
-                android:typeface="normal" />
+                 />
         </LinearLayout>
 
         <LinearLayout

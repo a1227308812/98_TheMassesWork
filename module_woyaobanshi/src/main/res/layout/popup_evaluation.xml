@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_radius">
+
+    <TextView
+        android:id="@id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_45"
+        android:background="@drawable/bg_pop_top_left_right_radius"
+        android:gravity="center"
+        android:text="指南评价"
+        android:textColor="#303545"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider_space"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/color_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_45"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="您认为该事项的指南信息有用吗？"
+        android:textColor="#828899"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_space" />
+
+    <LinearLayout
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_tips">
+
+        <LinearLayout
+            android:id="@+id/rb_useless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_useless"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50"
+                android:background="@color/white"
+                android:padding="@dimen/dp_7"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="没用"
+                android:textColor="#828899"
+                android:textSize="@dimen/text_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rb_improvement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_improvement"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50"
+                android:background="@color/white"
+                android:padding="@dimen/dp_7"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="还需改进"
+                android:textColor="#828899"
+                android:textSize="@dimen/text_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rb_useful"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_useful"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50"
+                android:background="@color/white"
+                android:padding="@dimen/dp_7"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="有用"
+                android:textColor="#828899"
+                android:textSize="@dimen/text_14" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        android:layout_marginEnd="@dimen/dp_25"
+        android:layout_marginStart="@dimen/dp_25"
+        android:layout_marginTop="@dimen/dp_25"
+        android:background="@drawable/bg_radius_stock"
+        android:gravity="top|left"
+        android:hint="我要吐槽："
+        android:inputType="textMultiLine"
+        android:padding="@dimen/dp_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+
+    <View
+        android:id="@+id/divider_space1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/divider_height"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@color/color_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_content" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_45"
+        android:background="@drawable/bg_pop_bottom_left_radius"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#303545"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/divider_space2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_space1" />
+
+    <View
+        android:id="@+id/divider_space2"
+        android:layout_width="@dimen/divider_width"
+        android:layout_height="0dp"
+        android:background="@color/color_divider"
+        app:layout_constraintBottom_toBottomOf="@id/tv_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_cancel" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_pop_bottom_right_radius"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="#4a6dd5"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toBottomOf="@id/tv_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/divider_space2"
+        app:layout_constraintTop_toTopOf="@id/tv_cancel" />
+
+</android.support.constraint.ConstraintLayout>

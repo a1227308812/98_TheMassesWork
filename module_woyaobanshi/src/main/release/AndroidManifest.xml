@@ -5,7 +5,8 @@
 
     <application> <!-- 忽略导入的module的主题和icon -->
         <activity android:name=".ui.activity.ItemListActivity" />
-        <activity android:name=".ui.activity.ItemDetailActivity"></activity>
+        <activity android:name=".ui.activity.ItemDetailActivity" />
+        <activity android:name=".ui.activity.MateriaDetailActivity"></activity>
     </application>
 
 </manifest>

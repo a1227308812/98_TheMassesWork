@@ -3,11 +3,13 @@ package com.westar.masseswork_98.fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
@@ -56,10 +58,12 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
     TopBarLayout toolbarLayout;
     @BindView(R.id.tab_zx)
     QMUITabSegment tabZx;
+    @BindView(R.id.tab_zx_hide)
+    QMUITabSegment tabZxHide;
     @BindView(R.id.recyc_list)
     RecyclerView recycList;
-//    @BindView(R.id.smartrefresh_layout)
-//    SmartRefreshLayout smartrefreshLayout;
+    @BindView(R.id.nsv_news_information)
+    NestedScrollView nsvNewsInformation;
 
     NewsInformationPresenter presenter;
     NewsInformationAdapter adapter;
@@ -133,6 +137,8 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
         //不显示默认返回键
         toolbarLayout.showBackView(false)
                 .setTitle("咨询");
+        //滚动到顶部
+        nsvNewsInformation.fullScroll(ScrollView.FOCUS_UP);
 
         RelativeLayout.LayoutParams leftParams = new RelativeLayout.LayoutParams(DisplayUtil.dip2px(mContext, 30), DisplayUtil.dip2px(mContext, 30));
         leftParams.addRule(RelativeLayout.CENTER_VERTICAL);
@@ -157,6 +163,9 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
         tabZx.addOnTabSelectedListener(new QMUITabSegment.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int index) {
+                if (tabZxHide.getSelectedIndex() != index) {
+                    tabZxHide.selectTab(index);
+                }
                 NewsInformationTabs newsInformationTabs = tabs.get(index);
                 List<String> stringList = new ArrayList<>();
                 for (int i = 0; i < 10; i++) {
@@ -175,6 +184,36 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
 
             @Override
             public void onDoubleTap(int index) {
+            }
+        });
+        tabZxHide.addOnTabSelectedListener(new QMUITabSegment.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(int index) {
+                tabZx.selectTab(index);
+            }
+
+            @Override
+            public void onTabUnselected(int index) {
+            }
+
+            @Override
+            public void onTabReselected(int index) {
+            }
+
+            @Override
+            public void onDoubleTap(int index) {
+            }
+        });
+
+        nsvNewsInformation.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView nestedScrollView, int x, int y, int oldx, int oldy) {
+                //判断滑动到指定位置时的tab的显示与隐藏
+                if (y > tabZx.getY() + 1) {
+                    tabZxHide.setVisibility(View.VISIBLE);
+                } else {
+                    tabZxHide.setVisibility(View.GONE);
+                }
             }
         });
 
@@ -242,11 +281,13 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
             tab1.setTextSize(DisplayUtil.dip2px(mContext, 16));
             tab1.setTextColor(Color.parseColor("#828899"), Color.parseColor("#303545"));
             tabZx.addTab(tab1);
+            tabZxHide.addTab(tab1);
         }
 
         tabZx.notifyDataChanged();//刷新
-
         tabZx.selectTab(0);
+        tabZxHide.notifyDataChanged();//刷新
+        tabZxHide.selectTab(0);
     }
 
     private void initUserInfo() {

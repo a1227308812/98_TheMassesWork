@@ -677,7 +677,7 @@ public class CustomHorizonTabLayout extends HorizontalScrollView {
         mIsInSelectTab = false;
     }
 
-    private void layoutIndicator(Tab model, boolean invalidate) {
+    public void layoutIndicator(Tab model, boolean invalidate) {
         if (model == null) {
             return;
         }

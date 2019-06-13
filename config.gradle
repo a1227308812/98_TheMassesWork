@@ -131,7 +131,9 @@ ext {
             //流式布局
             "FlexBox"                      : 'com.google.android:flexbox:1.0.0',
             //星级
-            "materialratingbar"                      : 'me.zhanghai.android.materialratingbar:library:1.3.2'
+            "materialratingbar"            : 'me.zhanghai.android.materialratingbar:library:1.3.2',
+            //字体全局替换第三方库
+            "calligraphy"            : 'uk.co.chrisjenx:calligraphy:2.3.0'
 
     ]
 }

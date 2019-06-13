@@ -10,5 +10,4 @@
         android:layout_height="wrap_content"
         app:qmui_topbar_height="@dimen/dp_44"
         />
-
 </LinearLayout>

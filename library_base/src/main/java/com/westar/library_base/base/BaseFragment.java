@@ -2,6 +2,7 @@ package com.westar.library_base.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -183,5 +184,45 @@ public abstract class BaseFragment extends BaseMvpFragment {
         super.onDestroyView();
     }
 
+
+    /**
+     * 打开新界面
+     *
+     * @param openClass 新开页面
+     * @param bundle    参数
+     */
+    public void skipActivity(Class<?> openClass, @Nullable Bundle bundle) {
+        Intent intent = new Intent(getActivity(), openClass);
+        if (null != bundle)
+            intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    /**
+     * 打开新界面，等待返回
+     *
+     * @param openClass   新界面
+     * @param requestCode 请求码
+     * @param bundle      参数
+     */
+    public void skipActivityForResult(Class<?> openClass, int requestCode, @Nullable Bundle bundle) {
+        Intent intent = new Intent(getActivity(), openClass);
+        if (null != bundle)
+            intent.putExtras(bundle);
+        startActivityForResult(intent, requestCode);
+    }
+
+    /**
+     * 返回到上个页面
+     *
+     * @param bundle 参数
+     */
+    public void setResultOk(@Nullable Bundle bundle) {
+        Intent intent = new Intent();
+        if (bundle != null) ;
+        intent.putExtras(bundle);
+        getActivity().setResult(Activity.RESULT_OK, intent);
+        getActivity().finish();
+    }
 
 }

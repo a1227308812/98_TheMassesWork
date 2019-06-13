@@ -33,4 +33,5 @@
         <item name="qmui_config_color_gray_4">@color/qmui_config_color_gray_4</item><!--颜色message-->
 
     </style>
+
 </resources>

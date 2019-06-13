@@ -157,5 +157,6 @@ dependencies {
     api rootProject.ext.dependencies.FileDownloader
     api rootProject.ext.dependencies.FlexBox
     api rootProject.ext.dependencies.materialratingbar
+    api rootProject.ext.dependencies.calligraphy
 
 }

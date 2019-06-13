@@ -1,14 +1,11 @@
 package com.westar.module_woyaobanshi.ui.fragment;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.Constraints;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
@@ -21,6 +18,7 @@ import com.westar.library_base.base.BaseFragment;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.SingleBaseAdapter;
 import com.westar.module_woyaobanshi.R;
+import com.westar.module_woyaobanshi.ui.activity.MateriaDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +36,7 @@ public class ApplicationMaterialFragment extends BaseFragment {
     TextView tvMateriaMore;
     Constraints constraintsMeteria;
     MatreriaAdapter adapter;
+    int subIndex = 4;
 
     @Override
     protected void lazyLoadShow(boolean isLoad) {
@@ -61,7 +60,7 @@ public class ApplicationMaterialFragment extends BaseFragment {
         constraintsMeteria = rootView.findViewById(R.id.constraints_meteria);
 
         recycMateria.setLayoutManager(new LinearLayoutManager(mContext));
-        List<MateriaBeen> materiaBeenList = new ArrayList<>();
+        final List<MateriaBeen> materiaBeenList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             MateriaBeen materiaBeen = new MateriaBeen();
             materiaBeen.setTitle("机动车登记、变更、转移、抵押、注销" + i);
@@ -75,13 +74,25 @@ public class ApplicationMaterialFragment extends BaseFragment {
             }
             materiaBeenList.add(materiaBeen);
         }
+        final List<MateriaBeen> subList = new ArrayList<>();
+        final List<MateriaBeen> baseOtherList = new ArrayList<>();
 
-        if (materiaBeenList.size() > 4) {
+        if (materiaBeenList.size() > subIndex) {
+            subList.addAll(materiaBeenList.subList(0, subIndex));
+            baseOtherList.addAll(materiaBeenList.subList(subIndex, materiaBeenList.size()));
             constraintsMeteria.setVisibility(View.VISIBLE);
             addSubscribe(RxView.clicks(tvMateriaMore).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
                 @Override
                 public void accept(Object o) throws Exception {
                     // TODO: 2019/6/4 点击弹窗列表展示更多的申请材料
+                    if (adapter.getData().size() <= 4) {
+                        adapter.addData(baseOtherList);
+                        tvMateriaMore.setText("点击收起");
+                    } else {
+                        adapter.getData().removeAll(baseOtherList);
+                        adapter.notifyItemRangeRemoved(subIndex, materiaBeenList.size());
+                        tvMateriaMore.setText("点击查看更多");
+                    }
                 }
             }));
         } else {
@@ -89,7 +100,7 @@ public class ApplicationMaterialFragment extends BaseFragment {
             tvMateriaMore.setOnClickListener(null);
         }
 
-        adapter = new MatreriaAdapter(mContext, materiaBeenList.subList(0, 4));
+        adapter = new MatreriaAdapter(mContext, subList);
         recycMateria.setAdapter(adapter);
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
@@ -98,14 +109,15 @@ public class ApplicationMaterialFragment extends BaseFragment {
                 int i = view.getId();
                 if (i == R.id.item_meteria_layout) {
                     // TODO: 2019/6/4 跳转材料详情界面
+                    skipActivity(MateriaDetailActivity.class, null);
                     ToastUtils.showShort("" + materiaBeen.getTitle());
                 } else if (i == R.id.tv_default_table) {
                     // TODO: 2019/6/4 预览空表
-                    ToastUtils.showShort("" + materiaBeen.getTitle());
+                    ToastUtils.showShort(materiaBeen.getTitle() + "的预览空表");
                 }
                 if (i == R.id.tv_example_table) {
                     // TODO: 2019/6/4 预览样表
-                    ToastUtils.showShort("" + materiaBeen.getTitle());
+                    ToastUtils.showShort(materiaBeen.getTitle() + "预览样表");
                 }
             }
         });
@@ -239,6 +251,16 @@ public class ApplicationMaterialFragment extends BaseFragment {
         protected void convert(BaseViewHolder helper, MateriaBeen item) {
             super.convert(helper, item);
             helper.setText(R.id.tv_meteria_item_title, item.getTitle());
+            if (item.getHasExampleTable()) {
+                helper.setBackgroundRes(R.id.tv_example_table, R.drawable.bg_meteria_table_select);
+            } else {
+                helper.setBackgroundRes(R.id.tv_example_table, R.drawable.bg_meteria_table_normal);
+            }
+            if (item.getHasDefaultTable()) {
+                helper.setBackgroundRes(R.id.tv_default_table, R.drawable.bg_meteria_table_select);
+            } else {
+                helper.setBackgroundRes(R.id.tv_default_table, R.drawable.bg_meteria_table_normal);
+            }
             helper.addOnClickListener(R.id.item_meteria_layout)
                     .addOnClickListener(R.id.tv_default_table)
                     .addOnClickListener(R.id.tv_example_table);

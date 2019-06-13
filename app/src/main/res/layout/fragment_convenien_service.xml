@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <LinearLayout
+
+    <com.westar.library_base.view.TopBarLayout
+        android:id="@id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/dp_15"
+        android:paddingStart="@dimen/dp_15"
+        app:qmui_topbar_title_color="#333333"
+        app:qmui_topbar_title_text_size="@dimen/text_18" />
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/dp_15"
-        android:paddingRight="@dimen/dp_15">
+        android:fadeScrollbars="true"
+        android:scrollbars="none">
 
-        <com.westar.library_base.view.TopBarLayout
-            android:id="@id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:qmui_topbar_title_color="#333333"
-            app:qmui_topbar_title_text_size="@dimen/text_18" />
-
-        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_180"
-            android:layout_marginTop="@dimen/dp_15"
-            app:qmui_corner_radius="@dimen/dp_10"
-            app:srcCompat="@drawable/png_banner_bmfw" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="功能待定！"
-            android:textSize="@dimen/text_24" />
-    </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_15"
+            android:paddingRight="@dimen/dp_15">
+
+            <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_180"
+                android:layout_marginTop="@dimen/dp_15"
+                app:qmui_corner_radius="@dimen/dp_10"
+                app:srcCompat="@drawable/png_banner_bmfw" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="功能待定！"
+                android:textSize="@dimen/text_24" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

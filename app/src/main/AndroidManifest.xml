@@ -54,6 +54,9 @@
         <activity android:name=".ui.activity.CardDetailActivity" />
         <activity android:name=".ui.activity.AddressManagerActivity" />
         <activity android:name=".ui.activity.AddAddressActivity"></activity>
+        <activity android:name=".ui.activity.ContactInformationActivity" />
+        <activity android:name=".ui.activity.MoreFunctionActivity" />
+        <activity android:name=".ui.activity.CenterNavigationActivity" />
     </application>
 
 </manifest>
