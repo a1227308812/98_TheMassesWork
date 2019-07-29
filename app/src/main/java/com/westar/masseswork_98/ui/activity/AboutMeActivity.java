@@ -170,7 +170,7 @@ public class AboutMeActivity extends ToolbarActivity implements AboutMeContract.
             stvVersion.setText("Version " + AppUtils.getAppVersionName());
             AboutMe aboutMe = (AboutMe) data;
             stvLogo.setUrlImage(aboutMe.getLogoUrl());
-            tvAppName.setText(aboutMe.getAppName());
+            tvAppName.setText("框架演示");
             tvAppDescribe.setText(aboutMe.getAppDescrible());
             tvTelNum.setText(aboutMe.getTelNum());
             tvEmailAddress.setText(aboutMe.getEmail());
