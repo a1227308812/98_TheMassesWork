@@ -5,28 +5,46 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.IBinder;
 import android.text.Editable;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.ToastUtils;
+import com.google.gson.Gson;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.kyleduo.switchbutton.SwitchButton;
 import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.westar.Config;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.http.ObserverManager;
+import com.westar.library_base.http.been.HttpResult;
+import com.westar.library_base.rxjava.RxScheduler;
 import com.westar.module_woyaotousu.databean.MenuItem;
+import com.westar.module_woyaotousu.databean.TousuForm;
 import com.westar.module_woyaotousu.fragment.BottomMenuFragment;
 import com.westar.module_woyaotousu.listener.MenuItemOnClickListener;
 import com.westar.module_woyaotousu.util.DrawableUtil;
+import com.westar.module_woyaotousu.util.Validator;
 import com.westar.module_woyaotousu.widget.InputTextMsgDialog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.functions.Consumer;
+
+import static android.view.View.GONE;
 
 /**
  * Created by ZWP on 2019/4/8 11:20.
@@ -44,15 +62,22 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
     private EditText etvTousuPhone; //phone
     private TextView tvTousuPhoneHint;
     private TextView tvWarningPhone;
-    private LinearLayout llTousuTitle; //title
-    private EditText etvTousuObject; //object
-    private TextView tvTousuObjectHint;
-    private EditText etvTousuUnit; //unit
-    private TextView tvTousuUnitHint;
+    private EditText etvTousuTitle; //title
+    private TextView tvTousuHintTitle;
+    private LinearLayout llTousuUnit;//unit
+    private TextView tvTousuUnit;
+    private TextView tvTousuHintUnit;
+    private SwitchButton sbIsPublic; //ispublic
+    private EditText etvTousuVerifyCode;//verifycode
+    private TextView tvTousuHintVerifyCode;
     private EditText etvTousuContent; //content
     private TextView tvTousuContentHint;
     private TextView tvTousuAttachment; //附件
     public DrawableUtil drawableUtil; //设置"+"点击
+    private static final int TYPE_NUMBER = 0; //限制输入长度的文本类型
+    private static final int TYPE_WORD = 1;
+
+    private String isPublic;
 
     @Override
     protected int getLayoutID() {
@@ -74,13 +99,17 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
         tvTousuPhoneHint = (TextView) findViewById(R.id.tv_tousu_hint_phone);
         tvWarningPhone = (TextView) findViewById(R.id.tv_warning_phone);
         //title
-        llTousuTitle = (LinearLayout) findViewById(R.id.ll_tousu_title);
-        //object
-        etvTousuObject = (EditText) findViewById(R.id.etv_tousu_object);
-        tvTousuObjectHint = (TextView) findViewById(R.id.tv_tousu_hint_object);
+        etvTousuTitle = (EditText) findViewById(R.id.etv_tousu_title);
+        tvTousuHintTitle = (TextView) findViewById(R.id.tv_tousu_hint_title);
         //unit
-        etvTousuUnit = (EditText) findViewById(R.id.etv_tousu_unit);
-        tvTousuUnitHint = (TextView) findViewById(R.id.tv_tousu_hint_unit);
+        llTousuUnit= (LinearLayout) findViewById(R.id.ll_tousu_unit);
+        tvTousuUnit = (TextView) findViewById(R.id.tv_tousu_unit);
+        tvTousuHintUnit = (TextView) findViewById(R.id.tv_tousu_hint_unit);
+        //ispublic
+        sbIsPublic = (SwitchButton) findViewById(R.id.sb_is_public);
+        //verifycode
+        etvTousuVerifyCode = (EditText) findViewById(R.id.etv_tousu_verify_code);
+        tvTousuHintVerifyCode = (TextView) findViewById(R.id.tv_tousu_hint_verify_code);
         //content
         etvTousuContent = (EditText) findViewById(R.id.etv_tousu_content);
         tvTousuContentHint = (TextView) findViewById(R.id.tv_tousu_hint_content);
@@ -94,7 +123,7 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
         //姓名栏
         setEditTextNormal(tvTousuNameHint, etvTousuName ,"*姓名：");
         //身份证栏
-        setEditTextId(tvTousuIdHint, tvWarning, etvTousuId, "*身份证：", 18);
+        setEditTextId(tvTousuIdHint, tvWarning, etvTousuId, "*身份证：", 18, TYPE_WORD);
         //edittext手机栏输入显示“-”
         etvTousuPhone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -142,18 +171,56 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
             }
         });
         //手机栏
-        setEditTextId(tvTousuPhoneHint, tvWarningPhone, etvTousuPhone, "*手机号码：", 13);
-        //投诉主题
-        llTousuTitle.setOnClickListener(new View.OnClickListener() {
+        setEditTextId(tvTousuPhoneHint, tvWarningPhone, etvTousuPhone, "*手机号码：", 13, TYPE_NUMBER);
+        //投诉标题
+        setEditTextNormal(tvTousuHintTitle, etvTousuTitle, "投诉标题：");
+        //投诉单位
+        llTousuUnit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSelectDialogFragment();
+                AppClient.getInstance()
+                        .creatAPI()
+                        .tousuTitleList()
+                        .compose(bindViewToLifecycle())
+                        .compose(RxScheduler.rxObservableSchedulerHelper())
+                        .subscribe(new ObserverManager<List<MenuItem>>(getBaseContext()) {
+                            @Override
+                            protected void onOther(HttpResult<List<MenuItem>> httpResult) {
+
+                            }
+
+                            @Override
+                            protected void onSuccess(List<MenuItem> data) {
+                                showSelectDialogFragment(data);
+                            }
+
+
+                            @Override
+                            protected void onFailure(Throwable e) {
+
+                            }
+
+                            @Override
+                            protected void onFinish() {
+                                hideLoading();
+                            }
+                        });
             }
         });
-        //投诉对象
-        setEditTextNormal(tvTousuObjectHint, etvTousuObject, "投诉对象：");
-        //投诉对象单位
-        setEditTextNormal(tvTousuUnitHint, etvTousuUnit, "投诉对象单位：");
+        //是否公开
+        sbIsPublic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    isPublic = "1";
+                } else
+                    isPublic = "0";
+            }
+        });
+        //验证码
+        setEditTextNormal(tvTousuHintVerifyCode, etvTousuVerifyCode, "*图形验证码：");
+        //TODO 接口获得验证码
+
         //投诉内容
         setEditTextContent(tvTousuContentHint, etvTousuContent);
         //附件
@@ -167,7 +234,44 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
         findViewById(R.id.stv_tousu_commit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (checkInfo()) {
+                    showLoading();
+                    TousuForm tousuForm = new TousuForm();
+                    tousuForm.setName(etvTousuName.getText().toString().trim());
+                    tousuForm.setIdentityId(etvTousuId.getText().toString().trim());
+                    tousuForm.setPhone(etvTousuPhone.getText().toString().trim());
+                    tousuForm.setTitle(etvTousuTitle.getText().toString().trim());
+                    tousuForm.setIsPublic(isPublic);
+                    tousuForm.setVerifyCode(etvTousuVerifyCode.getText().toString().trim());
+                    tousuForm.setContent(etvTousuContent.getText().toString().trim());
+                    AppClient.getInstance()
+                            .creatAPI()
+                            .submit(new Gson().toJson(tousuForm))
+                            .compose(bindViewToLifecycle())
+                            .compose(RxScheduler.rxObservableSchedulerHelper())
+                            .subscribe(new ObserverManager<String>(getBaseContext()) {
+                                @Override
+                                protected void onOther(HttpResult<String> httpResult) {
 
+                                }
+
+                                @Override
+                                protected void onSuccess(String data) {
+                                    ToastUtils.showShort(data);
+                                    finish();
+                                }
+
+                                @Override
+                                protected void onFailure(Throwable e) {
+
+                                }
+
+                                @Override
+                                protected void onFinish() {
+
+                                }
+                            });
+                }
             }
         });
     }
@@ -191,6 +295,7 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
                     editText.setHint("");
                 } else {
                     if (editText.getText().toString().trim().isEmpty()) {
+                        editText.setText("");
                         editText.setHint(content);
                         textView.setVisibility(View.INVISIBLE);
                     }
@@ -201,15 +306,41 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
     }
 
     //设置数字输入类型的edittext的获取焦点事件
-    private void setEditTextId (final TextView textView, final TextView tvWarning, final EditText editText ,final String content, final int number) {
+    private void setEditTextId (final TextView textView, final TextView tvWarning, final EditText editText ,final String content, final int number, final int type) {
         editText.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus){
                     textView.setVisibility(View.VISIBLE);
                     editText.setHint("");
+                    //实时监控文本长度并显示提示语
+                    editText.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            if (s.length() != number) {
+                                tvWarning.setVisibility(View.VISIBLE);
+                                if (type == TYPE_NUMBER) {
+                                    tvWarning.setText("请输入正确长度的数字！");
+                                } else
+                                    tvWarning.setText("请输入正确长度的身份证号码！");
+                            }
+                            else
+                                tvWarning.setVisibility(View.GONE);
+                        }
+                    });
                 } else {
                     if (editText.getText().toString().trim().isEmpty()) {
+                        editText.setText("");
                         editText.setHint(content);
                         textView.setVisibility(View.INVISIBLE);
                         tvWarning.setVisibility(View.INVISIBLE);
@@ -218,7 +349,10 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
                         editText.setText(editText.getText().toString());
                         if (editText.getText().toString().length() < number) {
                             tvWarning.setVisibility(View.VISIBLE);
-                            tvWarning.setText("请输入正确长度的数字！");
+                            if (type == TYPE_NUMBER) {
+                                tvWarning.setText("请输入正确长度的数字！");
+                            } else  tvWarning.setText("请输入正确长度的身份证号码！");
+
                         } else tvWarning.setVisibility(View.INVISIBLE);
                     }
                 }
@@ -256,7 +390,6 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
                 else {
                     textView.setVisibility(View.INVISIBLE);
                 }
-
             }
         });
 
@@ -271,31 +404,35 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
     }
 
     //展示仿ios底部弹出框及数据交互
-    public void showSelectDialogFragment() {
-        BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
+    public void showSelectDialogFragment(List<MenuItem> data) {
+        final BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
 
-        List<MenuItem> menuItemList = new ArrayList<MenuItem>();
-        MenuItem menuItem1 = new MenuItem();
-        menuItem1.setText("Hello World");
-        MenuItem menuItem2 = new MenuItem();
-        menuItem2.setText("Menu Btn 2");
-        MenuItem menuItem3 = new MenuItem();
-        menuItem3.setText("点击！");
-        menuItem3.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem3) {
-            @Override
-            public void onClickMenuItem(View v, MenuItem menuItem) {
 
-            }
-        });
-        menuItemList.add(menuItem1);
-        menuItemList.add(menuItem2);
-        menuItemList.add(menuItem3);
+//        List<MenuItem> menuItemList = new ArrayList<MenuItem>();
+//        MenuItem menuItem1 = new MenuItem();
+//        menuItem1.setText("Hello World");
+//        MenuItem menuItem2 = new MenuItem();
+//        menuItem2.setText("Menu Btn 2");
+//        MenuItem menuItem3 = new MenuItem();
+//        menuItem3.setText("点击！");
+//        menuItemList.add(menuItem1);
+//        menuItemList.add(menuItem2);
+//        menuItemList.add(menuItem3);
 
-        bottomMenuFragment.setMenuItems(menuItemList);
+        bottomMenuFragment.setMenuItems(data);
 
         bottomMenuFragment.show(getFragmentManager(), "BottomMenuFragment");
+        for (MenuItem menuItem : data) {
+            menuItem.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem) {
+                @Override
+                public void onClickMenuItem(View v, MenuItem menuItem) {
+                    tvTousuUnit.setText(menuItem.getText());
+                    tvTousuHintUnit.setVisibility(View.VISIBLE);
+                    bottomMenuFragment.dismiss();
+                }
+            });
+        }
     }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -344,6 +481,30 @@ public class WoYaoTouSuActivity extends ToolbarActivity {
             InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    //检查格式
+    private boolean checkInfo() {
+        if (TextUtils.isEmpty(etvTousuName.getText().toString().trim())) {
+            ToastUtils.showShort("请输入投诉人姓名！");
+            return false;
+        } else if (TextUtils.isEmpty(etvTousuId.getText().toString().trim())) {
+            ToastUtils.showShort("请输入投诉人身份证！");
+            return false;
+        } else if (!Validator.isIDCard(etvTousuId.getText().toString())) {
+            ToastUtils.showShort("身份证格式不正确！");
+            return false;
+        } else if (etvTousuPhone.getText().length() <13) {
+            ToastUtils.showShort("手机号长度不对!");
+            return false;
+        } else if (TextUtils.isEmpty(etvTousuVerifyCode.getText().toString().trim())){
+            ToastUtils.showShort("请输入图形验证码！");
+            return false;
+        } else if (TextUtils.isEmpty(etvTousuContent.getText().toString().trim())) {
+            ToastUtils.showShort("请输入投诉内容！");
+            return false;
+        } else
+            return true;
     }
 
 

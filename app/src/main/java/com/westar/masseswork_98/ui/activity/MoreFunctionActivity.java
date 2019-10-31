@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
+import com.westar.library_base.callback.IPermissionsCallBack;
 import com.westar.library_base.common.ArouterPath;
 import com.westar.masseswork_98.R;
 import com.westar.masseswork_98.adapter.MoreFuncIconAdapter;
@@ -66,9 +67,24 @@ public class MoreFunctionActivity extends ToolbarActivity {
 
                 switch (position) {
                     case 2:
-                        if (Utils.checkPermission(MoreFunctionActivity.this, Manifest.permission.ACCESS_FINE_LOCATION, 1)) {
-                            skipActivity(CenterNavigationActivity.class, null);
-                        }
+//                        if (Utils.checkPermission(MoreFunctionActivity.this, Manifest.permission.ACCESS_FINE_LOCATION, 1)) {
+//                            skipActivity(CenterNavigationActivity.class, null);
+//                        }
+                        //权限申请
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                true,
+                                true,
+                                new IPermissionsCallBack() {
+                                    @Override
+                                    public void permissionErro(String name) {
+                                        ToastUtils.showShort("获取权限失败！");
+                                    }
+
+                                    @Override
+                                    public void permissionSuccess(String name) {
+                                        skipActivity(CenterNavigationActivity.class, null);
+                                    }
+                                });
                         break;
                     case 3:
                         skipActivity(ContactInformationActivity.class, null);
@@ -119,7 +135,8 @@ public class MoreFunctionActivity extends ToolbarActivity {
 
     @Override
     public void onSuccess(Object data) {
-
+        moreFuncIconItems.addAll((List<MoreFuncIconItem>)data);
+        moreFuncIconAdapter.notifyDataSetChanged();
     }
 
     @Override

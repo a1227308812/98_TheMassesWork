@@ -159,4 +159,6 @@ dependencies {
     api rootProject.ext.dependencies.materialratingbar
     api rootProject.ext.dependencies.calligraphy
 
+    //仿ios swichbutton控件
+    api rootProject.ext.dependencies.SwitchButton
 }

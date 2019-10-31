@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -200,6 +201,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                     @Override
                     public void accept(Object o) throws Exception {
                         ARouter.getInstance().build(ArouterPath.MOREFUNCTION_ACTIVITY).navigation();
+                        Log.d("look", "i am a logcat");
                     }
                 }));
         addSubscribe(RxView.clicks(rightView.findViewById(R.id.iv_search))
@@ -225,7 +227,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("我要查询");
+                        ARouter.getInstance().build(ArouterPath.BANJIANCHAXUN_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(rootView.findViewById(R.id.ll_wyts))
@@ -233,7 +235,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("我要投诉");
+                        ARouter.getInstance().build(ArouterPath.WOYAOTOUSU_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(rootView.findViewById(R.id.ll_wyyy))
@@ -241,7 +243,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("我要预约");
+                        ARouter.getInstance().build(ArouterPath.SELECT_DEP_ACTIVITY).navigation();
                     }
                 }));
         addSubscribe(RxView.clicks(rootView.findViewById(R.id.ll_wyzx))
@@ -249,7 +251,7 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("我要咨询");
+                        ARouter.getInstance().build(ArouterPath.ZHINENGWENDA_ACTIVITY).navigation();
                     }
                 }));
 
@@ -305,9 +307,11 @@ public class OfficeHallFragment extends BaseFragment implements OfficeHallContra
 
     private void initUserInfo() {
         User user = BaseApplication.getIns().getUser();
-        tvMessage.setText(user.getNoticeDescribe());
-        tvUserName.setText(user.getUserName());
-        GlideApp.with(mContext).load(user.getPhotoUrl()).into(qivUserPhoto);
+        if (user != null) {
+            tvMessage.setText(user.getNoticeDescribe());
+            tvUserName.setText(user.getUserName());
+            GlideApp.with(mContext).load(user.getPhotoUrl()).into(qivUserPhoto);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)

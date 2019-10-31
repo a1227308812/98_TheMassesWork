@@ -1,135 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/png_bt_veryhigh"
-  >
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginTop="@dimen/dp_15"
-        android:text="事项名称:"
-        android:textColor="@color/color_text_title"
-        android:textSize="@dimen/text_10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
-    <TextView
-        android:id="@+id/tv_title_name"
-        style="@style/FormTextStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/dp_8"
-        android:layout_marginTop="@dimen/dp_7"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/dp_15"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title_name"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_title_name"
-        app:srcCompat="@drawable/icon_other_next" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="15dp"
+                android:text="事项名称"
+                android:textColor="#4a6dd5"
+                android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/FormTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_15"
-        android:text="办理部门："
-        app:layout_constraintStart_toStartOf="@+id/tv_title_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_name" />
+            <TextView
+                android:id="@+id/tv_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="回复冬奥会发哦我合法搜我就hi爱搜巨大搜我就打打打打交道 do哀悼的骄傲的骄傲的敬爱的就撒旦教扫"
+                android:textColor="#303545"
+                android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/tv_deal_dep_name"
-        style="@style/FormTextStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:ellipsize="end"
-        android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="#e6e6e6" />
 
-    <TextView
-        android:id="@+id/textView4"
-        style="@style/FormTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_15"
-        android:text="受理编号："
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="15dp">
 
-    <TextView
-        android:id="@+id/tv_deal_no"
-        style="@style/FormTextStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:ellipsize="end"
-        android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="受理编号："
+                    android:textColor="#828899"
+                    android:textSize="14sp" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="295dp" />
+                <TextView
+                    android:id="@+id/tv_deal_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="002197421974921784"
+                    android:textColor="#828899"
+                    android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_15"
-        android:layout_marginBottom="@dimen/dp_15"
-        android:text="承诺办结日期："
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_do_end_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:ellipsize="end"
-        android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="15dp">
 
-    <TextView
-        android:id="@+id/tv_verrify_state"
-        android:layout_width="@dimen/dp_45"
-        android:layout_height="wrap_content"
-        android:text="审核中"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_do_end_date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_do_end_date"
-        tools:layout_marginRight="@dimen/dp_8" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请时间："
+                    android:textColor="#828899"
+                    android:textSize="14sp" />
 
-</android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_application_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2019年9月6号"
+                    android:textColor="#828899"
+                    android:textSize="14sp" />
+
+                <com.coorchice.library.SuperTextView
+                    android:id="@+id/stv_verify_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="22dp"
+                    android:layout_marginRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="5dp"
+                    android:text="正常"
+                    android:textColor="#4ad582"
+                    android:textSize="10sp"
+                    app:stv_corner="10dp"
+                    app:stv_drawableAsBackground="true"
+                    app:stv_state_drawable="#e6fff0"
+                    app:stv_stroke_color="#4ad582"
+                    app:stv_stroke_width="1dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

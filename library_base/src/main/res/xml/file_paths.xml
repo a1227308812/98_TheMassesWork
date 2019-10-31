@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--7.0级以上手机或外部uri时的地址，要访问那个地址就可以在下面添加 name 表示引用名称 path 表示路径下的文件名称-->
+    <paths>
+        <root-path path="westar" name="sdcard" /><!--获取外置sd卡路径-->
+        <files-path path="westar" name="files" /><!--物理路径相当于Context.getFilesDir() + /westar/-->
+        <cache-path path="westar" name="cache" /><!--物理路径相当于Context.getCacheDir() + /westar/-->
+        <external-path path="westar" name="external" /><!--物理路径相当于Environment.getExternalStorageDirectory() + /westar/-->
+        <external-path path="" name="camera_photos" /><!--path=""是有特殊意义的，它代码根目录，也就是说你可以向其它的应用共享根目录及其子目录下任何一个文件了,eg:/storage/emulated/0/-->
+        <external-files-path path="westar" name="externalfiles"/><!--<external-files-path name="name" path="path" />-->
+        <!--注意：external-cache-path在support-v4:24.0.0这个版本并未支持，直到support-v4:25.0.0才开始支持-->
+        <external-cache-path  path="westar" name="externalcache"/><!--<external-cache-path name="name" path="path" />-->
+    </paths>
+</resources>

@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="16dp"
-                    android:text="*资讯标题："
+                    android:text="*咨询标题："
                     android:textSize="@dimen/text_tousu_top_hint"
                     android:textColor="@color/colorHintName"
                     android:visibility="invisible"/>
@@ -218,7 +218,7 @@
                 android:background="#f7f8fa"/>
 
             <com.coorchice.library.SuperTextView
-                android:id="@+id/rl_tousu_commit"
+                android:id="@+id/stv_zixun_commit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50"
                 android:gravity="center"

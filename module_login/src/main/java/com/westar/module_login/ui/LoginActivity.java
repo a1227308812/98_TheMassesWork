@@ -1,16 +1,16 @@
 package com.westar.module_login.ui;
 
 
+import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.content.ContextCompat;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.CheckedTextView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -21,6 +21,7 @@ import com.jakewharton.rxbinding2.view.RxView;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.Config;
+import com.westar.been.User;
 import com.westar.library_base.base.BaseActivity;
 import com.westar.library_base.base.BaseApplication;
 import com.westar.library_base.base.BasePresenter;
@@ -28,15 +29,14 @@ import com.westar.library_base.common.ArouterPath;
 import com.westar.library_base.common.Common;
 import com.westar.library_base.eventbus.EventBusUtlis;
 import com.westar.library_base.eventbus.SolideTypeEvent;
-import com.westar.library_base.view.shadowView.ShadowHelper;
-import com.westar.library_base.view.shadowView.ShadowProperty;
 import com.westar.module_login.R;
-import com.westar.been.User;
 import com.westar.module_login.mvp.presenter.LoginPresenter;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 import io.realm.Realm;
 
@@ -48,17 +48,36 @@ import io.realm.Realm;
 public class LoginActivity extends BaseActivity {
 
 
-    TextInputEditText etAccount;
+    AppCompatImageView qivLogo;
+    AppCompatImageView iv_back;
+
+    AppCompatTextView tvGrdl;
+    AppCompatTextView tvFrdl;
+
+    TextInputEditText etYzmAccount;
+    TextInputLayout textInputLayoutYzmAccount;
     TextInputEditText etYzm;
-    AppCompatButton btnLogin;
-    CheckedTextView cbZcxy;
+    TextInputLayout textInputLayoutYzm;
     AppCompatTextView btnYzm;
+    ConstraintLayout clYzmLayout;
+
+    TextInputEditText etPwdAccount;
+    TextInputLayout textInputLayoutPwdAccount;
+    TextInputEditText etPwdPassword;
+    TextInputLayout textInputLayoutPwdPassword;
+    ConstraintLayout clPasswordLayout;
+
+
+    AppCompatTextView tvYzmSubmit;
+    AppCompatButton btnLoginSubmit;
+    AppCompatTextView tvWjmm;
+    AppCompatTextView tvZczh;
+    AppCompatImageView ivWxdl;
+    AppCompatImageView ivZfbdl;
+
 
     LoginPresenter presenter;
 
-    ImageView ivLogo;
-
-    LinearLayout contentLayout;
 
     @Override
     protected void initStatusBar() {
@@ -83,47 +102,82 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void findId() {
-        ivLogo = findViewById(R.id.iv_top);
-        etAccount = findViewById(R.id.et_account);
-        etYzm = findViewById(R.id.et_yzm);
-        btnLogin = findViewById(R.id.btn_login);
-        cbZcxy = findViewById(R.id.cb_zcxy);
-        btnYzm = findViewById(R.id.btn_yzm);
+        qivLogo = findViewById(R.id.iv_top);
+        iv_back = findViewById(R.id.iv_back);
+        tvGrdl = findViewById(R.id.tv_grdl);
+        tvFrdl = findViewById(R.id.tv_frdl);
 
-        contentLayout = findViewById(R.id.contentLayout);
+
+        etYzmAccount = findViewById(R.id.et_yzm_account);
+        etYzm = findViewById(R.id.et_yzm);
+        btnYzm = findViewById(R.id.btn_yzm);
+        textInputLayoutYzmAccount = findViewById(R.id.textInputLayout_yzm_account);
+        textInputLayoutYzm = findViewById(R.id.textInputLayout_yzm);
+
+
+        etPwdAccount = findViewById(R.id.et_pwd_account);
+        etPwdPassword = findViewById(R.id.et_pwd_password);
+        textInputLayoutPwdAccount = findViewById(R.id.textInputLayout_pwd_account);
+        textInputLayoutPwdPassword = findViewById(R.id.textInputLayout_pwd_password);
+
+        clPasswordLayout = findViewById(R.id.cl_password_layout);
+        clYzmLayout = findViewById(R.id.cl_yzm_layout);
+
+
+        tvYzmSubmit = findViewById(R.id.tv_yzm_submit);
+        btnLoginSubmit = findViewById(R.id.btn_login_submit);
+
+        tvWjmm = findViewById(R.id.tv_wjmm);
+        tvZczh = findViewById(R.id.tv_zczh);
+
+        ivWxdl = findViewById(R.id.iv_wxdl);
+        ivZfbdl = findViewById(R.id.iv_zfbdl);
+
+//
     }
 
     @Override
     protected void initView() {
 
-        //设置指定控件的阴影
-        ShadowHelper.bindView(contentLayout, new ShadowProperty()
-                .setShadowRadius(5)
-                .setShadowColor(ContextCompat.getColor(mContext, R.color.shadow_color))
-                .setRoundwWidth(10));
-
-        cbZcxy.setOnClickListener(new View.OnClickListener() {
+        //个人登录
+        addSubscribe(RxView.clicks(tvGrdl).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
-            public void onClick(View v) {
-                cbZcxy.setChecked(!cbZcxy.isChecked());
+            public void accept(Object o) throws Exception {
+                ToastUtils.showShort("个人登录");
             }
-        });
+        }));
+
+        //法人登录
+        addSubscribe(RxView.clicks(tvFrdl).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                ToastUtils.showShort("法人登录");
+            }
+        }));
+
 
         //登录
-        addSubscribe(RxView.clicks(btnLogin)
+        addSubscribe(RxView.clicks(btnLoginSubmit)
                 .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        if (cbZcxy.isChecked()) {
+                        if (checkLoginInfo()) {
                             //显示登录加载弹窗
                             showLoadingDialog();
+
 
                             Realm realm = Realm.getDefaultInstance();
                             realm.beginTransaction();//开启事务
 
-                            User user = realm.where(User.class).equalTo("account", etAccount.getText().toString()).findFirst();
-                            if (user != null && etYzm.getText().toString().equals(user.getPassword())) {
+                            String acccount = etPwdAccount.getText().toString();
+                            String password = etPwdPassword.getText().toString();
+                            if (clYzmLayout.getVisibility() == View.VISIBLE) {
+                                acccount = etYzmAccount.getText().toString();
+                                password = etYzm.getText().toString();
+                            }
+                            User user = realm.where(User.class).equalTo("account", acccount).findFirst();
+                            if (user != null && password.equals(user.getPassword())) {
 //                            //验证通过 登录成功
 //                            new QMUITipDialog.Builder(mContext)
 //                                    .setTipWord("登录成功!")
@@ -135,21 +189,19 @@ public class LoginActivity extends BaseActivity {
 
                                 EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.HAD_AUTHENTICATION));
                                 skipActivity(ConfirmPersonalInformationActivity.class, null);
-
                             } else {
                                 ToastUtils.showShort("登录失败！");
                             }
+
                             realm.commitTransaction();
                             hideLoadingDialog();
-                        } else {
-                            ToastUtils.showShort("请先阅读并同意《注册协议》！");
                         }
 
                     }
                 }));
 
         //注册
-        addSubscribe(RxView.clicks(ivLogo)
+        addSubscribe(RxView.clicks(qivLogo)
                 .throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
@@ -158,16 +210,21 @@ public class LoginActivity extends BaseActivity {
                         if (checkLoginInfo()) {
                             Realm realm = Realm.getDefaultInstance();
                             realm.beginTransaction();//开启事务
-
+                            String acccount = etPwdAccount.getText().toString();
+                            String password = etPwdPassword.getText().toString();
+                            if (clYzmLayout.getVisibility() == View.VISIBLE) {
+                                acccount = etYzmAccount.getText().toString();
+                                password = etYzm.getText().toString();
+                            }
                             User hasUser = realm.where(User.class)
-                                    .equalTo("account", etAccount.getText().toString())
+                                    .equalTo("account", acccount)
                                     .findFirst();
                             if (hasUser == null) {
                                 //创建一个数据库对象
                                 User user = realm.createObject(User.class, UUID.randomUUID().toString());
-                                user.setAccount(etAccount.getText().toString())
-                                        .setUserName(etAccount.getText().toString())
-                                        .setPassword(etYzm.getText().toString())
+                                user.setAccount(acccount)
+                                        .setUserName(acccount)
+                                        .setPassword(password)
                                         .setAge("22")
                                         .setGender("男")
                                         .setDomicile_address("四川省成都市武侯区科园三路火炬时代B区")
@@ -187,11 +244,74 @@ public class LoginActivity extends BaseActivity {
                     }
                 }));
 
+        //短信验证登录
+        addSubscribe(RxView.clicks(tvYzmSubmit).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                if (clPasswordLayout.getVisibility() == View.VISIBLE) {
+                    clPasswordLayout.setVisibility(View.GONE);
+                    clYzmLayout.setVisibility(View.VISIBLE);
+                    tvYzmSubmit.setText("账号密码登录");
+                } else {
+                    clPasswordLayout.setVisibility(View.VISIBLE);
+                    clYzmLayout.setVisibility(View.GONE);
+                    tvYzmSubmit.setText("短信验证码登录");
+                }
+            }
+        }));
+        //忘记密码
+        addSubscribe(RxView.clicks(tvWjmm).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                ToastUtils.showShort("忘记密码");
+            }
+        }));
+        //注册账号
+        addSubscribe(RxView.clicks(tvZczh).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                ToastUtils.showShort("注册账号");
+            }
+        }));
+        //微信登录
+        addSubscribe(RxView.clicks(ivWxdl).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                ToastUtils.showShort("微信登录");
+            }
+        }));
+        //支付宝登录
+        addSubscribe(RxView.clicks(ivZfbdl).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                ToastUtils.showShort("支付宝登录");
+            }
+        }));
+        //获取验证码
+        addSubscribe(RxView.clicks(btnYzm).throttleFirst(Config.WINDOWDURATION, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                ToastUtils.showShort("获取验证码");
+            }
+        }));
+
+        //开启软键盘回车提交功能
         etYzm.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    btnLogin.performClick();
+                    btnLoginSubmit.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
+        //开启软键盘回车提交功能
+        etPwdPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    btnLoginSubmit.performClick();
                     return true;
                 }
                 return false;
@@ -205,18 +325,31 @@ public class LoginActivity extends BaseActivity {
     }
 
     public boolean checkLoginInfo() {
-        if (StringUtils.isEmpty(etAccount.getText())) {
-            ToastUtils.showShort(R.string.phone_num_is_empty);
-            return false;
+        //判断是账号密码登录还是短信验证码登录
+        if (clPasswordLayout.getVisibility() == View.VISIBLE) {
+            if (StringUtils.isEmpty(etPwdAccount.getText())) {
+                ToastUtils.showShort(R.string.account_is_empty);
+                return false;
+            }
+            if (StringUtils.isEmpty(etPwdPassword.getText())) {
+                ToastUtils.showShort(R.string.account_is_password);
+                return false;
+            }
+        } else {
+            if (StringUtils.isEmpty(etYzmAccount.getText())) {
+                ToastUtils.showShort(R.string.phone_num_is_empty);
+                return false;
+            }
+            if (RegexUtils.isMobileSimple(etYzmAccount.getText())) {
+                ToastUtils.showShort(R.string.match_phone);
+                return false;
+            }
+            if (StringUtils.isEmpty(etYzm.getText())) {
+                ToastUtils.showShort(R.string.match_yzm);
+                return false;
+            }
         }
-        if (RegexUtils.isMobileSimple(etAccount.getText())) {
-            ToastUtils.showShort(R.string.match_phone);
-            return false;
-        }
-        if (StringUtils.isEmpty(etYzm.getText())) {
-            ToastUtils.showShort(R.string.match_yzm);
-            return false;
-        }
+
         return true;
     }
 
@@ -249,4 +382,5 @@ public class LoginActivity extends BaseActivity {
     public LifecycleTransformer bindViewToLifecycle() {
         return this.bindToLifecycle();
     }
+
 }

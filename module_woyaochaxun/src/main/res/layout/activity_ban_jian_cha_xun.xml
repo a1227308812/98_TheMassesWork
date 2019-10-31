@@ -62,12 +62,33 @@
             android:textStyle="bold"
             />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_my_deal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="end"
+            android:text="我的办件"
+            android:textColor="#4a6dd5"
+            android:textSize="14sp"/>
     </LinearLayout>
-    
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recy_documents"
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smart_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_15"
-       />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recy_documents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_15"
+            android:paddingTop="10dp"
+            android:background="#f7f7fa"
+            />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 </LinearLayout>

@@ -4,8 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
 
-    <dimen name="divider_width">1.0px</dimen>
-    <dimen name="divider_height">1.0px</dimen>
+    <dimen name="divider_width">1.0dp</dimen>
+    <dimen name="divider_height">1.0dp</dimen>
 
 
     <dimen name="dp_minus5">-5.0dp</dimen>

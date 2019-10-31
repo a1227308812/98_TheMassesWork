@@ -24,5 +24,4 @@ public class PlaceItem {
         return address;
     }
 
-
 }

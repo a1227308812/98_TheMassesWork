@@ -233,7 +233,7 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ToastUtils.showShort("跳转更多功能");
+                        ARouter.getInstance().build(ArouterPath.MOREFUNCTION_ACTIVITY).navigation();
                     }
                 }));
 
@@ -292,7 +292,9 @@ public class NewsInformationFragment extends BaseFragment implements NewsInforma
 
     private void initUserInfo() {
         User user = BaseApplication.getIns().getUser();
-        GlideApp.with(mContext).load(user.getPhotoUrl()).into(leftView);
+        if (user != null) {
+            GlideApp.with(mContext).load(user.getPhotoUrl()).into(leftView);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)

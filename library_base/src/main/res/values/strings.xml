@@ -17,6 +17,7 @@
 
 
     <string name="account_is_empty">账号不能为空！</string>
+    <string name="account_is_password">密码不能为空！</string>
     <string name="phone_num_is_empty">手机号不能为空！</string>
     <string name="match_phone">请输入正确的手机号码！</string>
     <string name="match_yzm">验证码不能为空！</string>

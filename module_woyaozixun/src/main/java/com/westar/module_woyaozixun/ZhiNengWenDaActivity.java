@@ -8,17 +8,24 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.google.gson.Gson;
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
 import com.westar.library_base.common.ArouterPath;
+import com.westar.library_base.http.ObserverManager;
+import com.westar.library_base.http.been.HttpResult;
+import com.westar.library_base.rxjava.RxScheduler;
 import com.westar.module_woyaozixun.adapter.MyRecyclerAdapter;
+import com.westar.module_woyaozixun.databean.Reply;
 import com.westar.module_woyaozixun.util.Utils;
 import com.westar.module_woyaozixun.widget.MyPopWindow;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.tencent.smtt.utils.b.e;
 
 /**
  * Created by ZWP on 2019/4/8 11:24.
@@ -29,7 +36,8 @@ public class ZhiNengWenDaActivity extends ToolbarActivity {
 
     private MyPopWindow myPopWindow; //自定义弹出菜单
     private RecyclerView mRecyclerView; //对话界面
-    private List<Integer> typeList = new ArrayList<>();
+//    private List<Integer> typeList = new ArrayList<>();
+    private  List<String> typeList = new ArrayList<>();
     MyRecyclerAdapter adapter = new MyRecyclerAdapter(this, typeList);
     private EditText etvInput;
 
@@ -53,8 +61,35 @@ public class ZhiNengWenDaActivity extends ToolbarActivity {
         findViewById(R.id.stv_zixun_send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.addData(typeList.size());
-                adapter.addData(typeList.size());
+                AppClient.getInstance()
+                        .creatAPI()
+                        .sendMsg(new Gson().toJson(new SendMsg(etvInput.getText().toString().trim())))
+                        .compose(bindViewToLifecycle())
+                        .compose(RxScheduler.rxObservableSchedulerHelper())
+                        .subscribe(new ObserverManager<Reply>(getBaseContext()) {
+                            @Override
+                            protected void onOther(HttpResult<Reply> httpResult) {
+
+                            }
+
+                            @Override
+                            protected void onSuccess(Reply data) {
+                                adapter.addData(data.getUserContent());
+                                adapter.addData(data.getSysContent());
+                                adapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            protected void onFailure(Throwable e) {
+
+                            }
+
+                            @Override
+                            protected void onFinish() {
+
+                            }
+
+                        });
                 mRecyclerView.smoothScrollToPosition(typeList.size());
             }
         });
@@ -83,7 +118,7 @@ public class ZhiNengWenDaActivity extends ToolbarActivity {
     }
 
     private void initFirstData() {
-        typeList.add(1);
+//        typeList.add(1);
     }
 
     private void initRecyclerView() {
@@ -91,6 +126,22 @@ public class ZhiNengWenDaActivity extends ToolbarActivity {
         mRecyclerView= (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
+    }
+
+    public class SendMsg{
+        public SendMsg(String msg){
+            ZNWDMessage = msg;
+        }
+
+        private String ZNWDMessage;
+
+        public String getZNWDMessage() {
+            return ZNWDMessage;
+        }
+
+        public void setZNWDMessage(String ZNWDMessage) {
+            this.ZNWDMessage = ZNWDMessage;
+        }
     }
 
 

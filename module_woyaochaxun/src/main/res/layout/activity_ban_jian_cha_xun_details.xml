@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/top_cons"
+            android:id="@+id/cons_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/png_bt_veryhigh">
@@ -146,6 +146,7 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/cons_mid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -172,7 +173,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <TextView
-                android:id="@+id/tv_proser_name"
+                android:id="@+id/tv_person_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/textView7"
@@ -212,6 +213,7 @@
         </android.support.constraint.ConstraintLayout>
 
             <ImageView
+                android:id="@+id/iv_QR_code"
                 android:layout_width="@dimen/dp_140"
                 android:layout_height="@dimen/dp_140"
                 android:layout_marginTop="@dimen/dp_15"
@@ -228,6 +230,7 @@
             android:paddingRight="@dimen/dp_15"
             >
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_time_node"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false">

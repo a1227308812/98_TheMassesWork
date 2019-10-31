@@ -2,6 +2,7 @@ package com.westar.masseswork_98;
 
 import com.westar.library_base.http.BaseApi;
 import com.westar.library_base.http.been.HttpResult;
+import com.westar.masseswork_98.been.ContactInfo;
 import com.westar.masseswork_98.been.MeCardInfo;
 
 import java.util.List;
@@ -54,4 +55,15 @@ public interface ApiStore extends BaseApi {
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     @POST("/app/cardlist")
     Observable<HttpResult<List<MeCardInfo>>> cardlist(@Field("jsonParam") String jsonParam);
+
+    /**
+     * 获取联系方式界面数据
+     *
+     * @param jsonParam
+     * @return
+     */
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    @POST("/app/contactInfo")
+    Observable<HttpResult<List<ContactInfo>>> contactInfo(@Field("jsonParam") String jsonParam);
 }

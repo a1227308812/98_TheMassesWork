@@ -110,8 +110,8 @@ public class UpdateActivity extends BaseActivity implements UpdateContract.View 
 
     @Override
     protected UpdatePresenter createPresenter() {
-        updatePresenter = new UpdatePresenter();
-        return updatePresenter;
+
+        return updatePresenter = new UpdatePresenter();
     }
 
     @Override

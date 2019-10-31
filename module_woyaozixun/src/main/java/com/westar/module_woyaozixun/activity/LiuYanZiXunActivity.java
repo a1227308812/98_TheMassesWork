@@ -4,19 +4,29 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.coorchice.library.SuperTextView;
+import com.google.gson.Gson;
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
+import com.westar.library_base.http.ObserverManager;
+import com.westar.library_base.http.been.HttpResult;
+import com.westar.library_base.rxjava.RxScheduler;
+import com.westar.module_woyaozixun.AppClient;
 import com.westar.module_woyaozixun.R;
 import com.westar.module_woyaozixun.databean.MenuItem;
+import com.westar.module_woyaozixun.databean.ZixunForm;
 import com.westar.module_woyaozixun.fragment.BottomMenuFragment;
 import com.westar.module_woyaozixun.listener.MenuItemOnClickListener;
 import com.westar.module_woyaozixun.util.DrawableUtil;
@@ -33,11 +43,14 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
     private TextView tvZixunPhoneHint;
     private TextView tvWarningPhone;
     private LinearLayout llZixunTitle; //title
+    private TextView tvZixunTitle;
+    private  TextView tvZixunHintTitle;
     private EditText etvZixunContent; //content
     private TextView tvZixunContentHint;
     private InputTextMsgDialog inputTextMsgDialog; //自定义dialog
     private TextView tvZixunAttachment; //附件
     public DrawableUtil drawableUtil; //设置"+"点击
+    private SuperTextView stvZixunCommit; //提交
 
     @Override
     protected BasePresenter createPresenter() {
@@ -60,6 +73,8 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
         tvWarningPhone = (TextView) findViewById(R.id.tv_warning_phone);
         //title
         llZixunTitle = (LinearLayout) findViewById(R.id.ll_zixun_title);
+        tvZixunTitle = (TextView) findViewById(R.id.tv_zixun_title);
+        tvZixunHintTitle = (TextView) findViewById(R.id.tv_zixun_hint_title);
         //content
         etvZixunContent = (EditText) findViewById(R.id.etv_zixun_content);
         tvZixunContentHint = (TextView) findViewById(R.id.tv_zixun_hint_content);
@@ -67,9 +82,8 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
         inputTextMsgDialog = new InputTextMsgDialog(this, R.style.dialog_center);
         //附件
         tvZixunAttachment = (TextView) findViewById(R.id.tv_zixun_attachment);
-
-
-
+        //提交
+        stvZixunCommit = (SuperTextView) findViewById(R.id.stv_zixun_commit);
     }
 
     @Override
@@ -129,7 +143,33 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
         llZixunTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSelectDialogFragment();
+                AppClient.getInstance()
+                        .creatAPI()
+                        .liuyanTitleList()
+                        .compose(bindViewToLifecycle())
+                        .compose(RxScheduler.rxObservableSchedulerHelper())
+                        .subscribe(new ObserverManager<List<MenuItem>>(getBaseContext()) {
+                            @Override
+                            protected void onOther(HttpResult<List<MenuItem>> httpResult) {
+
+                            }
+
+                            @Override
+                            protected void onSuccess(List<MenuItem> data) {
+                                showSelectDialogFragment(data);
+                            }
+
+
+                            @Override
+                            protected void onFailure(Throwable e) {
+
+                            }
+
+                            @Override
+                            protected void onFinish() {
+                                hideLoading();
+                            }
+                        });
             }
         });
         //咨询内容
@@ -141,6 +181,48 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
                 Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
             }
         });
+        //提交表单
+        stvZixunCommit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkInfo()) {
+                    ZixunForm zixunForm = new ZixunForm();
+                    zixunForm.setName(etvZixunName.getText().toString().trim());
+                    zixunForm.setPhone(etvZixunPhone.getText().toString().trim());
+                    zixunForm.setTitle(tvZixunTitle.getText().toString().trim());
+                    zixunForm.setContent(etvZixunContent.getText().toString().trim());
+                    AppClient.getInstance()
+                            .creatAPI()
+                            .submit(new Gson().toJson(zixunForm))
+                            .compose(bindViewToLifecycle())
+                            .compose(RxScheduler.rxObservableSchedulerHelper())
+                            .subscribe(new ObserverManager<String>(getBaseContext()) {
+                                @Override
+                                protected void onOther(HttpResult<String> httpResult) {
+
+                                }
+
+                                @Override
+                                protected void onSuccess(String data) {
+                                    ToastUtils.showShort(data);
+                                    finish();
+                                }
+
+                                @Override
+                                protected void onFailure(Throwable e) {
+
+                                }
+
+                                @Override
+                                protected void onFinish() {
+
+                                }
+                            });
+                }
+
+
+            }
+        });
 
     }
 
@@ -148,7 +230,23 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
     protected void initData() {
 
     }
-
+    //检查格式
+    private boolean checkInfo() {
+        if (TextUtils.isEmpty(etvZixunName.getText().toString().trim())) {
+            ToastUtils.showShort("请输入咨询人姓名！");
+            return false;
+        } else if (TextUtils.isEmpty(etvZixunPhone.getText().toString().trim())) {
+            ToastUtils.showShort("请输入咨询人电话！");
+            return false;
+        } else if (TextUtils.isEmpty(tvZixunTitle.getText().toString().trim())) {
+            ToastUtils.showShort("请选择咨询标题！");
+            return false;
+        } else if (TextUtils.isEmpty(etvZixunContent.getText().toString().trim())) {
+            ToastUtils.showShort("请输入咨询内容！");
+            return false;
+        } else
+            return true;
+    }
 
     //设置字符输入类型的edittext的获取焦点事件
     private void setEditTextNormal(final TextView textView, final EditText editText , final String content) {
@@ -196,29 +294,31 @@ public class LiuYanZiXunActivity extends ToolbarActivity {
     }
 
     //展示仿ios底部弹出框及数据交互
-    public void showSelectDialogFragment() {
-        BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
+    public void showSelectDialogFragment(List<MenuItem> data) {
+        final BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
 
-        List<MenuItem> menuItemList = new ArrayList<MenuItem>();
-        MenuItem menuItem1 = new MenuItem();
-        menuItem1.setText("Hello World");
-        MenuItem menuItem2 = new MenuItem();
-        menuItem2.setText("Menu Btn 2");
-        MenuItem menuItem3 = new MenuItem();
-        menuItem3.setText("点击！");
-        menuItem3.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem3) {
-            @Override
-            public void onClickMenuItem(View v, MenuItem menuItem) {
-
-            }
-        });
-        menuItemList.add(menuItem1);
-        menuItemList.add(menuItem2);
-        menuItemList.add(menuItem3);
-
-        bottomMenuFragment.setMenuItems(menuItemList);
+//        List<MenuItem> menuItemList = new ArrayList<MenuItem>();
+//        MenuItem menuItem1 = new MenuItem();
+//        menuItem1.setText("Hello World");
+//        MenuItem menuItem2 = new MenuItem();
+//        menuItem2.setText("Menu Btn 2");
+//        MenuItem menuItem3 = new MenuItem();
+//        menuItem3.setText("点击！");
+        bottomMenuFragment.setMenuItems(data);
 
         bottomMenuFragment.show(getFragmentManager(), "BottomMenuFragment");
+        for (MenuItem menuItem : data) {
+            menuItem.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem) {
+                @Override
+                public void onClickMenuItem(View v, MenuItem menuItem) {
+                    tvZixunTitle.setText(menuItem.getText());
+                    tvZixunHintTitle.setVisibility(View.VISIBLE);
+                    bottomMenuFragment.dismiss();
+                }
+            });
+        }
+
+
     }
 
     //设置投诉内容的edittext的输入对话框和获取焦点事件

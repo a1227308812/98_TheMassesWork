@@ -1,18 +1,32 @@
 package com.westar.masseswork_98.ui.activity;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.google.gson.Gson;
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.westar.been.User;
 import com.westar.library_base.base.BasePresenter;
 import com.westar.library_base.base.ToolbarActivity;
+import com.westar.library_base.http.ObserverManager;
+import com.westar.library_base.http.been.HttpResult;
+import com.westar.library_base.rxjava.RxScheduler;
+import com.westar.masseswork_98.AppClient;
 import com.westar.masseswork_98.R;
+import com.westar.masseswork_98.adapter.ContactInformationAdapter;
+import com.westar.masseswork_98.been.ContactInfo;
 import com.westar.masseswork_98.util.Utils;
+
+import java.util.List;
 
 import static android.util.TypedValue.COMPLEX_UNIT_SP;
 
@@ -25,6 +39,9 @@ public class ContactInformationActivity extends ToolbarActivity {
 
     private QMUIAlphaImageButton rightTopbar; //右侧定位
     private TextView tvArea; //定位区域
+    private ContactInformationAdapter adapter;
+    private List<ContactInfo> contactInfoList;
+    private RecyclerView recyclerView;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -38,29 +55,23 @@ public class ContactInformationActivity extends ToolbarActivity {
 
     @Override
     protected void findId() {
-
+        recyclerView = (RecyclerView) findViewById(R.id.rv_contact_information);
     }
 
     @Override
     protected void initView() {
-        setTopBarRightNavigation(); //设置右侧定位及监听
+        initTvArea();
+        adapter = new ContactInformationAdapter(getBaseContext(), null);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        //TODO 服务器好了再开
+//        getAdapterList();//获取界面数据
+        showLoading();
     }
 
     @Override
     protected void initData() {
 
-    }
-
-    //设置右侧定位及监听
-    private void setTopBarRightNavigation() {
-        rightTopbar = topBarLayout.addRightImageButton(R.drawable.icon_top_dz_ss, 11);
-        rightTopbar.setChangeAlphaWhenPress(false);
-        rightTopbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initTvArea();
-            }
-        });
     }
 
     //初始化定位区域
@@ -76,11 +87,9 @@ public class ContactInformationActivity extends ToolbarActivity {
         tvArea.setCompoundDrawablePadding(Utils.dip2px(mContext, 9));
         RelativeLayout.LayoutParams rl = new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rl.setMargins(0, 0, Utils.dip2px(mContext, 37), 0);
         rl.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
         topBarLayout.addRightView(tvArea, 12, rl);
-        if (!tvArea.getText().toString().isEmpty()) {
-            rightTopbar.setVisibility(View.INVISIBLE);
-        }
         tvArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,10 +100,44 @@ public class ContactInformationActivity extends ToolbarActivity {
 
     //更改定位区域
     private void chooseArea() {
-        //处理定位逻辑
+        //TODO 处理定位逻辑
         //根据获取到的地区设置
         tvArea.setText("金牛区");
 
+    }
+
+    //获取数据列表
+    private void getAdapterList() {
+        AppClient.getInstance()
+                .creatAPI()
+                .contactInfo(new Gson().toJson(new User()))
+                .compose(bindViewToLifecycle())
+                .compose(RxScheduler.rxObservableSchedulerHelper())
+                .subscribe(new ObserverManager<List<ContactInfo>>(getBaseContext()) {
+                    @Override
+                    protected void onOther(HttpResult<List<ContactInfo>> httpResult) {
+
+                    }
+
+                    @Override
+                    protected void onSuccess(List<ContactInfo> data) {
+                        if (data != null && data.size() != 0) {
+                            contactInfoList = data;
+                            adapter.setNewData(data);
+                        }
+
+                    }
+
+                    @Override
+                    protected void onFailure(Throwable e) {
+
+                    }
+
+                    @Override
+                    protected void onFinish() {
+                        hideLoading();
+                    }
+                });
     }
 
     @Override

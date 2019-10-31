@@ -46,8 +46,8 @@ public class MyPopWindow extends PopupWindow {
                         context.startActivity(intent);
                     }
                 }).start();
-//                Intent intent = new Intent(context, LiuYanZiXunActivity.class);
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, LiuYanZiXunActivity.class);
+                context.startActivity(intent);
             }
         });
         llZixunPhone.setOnClickListener(new View.OnClickListener() {

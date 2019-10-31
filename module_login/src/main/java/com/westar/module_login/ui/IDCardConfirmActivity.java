@@ -189,8 +189,8 @@ public class IDCardConfirmActivity extends ToolbarActivity {
                     new Handler(getMainLooper()).postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            tipDialog.dismiss();
                             ToastUtils.showShort("检测通过！");
+                            tipDialog.dismiss();
                             EventBusUtlis.sendStickyEvent(new SolideTypeEvent(Common.HAD_AUTHENTICATION));
                             //跳转主页
                             ARouter.getInstance().build(ArouterPath.HOMEGROUP_ACTIVITY).navigation();

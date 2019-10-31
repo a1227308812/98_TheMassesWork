@@ -6,19 +6,33 @@
     <application
         android:name="com.westar.library_base.base.BaseApplication"
         android:allowBackup="true"
+        android:fullBackupContent="@xml/mybackupscheme"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/HomeTheme"
-        tools:replace="Android:icon, android:theme"> <!-- 忽略导入的module的主题和icon -->
-
+        tools:replace="Android:icon, android:theme"
+        tools:targetApi="n"> <!-- 忽略导入的module的主题和icon -->
 
         <!-- region 适配全面屏 -->
         <meta-data
             android:name="android.max_aspect"
             android:value="2.4" />
+
+        <!-- 适配7.0级以上系统的获取系统uri路径，应用于提供App之间共享的uri -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <!-- 元数据 -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <!-- 测试activity -->
         <activity android:name=".test.TestViewActivity" />

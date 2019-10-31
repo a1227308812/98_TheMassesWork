@@ -18,12 +18,13 @@ import java.util.List;
 public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context mContext;
-    private final List<Integer> typeList;
+//    private final List<Integer> typeList;
+    private final List<String> typeList;
 
     private static final int TYPE_ROBOT = 0;
     private static final int TYPE_USER = 1;
 
-    public MyRecyclerAdapter(Context context, List<Integer> typeList) {
+    public MyRecyclerAdapter(Context context, List<String> typeList) {
         this.mContext = context;
         this.typeList = typeList;
     }
@@ -82,9 +83,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return typeList.size();
     }
 
-    public void addData(int position) {
-        typeList.add(position);
-        notifyItemInserted(position);
+    public void addData(String data) {
+        typeList.add(data);
+//        notifyItemInserted(position);
     }
 
     public class RobotViewHolder extends RecyclerView.ViewHolder {
